@@ -4,18 +4,23 @@ import { workExperience } from "../content/experience";
 export default function WorkIndex() {
     return (
         <div>
-            <h2>Work</h2>
-            <p>Workplaces (click to open details):</p>
+            <div className="h2">Work experience</div>
+            <p className="muted">Click a workplace to open details.</p>
 
-            <ul>
+            <div className="grid" style={{ gap: 14 }}>
                 {workExperience.map((w) => (
-                    <li key={w.slug} style={{ marginBottom: 10 }}>
-                        <Link to={`/work/${w.slug}`}>
-                            <strong>{w.company}</strong> — {w.rolePublic} ({w.dateRange})
-                        </Link>
-                    </li>
+                    <Link key={w.slug} to={`/work/${w.slug}`} className="card" style={{ display: "block" }}>
+                        <div style={{ display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
+                            <div>
+                                <div style={{ fontWeight: 700 }}>{w.company}</div>
+                                <div className="muted">{w.rolePublic}{w.roleOfficial ? ` · ${w.roleOfficial}` : ""}</div>
+                            </div>
+                            <div className="muted">{w.location} · {w.dateRange}</div>
+                        </div>
+                        <p className="muted" style={{ marginBottom: 0 }}>{w.summary}</p>
+                    </Link>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 }
