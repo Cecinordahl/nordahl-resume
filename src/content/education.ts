@@ -8,10 +8,10 @@ export type EducationItem = {
 export const education: EducationItem[] = [
     {
         institution: "Rogers State University",
-        program: "BTech, Applied Technology",
+        program: "Bachelor of Technology, Applied Technology",
         dateRange: "2011 – 2015",
         details: [
-            "Focus on practical technical skills combined with project management and leadership fundamentals.",
+            "Specialized in Applied Technology, the program focuses on practical skills and management in tech fields. It emphasized technical expertise, problem-solving, project management, and leadership.",
         ],
     },
     {
@@ -28,7 +28,13 @@ export const education: EducationItem[] = [
         program: "Single courses",
         dateRange: "Sep 2021 – Dec 2023",
         details: [
-            "Selected coursework: Web development & inclusive design, programming, databases, introductory AI, data security.",
+            "DATA1200 Webutvikling og inkluderende design",
+            "DAPE1400 Programmering",
+            "DATA1700 Webprogrammering",
+            "DATA1500 Databaser",
+            "DAVE3625 Introduksjon til Kunstig Intelligens",
+            "ITPE3100 Datasikkerhet",
+            "DATA1100 Teknologi og samfunn for programmerere"
         ],
     },
     {
@@ -36,7 +42,10 @@ export const education: EducationItem[] = [
         program: "Single courses",
         dateRange: "Aug 2020 – Jun 2021",
         details: [
-            "Selected coursework: Object-oriented programming, interaction design, logical methods, IT in organizations.",
+            "IN1050 Introduksjon til design, bruk, interaksjon",
+            "IN1150 Logiske metoder",
+            "IN1000 Introduksjon til objektorientert programmering",
+            "IN2150 IT i organisasjoner"
         ],
     },
 ];

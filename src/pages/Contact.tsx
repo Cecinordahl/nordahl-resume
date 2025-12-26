@@ -6,7 +6,7 @@ export default function Contact() {
             <div className="card">
                 <div className="h2">Contact</div>
                 <p className="muted" style={{ marginBottom: 0 }}>
-                    Happy to connect about fullstack roles, architecture, and delivery.
+                    Happy to connect!
                 </p>
             </div>
 

@@ -22,7 +22,7 @@ export default function ContactCard() {
                     GitHub
                 </a>
 
-                <a className="btn" href="/assets/Cecilie-Nordahl-Resume.pdf" download style={{ marginTop: 10 }}>
+                <a className="btn" href="/assets/ResumeNordahl.pdf" download style={{ marginTop: 10 }}>
                     Download PDF resume
                 </a>
             </div>
