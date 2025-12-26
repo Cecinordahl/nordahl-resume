@@ -14,6 +14,8 @@ export default function NavBar() {
                     <NavLink to="/work" style={linkStyle}>Work</NavLink>
                     <NavLink to="/portfolio" style={linkStyle}>Portfolio</NavLink>
                     <NavLink to="/contact" style={linkStyle}>Contact</NavLink>
+                    <NavLink to="/education" style={linkStyle}>Education</NavLink>
+                    <NavLink to="/certifications" style={linkStyle}>Certifications</NavLink>
                     <NavLink to="/notes" style={linkStyle}>Notes</NavLink>
                 </div>
 

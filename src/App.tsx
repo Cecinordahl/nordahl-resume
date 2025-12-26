@@ -7,6 +7,8 @@ import Contact from "./pages/Contact";
 import Portfolio from "./pages/Portfolio";
 import NotesIndex from "./pages/NotesIndex";
 import NoteDetail from "./pages/NoteDetail";
+import Education from "./pages/Education";
+import Certifications from "./pages/Certifications";
 
 export default function App() {
     return (
@@ -19,7 +21,8 @@ export default function App() {
                 <Route path="/portfolio" element={<Portfolio />} />
                 <Route path="/notes" element={<NotesIndex />} />
                 <Route path="/notes/:slug" element={<NoteDetail />} />
-
+                <Route path="/education" element={<Education />} />
+                <Route path="/certifications" element={<Certifications />} />
             </Route>
         </Routes>
     );
