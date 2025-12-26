@@ -1,15 +1,16 @@
+import ContactCard from "../components/ContactCard";
+
 export default function Contact() {
     return (
-        <div>
-            <h2>Contact</h2>
-            <p>
-                <a href="mailto:cecilie.nordahl@gmail.com">cecilie.nordahl@gmail.com</a>
-            </p>
-            <p>
-                <a href="/assets/Cecilie-Nordahl-Resume.pdf" download>
-                    Download PDF resume
-                </a>
-            </p>
+        <div className="grid" style={{ gap: 18 }}>
+            <div className="card">
+                <div className="h2">Contact</div>
+                <p className="muted" style={{ marginBottom: 0 }}>
+                    Happy to connect about fullstack roles, architecture, and delivery.
+                </p>
+            </div>
+
+            <ContactCard />
         </div>
     );
 }

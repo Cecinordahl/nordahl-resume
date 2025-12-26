@@ -12,7 +12,9 @@ export default function NavBar() {
                 <div className="navLinks">
                     <NavLink to="/" style={linkStyle}>Home</NavLink>
                     <NavLink to="/work" style={linkStyle}>Work</NavLink>
+                    <NavLink to="/portfolio" style={linkStyle}>Portfolio</NavLink>
                     <NavLink to="/contact" style={linkStyle}>Contact</NavLink>
+                    <NavLink to="/notes" style={linkStyle}>Notes</NavLink>
                 </div>
 
                 <div className="muted" style={{ fontSize: 13 }}>
