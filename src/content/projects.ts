@@ -31,4 +31,22 @@ export const hobbyProjects: Project[] = [
         status: "Planned",
         tags: ["Automation", "Email", "AI"],
     },
+    {
+        name: "Gruble Game App",
+        tagline: "Play Gruble",
+        status: "Planned",
+        tags: ["InsertTag1Here", "InsertTag2Here", "InsertTag2Here"],
+    },
+    {
+        name: "Casa 360",
+        tagline: "Landing page for house rental",
+        status: "Planned",
+        tags: ["InsertTag1Here", "InsertTag2Here", "InsertTag2Here"],
+    },
+    {
+        name: "InsertAppNameHere",
+        tagline: "InsertAppDescriptionHere",
+        status: "Planned",
+        tags: ["InsertTag1Here", "InsertTag2Here", "InsertTag2Here"],
+    },
 ];
