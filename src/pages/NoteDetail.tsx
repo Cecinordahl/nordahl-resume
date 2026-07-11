@@ -1,10 +1,13 @@
 import { Link, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { getNoteBySlug } from "../lib/notes";
+import { useDocumentTitle } from "../lib/useDocumentTitle";
 
 export default function NoteDetail() {
     const { slug } = useParams();
     const note = slug ? getNoteBySlug(slug) : null;
+
+    useDocumentTitle(note ? note.meta.title : "Notes");
 
     if (!note) {
         return (

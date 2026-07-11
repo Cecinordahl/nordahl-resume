@@ -1,6 +1,9 @@
 import { education } from "../content/education";
+import { useDocumentTitle } from "../lib/useDocumentTitle";
 
 export default function Education() {
+    useDocumentTitle("Education");
+
     return (
         <div className="grid" style={{ gap: 14 }}>
             <div className="card">

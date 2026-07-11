@@ -1,9 +1,12 @@
 import { Link, useParams } from "react-router-dom";
 import { getWorkBySlug } from "../content/experience";
+import { useDocumentTitle } from "../lib/useDocumentTitle";
 
 export default function WorkDetail() {
     const { slug } = useParams();
     const work = slug ? getWorkBySlug(slug) : undefined;
+
+    useDocumentTitle(work ? work.company : "Work");
 
     if (!work) {
         return (

@@ -1,6 +1,9 @@
 import { certifications } from "../content/certifications";
+import { useDocumentTitle } from "../lib/useDocumentTitle";
 
 export default function Certifications() {
+    useDocumentTitle("Certifications");
+
     return (
         <div className="grid" style={{ gap: 14 }}>
             <div className="card">

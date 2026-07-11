@@ -1,73 +1,51 @@
-# React + TypeScript + Vite
+# nordahl-resume
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal site for Cecilie Nordahl — resume, portfolio, and a running log of technical
+notes. Built with React, TypeScript, and Vite, deployed on Vercel.
 
-Currently, two official plugins are available:
+Live at: (add URL once the Vercel project is connected)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Structure
 
-## React Compiler
+- `src/pages/` — one component per route (Home, Work, Portfolio, Notes, Education,
+  Certifications, Contact)
+- `src/content/` — resume data as typed TS modules (`experience.ts`, `education.ts`,
+  `certifications.ts`, `projects.ts`)
+- `src/content/notes/` — technical notes as markdown files with frontmatter
+  (`title`, `date`, `tags`)
+- `src/lib/notes.ts` — loads and parses the markdown notes at build time
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Updating content
 
-## Expanding the ESLint configuration
+**Resume data** — edit the relevant array in `src/content/*.ts` directly; each entry
+is a typed object so TypeScript will flag missing fields.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+**Notes** — add a new markdown file under `src/content/notes/`:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+```md
+---
+title: "Your note title"
+date: 2026-07-11
+tags: ["Tag1", "Tag2"]
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Body in markdown.
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+It shows up automatically on `/notes`, sorted by date (newest first).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Local development
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev       # start dev server
+npm run build     # typecheck + production build
+npm run lint       # eslint
+npm run preview    # preview the production build locally
 ```
+
+## Deployment
+
+The site deploys to Vercel on push to `main` (via Vercel's GitHub integration —
+no CI file needed). `vercel.json` adds a rewrite so client-side routes (e.g.
+`/notes/some-slug`) resolve correctly on refresh/direct load.

@@ -1,5 +1,8 @@
+import { useDocumentTitle } from "../lib/useDocumentTitle";
 
 export default function Home() {
+    useDocumentTitle("Home");
+
     return (
         <div className="grid" style={{ gap: 28 }}>
             {/* Hero */}

@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { workExperience } from "../content/experience";
+import { useDocumentTitle } from "../lib/useDocumentTitle";
 
 export default function WorkIndex() {
+    useDocumentTitle("Work");
+
     return (
         <div>
             <div className="h2">Work experience</div>

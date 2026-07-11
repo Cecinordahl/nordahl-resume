@@ -1,6 +1,9 @@
 import ContactCard from "../components/ContactCard";
+import { useDocumentTitle } from "../lib/useDocumentTitle";
 
 export default function Contact() {
+    useDocumentTitle("Contact");
+
     return (
         <div className="grid" style={{ gap: 18 }}>
             <div className="card">

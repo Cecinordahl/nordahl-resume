@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { getAllNotes } from "../lib/notes";
+import { useDocumentTitle } from "../lib/useDocumentTitle";
 
 export default function NotesIndex() {
+    useDocumentTitle("Notes");
     const notes = getAllNotes();
 
     return (
