@@ -32,14 +32,20 @@ tags: ["Tag1", "Tag2"]
 Body in markdown.
 ```
 
-It shows up automatically on `/notes`, sorted by date (newest first).
+It shows up automatically on `/notes`, sorted by date (newest first), filterable by
+tag, and included in the RSS feed at `/rss.xml`.
+
+Add `draft: true` to frontmatter to commit a note without publishing it — it's
+excluded from `/notes`, the tag list, and the RSS feed, but still viewable directly
+at its URL for previewing.
 
 ## Local development
 
 ```bash
 npm install
 npm run dev       # start dev server
-npm run build     # typecheck + production build
+npm run build     # regenerate RSS + typecheck + production build
+npm run rss        # regenerate public/rss.xml on its own
 npm run lint       # eslint
 npm run preview    # preview the production build locally
 ```

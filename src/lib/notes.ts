@@ -3,6 +3,7 @@ export type NoteMeta = {
     date: string;
     tags: string[];
     slug: string;
+    draft: boolean;
 };
 
 type LoadedNote = {
@@ -22,12 +23,12 @@ function parseFrontmatter(raw: string) {
     const fmBlock = match[1];
     const body = raw.slice(match[0].length);
 
-    const fm: Record<string, any> = {};
+    const fm: Record<string, string | string[]> = {};
     for (const line of fmBlock.split("\n")) {
         const idx = line.indexOf(":");
         if (idx === -1) continue;
         const key = line.slice(0, idx).trim();
-        let val = line.slice(idx + 1).trim();
+        const val = line.slice(idx + 1).trim();
 
         if (val.startsWith("[")) {
             try { fm[key] = JSON.parse(val); } catch { fm[key] = val; }
@@ -39,20 +40,23 @@ function parseFrontmatter(raw: string) {
     return { fm, body };
 }
 
-export function getAllNotes(): NoteMeta[] {
+export function getAllNotes(includeDrafts = false): NoteMeta[] {
     const notes: NoteMeta[] = Object.entries(noteFiles).map(([path, raw]) => {
         const { fm } = parseFrontmatter(raw);
         const slug = path.split("/").pop()!.replace(".md", "");
 
         return {
             slug,
-            title: fm.title ?? slug,
-            date: fm.date ?? "1970-01-01",
+            title: typeof fm.title === "string" ? fm.title : slug,
+            date: typeof fm.date === "string" ? fm.date : "1970-01-01",
             tags: Array.isArray(fm.tags) ? fm.tags : [],
+            draft: fm.draft === "true",
         };
     });
 
-    return notes.sort((a, b) => (a.date < b.date ? 1 : -1));
+    return notes
+        .filter((n) => includeDrafts || !n.draft)
+        .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
 export function getNoteBySlug(slug: string): LoadedNote | null {
@@ -65,9 +69,10 @@ export function getNoteBySlug(slug: string): LoadedNote | null {
     return {
         meta: {
             slug,
-            title: fm.title ?? slug,
-            date: fm.date ?? "1970-01-01",
+            title: typeof fm.title === "string" ? fm.title : slug,
+            date: typeof fm.date === "string" ? fm.date : "1970-01-01",
             tags: Array.isArray(fm.tags) ? fm.tags : [],
+            draft: fm.draft === "true",
         },
         content: body.trim(),
     };
