@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .bg { fill: #f4f0ea; }
+    .fg { fill: #1a1a1a; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #1a1712; }
+      .fg { fill: #f2ece0; }
+    }
+  </style>
+  <rect class="bg" width="32" height="32" rx="8" />
+  <text x="16" y="22" text-anchor="middle" font-family="Georgia, 'Playfair Display', serif" font-size="15" class="fg">CN</text>
+</svg>

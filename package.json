@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/validate-content.ts && node scripts/generate-rss.mjs && tsc -b && vite build",
+    "build": "node scripts/validate-content.ts && node scripts/generate-rss.mjs && node scripts/generate-sitemap.mjs && tsc -b && vite build",
     "rss": "node scripts/generate-rss.mjs",
+    "sitemap": "node scripts/generate-sitemap.mjs",
     "validate-content": "node scripts/validate-content.ts",
     "lint": "eslint .",
     "preview": "vite preview"

@@ -225,7 +225,13 @@ a.card { display: block; }
     margin-bottom: 8px;
 }
 
-.pill-filter { cursor: pointer; }
+.pill-filter {
+    cursor: pointer;
+    appearance: none;
+    background: none;
+    color: inherit;
+    font-family: inherit;
+}
 .pill-active { font-weight: 700; }
 
 /* Layout helpers */

@@ -1,7 +1,7 @@
 import { readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { SITE_URL } from "./site.mjs";
 
-const SITE_URL = "https://nordahl-resume.vercel.app";
 const NOTES_DIR = join(import.meta.dirname, "..", "src", "content", "notes");
 const OUT_FILE = join(import.meta.dirname, "..", "public", "rss.xml");
 

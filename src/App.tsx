@@ -12,6 +12,7 @@ const NotesIndex = lazy(() => import("./pages/NotesIndex"));
 const NoteDetail = lazy(() => import("./pages/NoteDetail"));
 const Education = lazy(() => import("./pages/Education"));
 const Certifications = lazy(() => import("./pages/Certifications"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 export default function App() {
     return (
@@ -27,6 +28,7 @@ export default function App() {
                     <Route path="/notes/:slug" element={<NoteDetail />} />
                     <Route path="/education" element={<Education />} />
                     <Route path="/certifications" element={<Certifications />} />
+                    <Route path="*" element={<NotFound />} />
                 </Route>
             </Routes>
             <Analytics />

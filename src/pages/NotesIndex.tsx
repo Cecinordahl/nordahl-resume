@@ -31,20 +31,22 @@ export default function NotesIndex() {
 
             {allTags.length > 0 && (
                 <div>
-                    <span
+                    <button
+                        type="button"
                         className={`pill pill-filter${activeTag ? "" : " pill-active"}`}
                         onClick={() => selectTag(null)}
                     >
                         All
-                    </span>
+                    </button>
                     {allTags.map((t) => (
-                        <span
+                        <button
+                            type="button"
                             key={t}
                             className={`pill pill-filter${t === activeTag ? " pill-active" : ""}`}
                             onClick={() => selectTag(t === activeTag ? null : t)}
                         >
                             {t}
-                        </span>
+                        </button>
                     ))}
                 </div>
             )}
