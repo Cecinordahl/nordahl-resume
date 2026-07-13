@@ -5,23 +5,23 @@ export default function Education() {
     useDocumentTitle("Education");
 
     return (
-        <div className="grid" style={{ gap: 14 }}>
+        <div className="grid grid-sm">
             <div className="card">
                 <div className="h2">Education</div>
-                <p className="muted" style={{ marginBottom: 0 }}>
+                <p className="muted mb-0">
                     Degrees, programs, and selected coursework.
                 </p>
             </div>
 
             {education.map((e) => (
                 <div key={e.institution + e.program} className="card">
-                    <div style={{ fontWeight: 700 }}>{e.institution}</div>
+                    <div className="title">{e.institution}</div>
                     <div className="muted">
                         {e.program} · {e.dateRange}
                     </div>
 
                     {e.details?.length ? (
-                        <ul style={{ marginBottom: 0 }}>
+                        <ul className="mb-0">
                             {e.details.map((d, i) => (
                                 <li key={i}>{d}</li>
                             ))}

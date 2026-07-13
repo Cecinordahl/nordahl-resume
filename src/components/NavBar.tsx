@@ -1,28 +1,33 @@
 import { NavLink } from "react-router-dom";
+import ThemeToggle from "./ThemeToggle";
 
-const linkStyle = ({ isActive }: { isActive: boolean }) => ({
-    textDecoration: isActive ? "underline" : "none",
-    opacity: isActive ? 1 : 0.88,
-});
+const navItems = [
+    { to: "/", label: "Home", end: true },
+    { to: "/work", label: "Work" },
+    { to: "/portfolio", label: "Portfolio" },
+    { to: "/notes", label: "Notes" },
+    { to: "/education", label: "Education" },
+    { to: "/certifications", label: "Certifications" },
+    { to: "/contact", label: "Contact" },
+];
 
 export default function NavBar() {
     return (
         <header className="nav">
-            <div className="container">
-                <nav
-                    className="navLinks"
-                    style={{
-                        justifyContent: "center",
-                    }}
-                >
-                    <NavLink to="/" style={linkStyle}>Home</NavLink>
-                    <NavLink to="/work" style={linkStyle}>Work</NavLink>
-                    <NavLink to="/portfolio" style={linkStyle}>Portfolio</NavLink>
-                    <NavLink to="/notes" style={linkStyle}>Notes</NavLink>
-                    <NavLink to="/education" style={linkStyle}>Education</NavLink>
-                    <NavLink to="/certifications" style={linkStyle}>Certifications</NavLink>
-                    <NavLink to="/contact" style={linkStyle}>Contact</NavLink>
+            <div className="container navInner">
+                <nav className="navLinks">
+                    {navItems.map((item) => (
+                        <NavLink
+                            key={item.to}
+                            to={item.to}
+                            end={item.end}
+                            className={({ isActive }) => (isActive ? "navLink-active" : undefined)}
+                        >
+                            {item.label}
+                        </NavLink>
+                    ))}
                 </nav>
+                <ThemeToggle />
             </div>
         </header>
     );

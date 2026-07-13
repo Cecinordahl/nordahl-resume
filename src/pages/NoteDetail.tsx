@@ -12,7 +12,7 @@ export default function NoteDetail() {
     if (!note) {
         return (
             <div className="card">
-                <div style={{ fontWeight: 700 }}>Not found</div>
+                <div className="title">Not found</div>
                 <p className="muted">That note doesn’t exist.</p>
                 <Link className="btn" to="/notes">Back to notes</Link>
             </div>
@@ -25,20 +25,20 @@ export default function NoteDetail() {
     const older = index >= 0 && index < allNotes.length - 1 ? allNotes[index + 1] : null;
 
     return (
-        <div className="grid" style={{ gap: 14 }}>
+        <div className="grid grid-sm">
             <div className="card">
                 <div className="h2">{note.meta.title}</div>
                 <div className="muted">{note.meta.date}</div>
-                <div style={{ marginTop: 10 }}>
+                <div>
                     {note.meta.tags.map((t) => <span key={t} className="pill">{t}</span>)}
                 </div>
             </div>
 
-            <div className="card" style={{ lineHeight: 1.7 }}>
+            <div className="card">
                 <ReactMarkdown>{note.content}</ReactMarkdown>
             </div>
 
-            <div style={{ display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
+            <div className="row-between">
                 <div>
                     {older && (
                         <Link className="btn" to={`/notes/${older.slug}`}>← {older.title}</Link>

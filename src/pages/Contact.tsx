@@ -5,10 +5,10 @@ export default function Contact() {
     useDocumentTitle("Contact");
 
     return (
-        <div className="grid" style={{ gap: 18 }}>
+        <div className="grid">
             <div className="card">
                 <div className="h2">Contact</div>
-                <p className="muted" style={{ marginBottom: 0 }}>
+                <p className="muted mb-0">
                     Happy to connect!
                 </p>
             </div>

@@ -18,13 +18,13 @@ export default function NotesIndex() {
     }
 
     return (
-        <div className="grid" style={{ gap: 14 }}>
+        <div className="grid grid-sm">
             <div className="card">
                 <div className="h2">Notes</div>
-                <p className="muted" style={{ marginBottom: 0 }}>
+                <p className="muted mb-0">
                     Short technical reflections written as static markdown.
                 </p>
-                <p style={{ marginBottom: 0 }}>
+                <p className="mb-0">
                     <a className="btn" href="/rss.xml" target="_blank" rel="noreferrer">RSS</a>
                 </p>
             </div>
@@ -32,18 +32,16 @@ export default function NotesIndex() {
             {allTags.length > 0 && (
                 <div>
                     <span
-                        className="pill"
+                        className={`pill pill-filter${activeTag ? "" : " pill-active"}`}
                         onClick={() => selectTag(null)}
-                        style={{ cursor: "pointer", fontWeight: activeTag ? 400 : 700 }}
                     >
                         All
                     </span>
                     {allTags.map((t) => (
                         <span
                             key={t}
-                            className="pill"
+                            className={`pill pill-filter${t === activeTag ? " pill-active" : ""}`}
                             onClick={() => selectTag(t === activeTag ? null : t)}
-                            style={{ cursor: "pointer", fontWeight: t === activeTag ? 700 : 400 }}
                         >
                             {t}
                         </span>
@@ -51,12 +49,12 @@ export default function NotesIndex() {
                 </div>
             )}
 
-            <div className="grid" style={{ gap: 14 }}>
+            <div className="grid grid-sm">
                 {visibleNotes.map((n) => (
-                    <Link key={n.slug} to={`/notes/${n.slug}`} className="card" style={{ display: "block" }}>
-                        <div style={{ fontWeight: 700 }}>{n.title}</div>
+                    <Link key={n.slug} to={`/notes/${n.slug}`} className="card">
+                        <div className="title">{n.title}</div>
                         <div className="muted">{n.date}</div>
-                        <div style={{ marginTop: 10 }}>
+                        <div>
                             {n.tags.map((t) => <span key={t} className="pill">{t}</span>)}
                         </div>
                     </Link>

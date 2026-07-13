@@ -1,7 +1,7 @@
 export default function ContactCard() {
     return (
         <div className="card">
-            <div style={{ fontWeight: 700, marginBottom: 8 }}>Contact</div>
+            <div className="title" style={{ marginBottom: 8 }}>Contact</div>
 
             <div className="muted" style={{ display: "grid", gap: 6 }}>
                 <a href="mailto:cecilie.nordahl@gmail.com">cecilie.nordahl@gmail.com</a>

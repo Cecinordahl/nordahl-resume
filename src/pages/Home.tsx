@@ -4,7 +4,7 @@ export default function Home() {
     useDocumentTitle("Home");
 
     return (
-        <div className="grid" style={{ gap: 28 }}>
+        <div className="grid grid-lg">
             {/* Hero */}
             <section className="card" style={{ padding: 26 }}>
                 <div className="kicker">Senior Fullstack Developer</div>
@@ -22,16 +22,7 @@ export default function Home() {
             {/* Image + About (editorial blocks) */}
             <section className="grid grid2">
                 <div className="media">
-                    <img
-                        src="/images/portrait.jpg"
-                        alt="Portrait of Cecilie Nordahl"
-                        style={{
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "cover",
-                            display: "block",
-                        }}
-                    />
+                    <img src="/images/portrait.jpg" alt="Portrait of Cecilie Nordahl" />
                 </div>
 
                 <div className="card">
