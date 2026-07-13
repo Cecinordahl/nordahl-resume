@@ -3,7 +3,7 @@
 Personal site for Cecilie Nordahl — resume, portfolio, and a running log of technical
 notes. Built with React, TypeScript, and Vite, deployed on Vercel.
 
-Live at: (add URL once the Vercel project is connected)
+Live at: https://nordahl-resume.vercel.app/
 
 ## Structure
 
