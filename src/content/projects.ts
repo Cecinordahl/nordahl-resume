@@ -1,12 +1,8 @@
-export type Project = {
-    name: string;
-    tagline: string;
-    status: "Planned" | "In progress" | "Live";
-    githubUrl?: string;
-    tags: string[];
-};
+import { ProjectSchema, parseContent, type Project } from "./schema.ts";
 
-export const hobbyProjects: Project[] = [
+export type { Project };
+
+const rawHobbyProjects = [
     {
         name: "EuroBonus Buddy",
         tagline: "Help EuroBonus hunters maximize points and status progress with SAS.",
@@ -50,3 +46,5 @@ export const hobbyProjects: Project[] = [
         tags: ["InsertTag1Here", "InsertTag2Here", "InsertTag2Here"],
     },
 ];
+
+export const hobbyProjects: Project[] = parseContent(ProjectSchema, rawHobbyProjects, "content/projects.ts");

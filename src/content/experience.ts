@@ -1,23 +1,8 @@
-export type WorkSlug = "accenture" | "vinmonopolet" | "sas";
+import { WorkItemSchema, parseContent, assertUnique, sortByStartDateDesc, type WorkItem } from "./schema.ts";
 
-export type WorkItem = {
-    slug: WorkSlug;
-    company: string;
-    location: string;
-    rolePublic: string;
-    roleOfficial?: string;
-    dateRange: string;
-    summary: string;
-    impactBullets: string[];
-    project: {
-        name: string;
-        description: string;
-        bullets: string[];
-        tech: string[];
-    };
-};
+export type { WorkItem };
 
-export const workExperience: WorkItem[] = [
+const rawWorkExperience = [
     {
         slug: "accenture",
         company: "Accenture",
@@ -25,6 +10,7 @@ export const workExperience: WorkItem[] = [
         rolePublic: "Senior Fullstack Developer",
         roleOfficial: "Custom Software Engineering Associate Manager",
         dateRange: "Nov 2021 – Present",
+        startDate: "2021-11",
         summary:
             "Key contributor on KLP—one of the largest technology initiatives in the Nordics—migrating an on-prem solution to cloud while improving tools for case handlers and members managing pensions.",
         impactBullets: [
@@ -52,6 +38,8 @@ export const workExperience: WorkItem[] = [
         location: "Oslo",
         rolePublic: "Store Employee",
         dateRange: "Aug 2020 – Dec 2021",
+        startDate: "2020-08",
+        endDate: "2021-12",
         summary:
             "Customer-facing retail role focused on service quality, accuracy, and dependable day-to-day operations.",
         impactBullets: [
@@ -77,6 +65,8 @@ export const workExperience: WorkItem[] = [
         location: "Oslo",
         rolePublic: "Cabin Crew",
         dateRange: "May 2016 – Jul 2020",
+        startDate: "2016-05",
+        endDate: "2020-07",
         summary:
             "Safety-first role requiring calm coordination, structured procedures, and high-quality service under time pressure.",
         impactBullets: [
@@ -97,6 +87,11 @@ export const workExperience: WorkItem[] = [
         },
     },
 ];
+
+const validated = parseContent(WorkItemSchema, rawWorkExperience, "content/experience.ts");
+assertUnique(validated.map((w) => w.slug), "slug", "content/experience.ts");
+
+export const workExperience: WorkItem[] = sortByStartDateDesc(validated);
 
 export function getWorkBySlug(slug: string) {
     return workExperience.find((w) => w.slug === slug);

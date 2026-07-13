@@ -10,15 +10,24 @@ Live at: (add URL once the Vercel project is connected)
 - `src/pages/` — one component per route (Home, Work, Portfolio, Notes, Education,
   Certifications, Contact)
 - `src/content/` — resume data as typed TS modules (`experience.ts`, `education.ts`,
-  `certifications.ts`, `projects.ts`)
+  `certifications.ts`, `projects.ts`), validated against Zod schemas in `schema.ts`
 - `src/content/notes/` — technical notes as markdown files with frontmatter
   (`title`, `date`, `tags`)
 - `src/lib/notes.ts` — loads and parses the markdown notes at build time
 
 ## Updating content
 
-**Resume data** — edit the relevant array in `src/content/*.ts` directly; each entry
-is a typed object so TypeScript will flag missing fields.
+**Resume data** — edit the relevant array in `src/content/*.ts` directly. Each entry
+is validated at module load against the Zod schema in `src/content/schema.ts`, so a
+missing field, empty string, or bad date format throws immediately with a clear error
+instead of silently breaking a page. `npm run build` runs this validation as a first
+step (`npm run validate-content` to check on its own), so bad content fails the build
+rather than shipping.
+
+Work and education entries take a `startDate` (`YYYY-MM`) used to auto-sort the list
+newest-first — you don't need to keep the array in date order by hand. Work entries
+also need a unique `slug` (used in `/work/:slug` URLs); duplicates fail validation.
+Certifications use `issuedDate` (`YYYY-MM`) the same way.
 
 **Notes** — add a new markdown file under `src/content/notes/`:
 
@@ -44,9 +53,10 @@ at its URL for previewing.
 ```bash
 npm install
 npm run dev       # start dev server
-npm run build     # regenerate RSS + typecheck + production build
-npm run rss        # regenerate public/rss.xml on its own
-npm run lint       # eslint
+npm run build              # validate content + regenerate RSS + typecheck + production build
+npm run rss                 # regenerate public/rss.xml on its own
+npm run validate-content    # validate resume content on its own
+npm run lint                # eslint
 npm run preview    # preview the production build locally
 ```
 
