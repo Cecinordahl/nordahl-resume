@@ -10,6 +10,13 @@
     --dot: rgba(0,0,0,0.03);
     --script-color: rgba(0,0,0,0.45);
 
+    --code-bg: rgba(0,0,0,0.04);
+    --code-keyword: #8a3b12;
+    --code-string: #4b6b3a;
+    --code-number: #705a9c;
+    --code-title: #1f5f8b;
+    --code-attr: #a3701f;
+
     --serif: "Playfair Display", ui-serif, Georgia, serif;
     --sans: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
     --script: "Allura", cursive;
@@ -29,6 +36,13 @@
     --media-bg: rgba(255,255,255,0.05);
     --dot: rgba(255,255,255,0.035);
     --script-color: rgba(255,255,255,0.4);
+
+    --code-bg: rgba(255,255,255,0.05);
+    --code-keyword: #e39a63;
+    --code-string: #b7d495;
+    --code-number: #c9a6f2;
+    --code-title: #8ec9e8;
+    --code-attr: #f0cf7a;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -43,6 +57,13 @@
         --media-bg: rgba(255,255,255,0.05);
         --dot: rgba(255,255,255,0.035);
         --script-color: rgba(255,255,255,0.4);
+
+        --code-bg: rgba(255,255,255,0.05);
+        --code-keyword: #e39a63;
+        --code-string: #b7d495;
+        --code-number: #c9a6f2;
+        --code-title: #8ec9e8;
+        --code-attr: #f0cf7a;
     }
 }
 
@@ -230,3 +251,32 @@ a.card { display: block; }
     display: block;
     filter: saturate(0.95) contrast(0.95);
 }
+
+/* Code blocks (notes) */
+code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.9em;
+}
+
+:not(pre) > code {
+    background: var(--code-bg);
+    border-radius: 4px;
+    padding: 0.15em 0.4em;
+}
+
+pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    overflow-x: auto;
+}
+
+pre code { background: none; padding: 0; }
+
+.hljs-keyword, .hljs-selector-tag, .hljs-literal { color: var(--code-keyword); }
+.hljs-string, .hljs-regexp { color: var(--code-string); }
+.hljs-number { color: var(--code-number); }
+.hljs-title, .hljs-title.function_, .hljs-built_in { color: var(--code-title); }
+.hljs-attr, .hljs-attribute, .hljs-property { color: var(--code-attr); }
+.hljs-comment { color: var(--muted); font-style: italic; }

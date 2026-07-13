@@ -1,6 +1,10 @@
 import { Link, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
+import rehypeHighlight from "rehype-highlight";
 import { getAllNotes, getNoteBySlug } from "../lib/notes";
+import { highlightLanguages } from "../lib/highlightLanguages";
+
+const rehypeHighlightOptions = { languages: highlightLanguages };
 import { useDocumentTitle } from "../lib/useDocumentTitle";
 
 export default function NoteDetail() {
@@ -35,7 +39,7 @@ export default function NoteDetail() {
             </div>
 
             <div className="card">
-                <ReactMarkdown>{note.content}</ReactMarkdown>
+                <ReactMarkdown rehypePlugins={[[rehypeHighlight, rehypeHighlightOptions]]}>{note.content}</ReactMarkdown>
             </div>
 
             <div className="row-between">

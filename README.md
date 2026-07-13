@@ -48,20 +48,27 @@ Add `draft: true` to frontmatter to commit a note without publishing it — it's
 excluded from `/notes`, the tag list, and the RSS feed, but still viewable directly
 at its URL for previewing.
 
+Fenced code blocks get syntax highlighting (label the language, e.g. ` ```ts `) for
+bash, C#, CSS, Java, JavaScript, JSON, Kotlin, Python, SQL, TypeScript, XML/HTML, and
+YAML — see `src/lib/highlightLanguages.ts` to add more. Note pages are lazy-loaded so
+the highlighter's weight is only downloaded when someone actually opens a note.
+
 ## Local development
 
 ```bash
 npm install
-npm run dev       # start dev server
-npm run build              # validate content + regenerate RSS + typecheck + production build
-npm run rss                 # regenerate public/rss.xml on its own
-npm run validate-content    # validate resume content on its own
-npm run lint                # eslint
-npm run preview    # preview the production build locally
+npm run dev                 # start dev server
+npm run build                # validate content + regenerate RSS + typecheck + production build
+npm run rss                  # regenerate public/rss.xml on its own
+npm run validate-content     # validate resume content on its own
+npm run lint                 # eslint
+npm run preview              # preview the production build locally
 ```
 
 ## Deployment
 
 The site deploys to Vercel on push to `main` (via Vercel's GitHub integration —
 no CI file needed). `vercel.json` adds a rewrite so client-side routes (e.g.
-`/notes/some-slug`) resolve correctly on refresh/direct load.
+`/notes/some-slug`) resolve correctly on refresh/direct load. `@vercel/analytics` is
+wired in via `<Analytics />` in `App.tsx` — it only reports when actually served from
+Vercel, so it's a no-op in local dev.
