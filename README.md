@@ -53,14 +53,25 @@ bash, C#, CSS, Java, JavaScript, JSON, Kotlin, Python, SQL, TypeScript, XML/HTML
 YAML — see `src/lib/highlightLanguages.ts` to add more. Note pages are lazy-loaded so
 the highlighter's weight is only downloaded when someone actually opens a note.
 
+## Testing
+
+Vitest + React Testing Library, covering content validation (`src/content/schema.test.ts`),
+note parsing (`src/lib/notes.test.ts`), and a routing smoke test (`src/App.test.tsx` —
+home page, a known work/note slug, and both the global 404 and a bad `/work/:slug`).
+`npm run build` runs the full suite as a gate before typechecking, so a broken route or
+a bad content edit fails the build instead of shipping.
+
 ## Local development
 
 ```bash
 npm install
 npm run dev                 # start dev server
-npm run build                # validate content + regenerate RSS + typecheck + production build
+npm run build                # validate content + regenerate RSS/sitemap + test + typecheck + production build
 npm run rss                  # regenerate public/rss.xml on its own
+npm run sitemap               # regenerate public/sitemap.xml + robots.txt on its own
 npm run validate-content     # validate resume content on its own
+npm run test                  # run the test suite once
+npm run test:watch            # run tests in watch mode
 npm run lint                 # eslint
 npm run preview              # preview the production build locally
 ```
