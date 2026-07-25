@@ -57,6 +57,7 @@ const rawWorkExperience = [
                 "Collaborated with colleagues to maintain consistent standards across shifts.",
             ],
             tech: ["Communication", "Teamwork", "Accuracy", "Prioritization"],
+            techLabel: "Skills",
         },
     },
     {
@@ -84,6 +85,7 @@ const rawWorkExperience = [
                 "Resolved issues quickly through teamwork and clear communication.",
             ],
             tech: ["Safety procedures", "Communication", "Collaboration", "Composure"],
+            techLabel: "Skills",
         },
     },
 ];

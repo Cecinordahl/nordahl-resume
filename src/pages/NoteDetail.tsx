@@ -30,18 +30,6 @@ export default function NoteDetail() {
 
     return (
         <div className="grid grid-sm">
-            <div className="card">
-                <div className="h2">{note.meta.title}</div>
-                <div className="muted">{note.meta.date}</div>
-                <div>
-                    {note.meta.tags.map((t) => <span key={t} className="pill">{t}</span>)}
-                </div>
-            </div>
-
-            <div className="card">
-                <ReactMarkdown rehypePlugins={[[rehypeHighlight, rehypeHighlightOptions]]}>{note.content}</ReactMarkdown>
-            </div>
-
             <div className="row-between">
                 <div>
                     {older && (
@@ -53,6 +41,18 @@ export default function NoteDetail() {
                         <Link className="btn" to={`/notes/${newer.slug}`}>{newer.title} →</Link>
                     )}
                 </div>
+            </div>
+
+            <div className="card">
+                <div className="h2">{note.meta.title}</div>
+                <div className="muted">{note.meta.date}</div>
+                <div>
+                    {note.meta.tags.map((t) => <span key={t} className="pill">{t}</span>)}
+                </div>
+            </div>
+
+            <div className="card">
+                <ReactMarkdown rehypePlugins={[[rehypeHighlight, rehypeHighlightOptions]]}>{note.content}</ReactMarkdown>
             </div>
 
             <Link className="btn" to="/notes">Back to all notes</Link>

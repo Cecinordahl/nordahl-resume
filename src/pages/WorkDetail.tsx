@@ -50,7 +50,7 @@ export default function WorkDetail() {
                 ))}
             </ul>
 
-            <h4>Tech</h4>
+            <h4>{work.project.techLabel ?? "Tech"}</h4>
             <ul>
                 {work.project.tech.map((t) => (
                     <li key={t}>{t}</li>

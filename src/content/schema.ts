@@ -19,6 +19,7 @@ export const WorkItemSchema = z.object({
         description: nonEmpty,
         bullets: z.array(nonEmpty).min(1),
         tech: z.array(nonEmpty).min(1),
+        techLabel: nonEmpty.optional(),
     }),
 });
 export type WorkItem = z.infer<typeof WorkItemSchema>;

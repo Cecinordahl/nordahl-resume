@@ -26,7 +26,7 @@ export default function Contact() {
                         GitHub
                     </a>
 
-                    <a className="btn" href="/ResumeNordahl.pdf" download style={{ marginTop: 10 }}>
+                    <a className="btn" href="/ResumeNordahl.pdf" download style={{ marginTop: 10, justifySelf: "start" }}>
                         Download PDF resume
                     </a>
                 </div>

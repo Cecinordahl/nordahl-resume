@@ -1,5 +1,13 @@
 import { hobbyProjects } from "../content/projects";
+import type { Project } from "../content/projects";
 import { useDocumentTitle } from "../lib/useDocumentTitle";
+
+const statusClass: Record<Project["status"], string> = {
+    Planned: "status-planned",
+    "In progress": "status-inprogress",
+    Beta: "status-beta",
+    Live: "status-live",
+};
 
 export default function Portfolio() {
     useDocumentTitle("Portfolio");
@@ -18,7 +26,7 @@ export default function Portfolio() {
                     <div key={p.name} className="card">
                         <div className="row-between">
                             <div className="title">{p.name}</div>
-                            <div className="muted">{p.status}</div>
+                            <span className={`status-badge ${statusClass[p.status]}`}>{p.status}</span>
                         </div>
 
                         <p className="muted">{p.tagline}</p>

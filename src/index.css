@@ -225,6 +225,22 @@ a.card { display: block; }
     margin-bottom: 8px;
 }
 
+.status-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: 1px solid currentColor;
+    white-space: nowrap;
+}
+.status-planned { color: var(--muted); }
+.status-inprogress { color: var(--code-attr); }
+.status-beta { color: var(--code-title); }
+.status-live { color: var(--code-string); }
+
 .pill-filter {
     cursor: pointer;
     appearance: none;
