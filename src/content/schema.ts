@@ -43,7 +43,7 @@ export type Certification = z.infer<typeof CertificationSchema>;
 export const ProjectSchema = z.object({
     name: nonEmpty,
     tagline: nonEmpty,
-    status: z.enum(["Planned", "In progress", "Live"]),
+    status: z.enum(["Planned", "In progress", "Beta", "Live"]),
     githubUrl: z.string().url().optional(),
     tags: z.array(nonEmpty).min(1),
 });

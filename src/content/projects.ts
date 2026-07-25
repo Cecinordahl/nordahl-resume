@@ -1,6 +1,6 @@
-import { ProjectSchema, parseContent, type Project } from "./schema.ts";
+import {parseContent, type Project, ProjectSchema} from "./schema.ts";
 
-export type { Project };
+export type {Project};
 
 const rawHobbyProjects = [
     {
@@ -10,10 +10,10 @@ const rawHobbyProjects = [
         tags: ["React", "TypeScript", "Spring"],
     },
     {
-        name: "Running Challenge",
-        tagline: "Advent-style daily distances that sum to a chosen goal (Dec 1–24).",
-        status: "Planned",
-        tags: ["React", "TypeScript"],
+        name: "WorkoutChallenge",
+        tagline: "A motivational running challenge app that builds a personalized daily training plan and tracks completion, streaks, and points with automatic Strava sync.",
+        status: "Live",
+        tags: ["React", "TypeScript", "Firebase", "Vercel"]
     },
     {
         name: "Americano",
@@ -28,10 +28,11 @@ const rawHobbyProjects = [
         tags: ["Automation", "Email", "AI"],
     },
     {
-        name: "Gruble Game App",
-        tagline: "Play Gruble",
-        status: "Planned",
-        tags: ["InsertTag1Here", "InsertTag2Here", "InsertTag2Here"],
+        name: "Trivia Arena",
+        tagline:
+            "A Jeopardy-style multiplayer trivia game with a live host-controlled board, team steals, and a countdown timer, powered by a Spring Boot WebSocket backend and a React frontend.",
+        status: "In progress",
+        tags: ["React", "TypeScript", "Spring Boot", "Java"],
     },
     {
         name: "Casa 360",
@@ -39,6 +40,18 @@ const rawHobbyProjects = [
         status: "Planned",
         tags: ["InsertTag1Here", "InsertTag2Here", "InsertTag2Here"],
     },
+    {
+        name: "TanPlan",
+        tagline: "A mobile-first sunscreen planner that schedules reapplication reminders throughout the day based on live UV forecasts, swims, and skin sensitivity.",
+        status: "Beta",
+        tags: ["React", "TypeScript", "Firebase", "Tailwind CSS"]
+    },
+    {
+        name: "Braut & Rosé",
+        tagline: "A shared real-time trip planner for a group summer holiday, with live itinerary notes, bookings, World Cup schedule, and flight status.",
+        status: "Live",
+        tags: ["React", "Vite", "Firebase", "Tailwind CSS"]
+    }
 ];
 
 export const hobbyProjects: Project[] = parseContent(ProjectSchema, rawHobbyProjects, "content/projects.ts");
