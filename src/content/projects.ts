@@ -39,12 +39,6 @@ const rawHobbyProjects = [
         status: "Planned",
         tags: ["InsertTag1Here", "InsertTag2Here", "InsertTag2Here"],
     },
-    {
-        name: "InsertAppNameHere",
-        tagline: "InsertAppDescriptionHere",
-        status: "Planned",
-        tags: ["InsertTag1Here", "InsertTag2Here", "InsertTag2Here"],
-    },
 ];
 
 export const hobbyProjects: Project[] = parseContent(ProjectSchema, rawHobbyProjects, "content/projects.ts");
