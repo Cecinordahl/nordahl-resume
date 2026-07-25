@@ -58,14 +58,15 @@ export default function Home() {
                         Always open to sharing ideas, learning from others, and improving how we build things.
                     </p>
 
-                    {/* <div className="h2">Code is like humor- when you have to explain it, it's bad.</div> */}
+                    <div className="h2">Code is like humor- when you have to explain it, it's bad.</div>
 
 
+                    <div className="kicker" style={{ textAlign: "left", marginTop: 12 }}>Tech stack</div>
                     <div style={{ marginTop: 12 }}>
                         <span className="pill">Java</span>
                         <span className="pill">Kotlin</span>
                         <span className="pill">C#</span>
-                        <span className="pill">python</span>
+                        <span className="pill">Python</span>
                         <span className="pill">Spring</span>
                         <span className="pill">React</span>
                         <span className="pill">TypeScript</span>
@@ -73,6 +74,10 @@ export default function Home() {
                         <span className="pill">SQL</span>
                         <span className="pill">Camunda</span>
                         <span className="pill">Kafka</span>
+                        <span className="pill">Docker</span>
+                        <span className="pill">Azure</span>
+                        <span className="pill">Firebase</span>
+                        <span className="pill">Tailwind CSS</span>
                     </div>
                 </div>
             </section>
