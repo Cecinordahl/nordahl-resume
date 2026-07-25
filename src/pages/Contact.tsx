@@ -1,4 +1,3 @@
-import ContactCard from "../components/ContactCard";
 import { useDocumentTitle } from "../lib/useDocumentTitle";
 
 export default function Contact() {
@@ -8,12 +7,30 @@ export default function Contact() {
         <div className="grid">
             <div className="card">
                 <div className="h2">Contact</div>
-                <p className="muted mb-0">
-                    Happy to connect!
-                </p>
-            </div>
+                <div className="muted" style={{ display: "grid", gap: 6 }}>
+                    <a href="mailto:cecilie.nordahl@gmail.com">cecilie.nordahl@gmail.com</a>
 
-            <ContactCard />
+                    <a
+                        href="https://www.linkedin.com/in/cecilie-nordahl-72869171/"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        LinkedIn
+                    </a>
+
+                    <a
+                        href="https://github.com/Cecinordahl"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        GitHub
+                    </a>
+
+                    <a className="btn" href="/ResumeNordahl.pdf" download style={{ marginTop: 10 }}>
+                        Download PDF resume
+                    </a>
+                </div>
+            </div>
         </div>
     );
 }
