@@ -17,6 +17,15 @@
     --code-title: #1f5f8b;
     --code-attr: #a3701f;
 
+    --status-planned-fg: #57534e;
+    --status-planned-bg: rgba(0,0,0,0.07);
+    --status-inprogress-fg: #92400e;
+    --status-inprogress-bg: rgba(217,119,6,0.16);
+    --status-beta-fg: #1e40af;
+    --status-beta-bg: rgba(37,99,235,0.14);
+    --status-live-fg: #166534;
+    --status-live-bg: rgba(22,163,74,0.14);
+
     --serif: "Playfair Display", ui-serif, Georgia, serif;
     --sans: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
     --script: "Allura", cursive;
@@ -43,6 +52,15 @@
     --code-number: #c9a6f2;
     --code-title: #8ec9e8;
     --code-attr: #f0cf7a;
+
+    --status-planned-fg: #d6cfc0;
+    --status-planned-bg: rgba(255,255,255,0.09);
+    --status-inprogress-fg: #fbbf24;
+    --status-inprogress-bg: rgba(251,191,36,0.18);
+    --status-beta-fg: #60a5fa;
+    --status-beta-bg: rgba(96,165,250,0.18);
+    --status-live-fg: #4ade80;
+    --status-live-bg: rgba(74,222,128,0.18);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -64,6 +82,15 @@
         --code-number: #c9a6f2;
         --code-title: #8ec9e8;
         --code-attr: #f0cf7a;
+
+        --status-planned-fg: #d6cfc0;
+        --status-planned-bg: rgba(255,255,255,0.09);
+        --status-inprogress-fg: #fbbf24;
+        --status-inprogress-bg: rgba(251,191,36,0.18);
+        --status-beta-fg: #60a5fa;
+        --status-beta-bg: rgba(96,165,250,0.18);
+        --status-live-fg: #4ade80;
+        --status-live-bg: rgba(74,222,128,0.18);
     }
 }
 
@@ -245,14 +272,14 @@ a.card { display: block; }
     font-size: 11px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 700;
     border: 1px solid currentColor;
     white-space: nowrap;
 }
-.status-planned { color: var(--muted); }
-.status-inprogress { color: var(--code-attr); }
-.status-beta { color: var(--code-title); }
-.status-live { color: var(--code-string); }
+.status-planned { color: var(--status-planned-fg); background: var(--status-planned-bg); }
+.status-inprogress { color: var(--status-inprogress-fg); background: var(--status-inprogress-bg); }
+.status-beta { color: var(--status-beta-fg); background: var(--status-beta-bg); }
+.status-live { color: var(--status-live-fg); background: var(--status-live-bg); }
 
 .pill-filter {
     cursor: pointer;

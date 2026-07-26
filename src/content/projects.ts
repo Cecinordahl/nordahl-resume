@@ -57,8 +57,8 @@ const rawHobbyProjects = [
         tagline: "A mobile-first sunscreen planner that schedules reapplication reminders throughout the day based on live UV forecasts, swims, and skin sensitivity.",
         status: "Beta",
         tags: ["React", "TypeScript", "Firebase", "Tailwind CSS"],
-        // githubUrl: "https://github.com/Cecinordahl/tan-plan",
-        // liveUrl: "https://tan-plan.vercel.app/",
+        githubUrl: "https://github.com/Cecinordahl/tan-plan",
+        liveUrl: "https://tan-plan.vercel.app/",
     },
     {
         name: "Braut & Rosé",
