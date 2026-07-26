@@ -27,6 +27,11 @@ export default function NotesIndex() {
                 <p className="mb-0">
                     <a className="btn" href="/rss.xml" target="_blank" rel="noreferrer">RSS</a>
                 </p>
+                <p className="muted mb-0" style={{ fontSize: 13 }}>
+                    RSS lets you follow new notes without checking back here — add this feed's
+                    link to an RSS reader app (e.g. Feedly) and you'll get notified whenever I
+                    publish something new.
+                </p>
             </div>
 
             {allTags.length > 0 && (
