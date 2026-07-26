@@ -38,6 +38,8 @@ export const CertificationSchema = z.object({
     issuer: nonEmpty,
     issued: nonEmpty,
     issuedDate: yearMonth,
+    badgeImage: nonEmpty.optional(),
+    credentialUrl: z.string().url().optional(),
 });
 export type Certification = z.infer<typeof CertificationSchema>;
 
