@@ -213,6 +213,19 @@ a.card { display: block; }
 }
 .btn:hover { background: var(--hover-bg); text-decoration: none; }
 
+.icon-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--text);
+    margin-right: 8px;
+}
+.icon-link:hover { background: var(--hover-bg); }
+
 .pill {
     display: inline-block;
     border: 1px solid var(--border);

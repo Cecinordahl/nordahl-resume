@@ -48,6 +48,7 @@ export const ProjectSchema = z.object({
     tagline: nonEmpty,
     status: z.enum(["Planned", "In progress", "Beta", "Live"]),
     githubUrl: z.string().url().optional(),
+    liveUrl: z.string().url().optional(),
     tags: z.array(nonEmpty).min(1),
 });
 export type Project = z.infer<typeof ProjectSchema>;

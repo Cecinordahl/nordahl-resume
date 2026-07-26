@@ -1,6 +1,7 @@
 import { hobbyProjects } from "../content/projects";
 import type { Project } from "../content/projects";
 import { useDocumentTitle } from "../lib/useDocumentTitle";
+import { ExternalLinkIcon, GitHubIcon } from "../components/icons";
 
 const statusClass: Record<Project["status"], string> = {
     Planned: "status-planned",
@@ -35,11 +36,34 @@ export default function Portfolio() {
                             ))}
                         </div>
 
-                        {p.githubUrl ? (
-                            <a className="btn" href={p.githubUrl} target="_blank" rel="noreferrer">
-                                GitHub
-                            </a>
-                        ) : null}
+                        {(p.githubUrl || p.liveUrl) && (
+                            <div style={{ marginTop: 8 }}>
+                                {p.githubUrl && (
+                                    <a
+                                        className="icon-link"
+                                        href={p.githubUrl}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        aria-label={`${p.name} on GitHub`}
+                                        title="View source on GitHub"
+                                    >
+                                        <GitHubIcon />
+                                    </a>
+                                )}
+                                {p.liveUrl && (
+                                    <a
+                                        className="icon-link"
+                                        href={p.liveUrl}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        aria-label={`${p.name} live site`}
+                                        title="View live site"
+                                    >
+                                        <ExternalLinkIcon />
+                                    </a>
+                                )}
+                            </div>
+                        )}
                     </div>
                 ))}
             </div>
