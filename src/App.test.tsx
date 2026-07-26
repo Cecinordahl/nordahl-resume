@@ -24,7 +24,7 @@ describe("App routing", () => {
 
     it("renders a note by slug", async () => {
         renderAt("/notes/camunda-workflows-in-practice");
-        expect(await screen.findByText("Camunda workflows in practice")).toBeInTheDocument();
+        expect(await screen.findByText("Workflows as a Shared Language")).toBeInTheDocument();
     });
 
     it("renders NotFound for an unknown top-level route", async () => {

@@ -1,8 +1,14 @@
 import { afterEach } from "vitest";
-import { cleanup } from "@testing-library/react";
+import { cleanup, configure } from "@testing-library/react";
 import "@testing-library/jest-dom/vitest";
 
 afterEach(cleanup);
+
+// Every route in App.tsx is React.lazy-loaded. On a cold Vitest process (e.g. the
+// one `npm run build` spins up) the first dynamic import() of a page can take
+// longer than the 1000ms findBy*/waitFor default, failing tests before the
+// component even mounts. Raise it so cold-start import cost doesn't flake tests.
+configure({ asyncUtilTimeout: 5000 });
 
 // Node's experimental built-in localStorage conflicts with jsdom's under Vitest;
 // force a plain in-memory Storage implementation so ThemeToggle can read/write it.

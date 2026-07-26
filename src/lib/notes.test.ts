@@ -16,7 +16,7 @@ describe("getAllNotes", () => {
     it("derives slug from filename and parses frontmatter", () => {
         const camunda = getAllNotes().find((n) => n.slug === "camunda-workflows-in-practice");
         expect(camunda).toBeDefined();
-        expect(camunda?.title).toBe("Camunda workflows in practice");
+        expect(camunda?.title).toBe("Workflows as a Shared Language");
         expect(camunda?.tags).toContain("Camunda");
     });
 });
@@ -29,7 +29,7 @@ describe("getNoteBySlug", () => {
     it("returns metadata and body for a known slug", () => {
         const note = getNoteBySlug("defect-triage-at-scale");
         expect(note).not.toBeNull();
-        expect(note?.meta.title).toBe("Defect triage at scale");
-        expect(note?.content).toContain("coordination problem");
+        expect(note?.meta.title).toBe("Defect Triage at Scale: Turning Tickets Into a Coordination Problem You Can Actually See");
+        expect(note?.content).toContain("defects stop being individual work items");
     });
 });
