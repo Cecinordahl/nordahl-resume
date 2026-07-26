@@ -253,6 +253,47 @@ a.card { display: block; }
 }
 .icon-link:hover { background: var(--hover-bg); }
 
+.tooltip-wrap {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    color: var(--muted);
+    cursor: help;
+    vertical-align: middle;
+}
+.tooltip-bubble {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    z-index: 10;
+    bottom: calc(100% + 8px);
+    right: 0;
+    width: 220px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--nav-bg);
+    backdrop-filter: blur(6px);
+    color: var(--text);
+    font-size: 12px;
+    line-height: 1.4;
+    text-transform: none;
+    letter-spacing: normal;
+    text-align: left;
+    transition: opacity 0.15s ease;
+    pointer-events: none;
+}
+.tooltip-wrap:hover .tooltip-bubble,
+.tooltip-wrap:focus-visible .tooltip-bubble {
+    visibility: visible;
+    opacity: 1;
+}
+
 .pill {
     display: inline-block;
     border: 1px solid var(--border);

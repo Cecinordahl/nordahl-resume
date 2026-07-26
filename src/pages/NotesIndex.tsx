@@ -1,6 +1,7 @@
 import { Link, useSearchParams } from "react-router-dom";
 import { getAllNotes } from "../lib/notes";
 import { useDocumentTitle } from "../lib/useDocumentTitle";
+import { InfoIcon } from "../components/icons";
 
 export default function NotesIndex() {
     useDocumentTitle("Notes");
@@ -19,23 +20,29 @@ export default function NotesIndex() {
 
     return (
         <div className="grid grid-sm">
-            <div>
-                <div className="h2">Notes</div>
-                <p className="muted mb-0">
-                    Short technical reflections written as static markdown.
-                </p>
-                <p className="mb-0">
+            <div className="row-between" style={{ alignItems: "flex-start" }}>
+                <div>
+                    <div className="h2">Notes</div>
+                    <p className="muted mb-0">
+                        Short technical reflections written as static markdown.
+                    </p>
+                </div>
+
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                     <a className="btn" href="/rss.xml" target="_blank" rel="noreferrer">RSS</a>
-                </p>
-                <p className="muted" style={{ fontSize: 13 }}>
-                    RSS lets you follow new notes without checking back here — add this feed's
-                    link to an RSS reader app (e.g. Feedly) and you'll get notified whenever I
-                    publish something new.
-                </p>
+                    <span className="tooltip-wrap" tabIndex={0} aria-label="What is RSS?">
+                        <InfoIcon />
+                        <span className="tooltip-bubble">
+                            RSS lets you follow new notes without checking back here — add this
+                            feed to a reader app (e.g. Feedly) and get notified whenever I publish
+                            something new.
+                        </span>
+                    </span>
+                </div>
             </div>
 
             {allTags.length > 0 && (
-                <div>
+                <div style={{ marginTop: 25 }}>
                     <button
                         type="button"
                         className={`pill pill-filter${activeTag ? "" : " pill-active"}`}
