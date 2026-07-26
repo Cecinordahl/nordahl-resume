@@ -6,11 +6,9 @@ export default function Certifications() {
 
     return (
         <div className="grid grid-sm">
-            <div className="card">
+            <div>
                 <div className="h2">Certifications</div>
-                <p className="muted mb-0">
-                    Selected certifications and courses.
-                </p>
+                <p className="muted">Selected certifications and courses.</p>
             </div>
 
             {certifications.map((c) => (

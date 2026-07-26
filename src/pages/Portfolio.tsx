@@ -14,11 +14,9 @@ export default function Portfolio() {
 
     return (
         <div className="grid grid-sm">
-            <div className="card">
+            <div>
                 <div className="h2">Portfolio</div>
-                <p className="muted mb-0">
-                    Hobby projects (links will be added as repositories go live).
-                </p>
+                <p className="muted">Hobby projects (links will be added as repositories go live).</p>
             </div>
 
             <div className="grid grid2">

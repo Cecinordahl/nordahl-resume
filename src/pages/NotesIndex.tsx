@@ -19,7 +19,7 @@ export default function NotesIndex() {
 
     return (
         <div className="grid grid-sm">
-            <div className="card">
+            <div>
                 <div className="h2">Notes</div>
                 <p className="muted mb-0">
                     Short technical reflections written as static markdown.
@@ -27,7 +27,7 @@ export default function NotesIndex() {
                 <p className="mb-0">
                     <a className="btn" href="/rss.xml" target="_blank" rel="noreferrer">RSS</a>
                 </p>
-                <p className="muted mb-0" style={{ fontSize: 13 }}>
+                <p className="muted" style={{ fontSize: 13 }}>
                     RSS lets you follow new notes without checking back here — add this feed's
                     link to an RSS reader app (e.g. Feedly) and you'll get notified whenever I
                     publish something new.

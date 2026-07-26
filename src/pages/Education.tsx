@@ -6,11 +6,9 @@ export default function Education() {
 
     return (
         <div className="grid grid-sm">
-            <div className="card">
+            <div>
                 <div className="h2">Education</div>
-                <p className="muted mb-0">
-                    Degrees, programs, and selected coursework.
-                </p>
+                <p className="muted">Degrees, programs, and selected coursework.</p>
             </div>
 
             {education.map((e) => (
