@@ -32,13 +32,13 @@ export default function NoteDetail() {
         <div className="grid grid-sm">
             <div className="row-between">
                 <div>
-                    {older && (
-                        <Link className="btn" to={`/notes/${older.slug}`}>← {older.title}</Link>
+                    {newer && (
+                        <Link className="btn" to={`/notes/${newer.slug}`}>← {newer.title}</Link>
                     )}
                 </div>
                 <div>
-                    {newer && (
-                        <Link className="btn" to={`/notes/${newer.slug}`}>{newer.title} →</Link>
+                    {older && (
+                        <Link className="btn" to={`/notes/${older.slug}`}>{older.title} →</Link>
                     )}
                 </div>
             </div>
