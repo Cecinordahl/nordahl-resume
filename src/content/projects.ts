@@ -51,11 +51,27 @@ const rawHobbyProjects = [
     },
     {
         name: "Americano",
-        tagline: "Generate and score Americano matches for padel/tennis with 3+ players.",
+        tagline: "Some friends and I started playing Americano at padel, and the app we used worked fine with 4+ players and plenty of time — but with only 3 players, or with just 10 minutes left on a court booking after a longer game, none of the apps I tried had a mode that fit. Americano is my own version built to cover those gaps: it supports 3-player games and lets you pick the shortest possible format for whatever group size and time you actually have.",
         status: "Planned",
-        tags: ["React", "TypeScript"],
+        tags: ["Swift", "SwiftUI", "SwiftData"],
         // githubUrl: "https://github.com/<you>/<repo>",
         // liveUrl: "https://<your-live-site>",
+        details: {
+            summary: "This iOS app generates and manages Americano-style tournaments for racket sports, with support for both traditional doubles Americano (4+ players) and a custom 3-player singles variant. Users create a tournament, get an auto-generated match schedule, record scores round by round, and track a live leaderboard, with everything saved locally so a tournament can be resumed later.",
+            highlights: [
+                "Built as a native iOS app in SwiftUI with SwiftData persistence, so tournaments, players, matches, and scores are saved automatically between launches.",
+                "The 3-player mode uses a custom singles rotation — each round has one player sit out while the other two play, and the resting slot rotates evenly so everyone alternates fairly between playing and resting.",
+                "Doubles scheduling rotates player order between rounds and groups players into courts of four (court count is configurable so multiple matches can run per round), auto-forming teams and assigning byes when the player count doesn't divide evenly.",
+                "Doubles score targets are restricted to multiples of four (8, 12, 16, 20...) so every player serves the same number of times, matching how Americano is conventionally played — a rule most Americano apps don't enforce.",
+                "Score entry isn't blocked, but a mismatched total against the configured points target shows a warning, and a match must be explicitly locked before it counts toward the leaderboard, so an in-progress or miskeyed score can't silently skew the standings.",
+            ],
+            challenges: [
+                "Standard Americano scheduling assumes four players, so 3-player games needed a custom rotation: one player sits out each round while the other two play, with the resting slot rotating evenly across players.",
+                "A score target like 11 points gave players an unequal number of serves in doubles — fixed by restricting doubles targets to multiples of four so serves always come out even.",
+                "Switching between saved tournaments was leaking standings from one tournament into another because the leaderboard wasn't scoped to the active tournament's matches — fixed by recalculating each player's total directly from the current tournament's stored matches.",
+                "Adding new persisted properties to the SwiftData models broke the local model container at launch — resolved by rebuilding the local development data store so its schema matched the updated models.",
+            ],
+        },
     },
     {
         name: "Daily AI Digest",
