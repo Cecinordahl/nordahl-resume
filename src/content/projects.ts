@@ -19,12 +19,12 @@ const rawHobbyProjects = [
         githubUrl: "https://github.com/Cecinordahl/workout-challenge",
         liveUrl: "https://workout-challenge-app.vercel.app/",
         images: [
+            "/images/projects/workout-challenge/1.png",
             "/images/projects/workout-challenge/2.png",
             "/images/projects/workout-challenge/3.png",
             "/images/projects/workout-challenge/4.png",
             "/images/projects/workout-challenge/5.png",
             "/images/projects/workout-challenge/6.png",
-            "/images/projects/workout-challenge/7.png",
         ],
     },
     {
@@ -76,10 +76,10 @@ const rawHobbyProjects = [
         githubUrl: "https://github.com/Cecinordahl/braut-og-rose",
         liveUrl: "https://braut-og-rose.vercel.app/",
         images: [
+            "/images/projects/braut-og-rose/1.png",
             "/images/projects/braut-og-rose/2.png",
             "/images/projects/braut-og-rose/3.png",
             "/images/projects/braut-og-rose/4.png",
-            "/images/projects/braut-og-rose/7.png",
         ],
     },
     {

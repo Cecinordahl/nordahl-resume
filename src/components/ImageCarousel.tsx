@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { ChevronLeftIcon, ChevronRightIcon } from "./icons";
+import { ChevronLeftIcon, ChevronRightIcon, ZoomOutIcon } from "./icons";
 
 export function ImageCarousel({ projectName, images }: { projectName: string; images: string[] }) {
     const trackRef = useRef<HTMLDivElement>(null);
@@ -80,7 +80,8 @@ export function ImageCarousel({ projectName, images }: { projectName: string; im
         dragState.current = null;
     }
 
-    function onImageClick() {
+    function onImageClick(e: React.MouseEvent) {
+        e.stopPropagation();
         if (wasDraggedRef.current) {
             wasDraggedRef.current = false;
             return;
@@ -144,6 +145,20 @@ export function ImageCarousel({ projectName, images }: { projectName: string; im
                         &times;
                     </button>
 
+                    {zoomed && (
+                        <button
+                            type="button"
+                            className="lightbox-zoom-out"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setZoomed(false);
+                            }}
+                            aria-label="Zoom out"
+                        >
+                            <ZoomOutIcon />
+                        </button>
+                    )}
+
                     {images.length > 1 && (
                         <button
                             type="button"
@@ -161,7 +176,7 @@ export function ImageCarousel({ projectName, images }: { projectName: string; im
                     <div
                         className={`lightbox-viewport${zoomed ? " lightbox-viewport-zoomed" : ""}`}
                         ref={zoomRef}
-                        onClick={(e) => e.stopPropagation()}
+                        onClick={onImageClick}
                         onPointerDown={onDragStart}
                         onPointerMove={onDragMove}
                         onPointerUp={endDrag}
@@ -173,7 +188,6 @@ export function ImageCarousel({ projectName, images }: { projectName: string; im
                             alt={`${projectName} ${lightboxIndex + 1}`}
                             draggable={false}
                             onDragStart={(e) => e.preventDefault()}
-                            onClick={onImageClick}
                         />
                     </div>
 

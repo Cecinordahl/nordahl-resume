@@ -47,3 +47,13 @@ export function ChevronRightIcon() {
         </svg>
     );
 }
+
+export function ZoomOutIcon() {
+    return (
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
+            <circle cx="7" cy="7" r="5.25" />
+            <path d="M4.8 7h4.4" strokeLinecap="round" />
+            <path d="M11 11 14.5 14.5" strokeLinecap="round" />
+        </svg>
+    );
+}
