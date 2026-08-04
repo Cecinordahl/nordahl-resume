@@ -4,6 +4,16 @@ const yearMonth = z.string().regex(/^\d{4}-\d{2}$/, "must be formatted YYYY-MM")
 const isoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "must be formatted YYYY-MM-DD");
 const nonEmpty = z.string().min(1, "must not be empty");
 
+export const ProjectPhaseSchema = z.object({
+    name: nonEmpty,
+    dateRange: nonEmpty,
+    description: nonEmpty,
+    bullets: z.array(nonEmpty).optional(),
+    sourceUrl: z.string().url().optional(),
+    sourceLabel: nonEmpty.optional(),
+});
+export type ProjectPhase = z.infer<typeof ProjectPhaseSchema>;
+
 export const WorkItemSchema = z.object({
     slug: nonEmpty,
     company: nonEmpty,
@@ -18,9 +28,14 @@ export const WorkItemSchema = z.object({
     project: z.object({
         name: nonEmpty,
         description: nonEmpty,
-        bullets: z.array(nonEmpty).min(1),
+        // Either a flat list of bullets, or (for a project with distinct chronological
+        // phases, like a long-running client engagement) a `phases` breakdown instead.
+        bullets: z.array(nonEmpty).optional(),
+        phases: z.array(ProjectPhaseSchema).optional(),
         tech: z.array(nonEmpty).min(1),
         techLabel: nonEmpty.optional(),
+        sourceUrl: z.string().url().optional(),
+        sourceLabel: nonEmpty.optional(),
     }),
 });
 export type WorkItem = z.infer<typeof WorkItemSchema>;
