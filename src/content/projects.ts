@@ -104,11 +104,24 @@ const rawHobbyProjects = [
     },
     {
         name: "Casa 360",
-        tagline: "Landing page for house rental",
-        status: "Planned",
-        tags: ["InsertTag1Here", "InsertTag2Here", "InsertTag2Here"],
-        // githubUrl: "https://github.com/<you>/<repo>",
-        // liveUrl: "https://<your-live-site>",
+        tagline: "My family rents out our vacation home in Spain through Airbnb and a rental agency, and my mom kept fielding the same questions over and over — Airbnb's messaging isn't built for organizing a house manual, transportation tips, restaurant and golf/activity booking info, and we wanted guests to have genuinely good information, not just the bare minimum. Casa 360 is a bilingual (English/Norwegian) guest guide built for the phone: practical info like restaurants and activities is publicly browsable, house-specific details like WiFi and appliances sit behind a simple guest code, and an admin panel lets my parents add and edit all of it themselves without touching code. Eventually we'd like to use it to move bookings off Airbnb and the agency entirely and cut out the cut they both take.",
+        status: "Live",
+        tags: ["React", "TypeScript", "Firebase", "Cloudinary", "Vercel", "i18next"],
+        githubUrl: "https://github.com/Cecinordahl/casa360",
+        liveUrl: "https://casa-360.vercel.app/",
+        details: {
+            summary: "Three surfaces in one app: a public guide (restaurants, groceries, activities, practical info) anyone can browse, a guest-code-gated house manual (WiFi, appliances, house rules, emergency info), and a Firebase-authenticated admin panel for managing all of it, including image uploads and guest-code rotation.",
+            highlights: [
+                "There's no traditional backend — the app talks to Firestore directly from the browser, and firestore.rules is the actual access-control layer, with an /admins allowlist collection gating writes rather than relying on being signed in alone.",
+                "The guest code that gates the house manual is enforced through the Firestore document path itself (houseManual/{code}/sections/...) rather than a field check, since security rules can't inspect a value the client typed into a form on a plain read — rotating the code means batch-copying the section documents to the new path before flipping the pointer.",
+                "Images are hosted on Cloudinary instead of Firebase Storage — a deliberate choice to keep the whole Firebase project on the free Spark plan with no billing account attached, since Storage requires the paid Blaze plan; uploads go through two small Vercel serverless functions that verify the caller against the admin allowlist before handing out a short-lived signed upload URL, so the Cloudinary API secret never reaches the browser.",
+                "Uploaded photos have their EXIF data (including GPS coordinates) stripped in the browser by re-encoding the image on a canvas before it ever leaves the client, so guest or house photos never leak location metadata.",
+                "The admin panel is a full CRUD interface with drag-and-drop image reordering, so non-technical family members can add and edit restaurants, activities, and manual content without touching code.",
+            ],
+            challenges: [
+                "firebase-admin's ID-token verification pulled in a JWT library that, from v14 onward, requires jose@6 (ESM-only) — calling verifyIdToken() from a Vercel serverless function crashed with ERR_REQUIRE_ESM; fixed by pinning firebase-admin to the 13.x line, which uses jose@4 (still CJS).",
+            ],
+        },
     },
     {
         name: "TanPlan",
