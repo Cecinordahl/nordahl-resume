@@ -43,6 +43,13 @@ export const CertificationSchema = z.object({
 });
 export type Certification = z.infer<typeof CertificationSchema>;
 
+export const ProjectDetailsSchema = z.object({
+    summary: nonEmpty.optional(),
+    highlights: z.array(nonEmpty).min(1),
+    challenges: z.array(nonEmpty).optional(),
+});
+export type ProjectDetails = z.infer<typeof ProjectDetailsSchema>;
+
 export const ProjectSchema = z.object({
     name: nonEmpty,
     tagline: nonEmpty,
@@ -51,6 +58,7 @@ export const ProjectSchema = z.object({
     liveUrl: z.string().url().optional(),
     tags: z.array(nonEmpty).min(1),
     images: z.array(nonEmpty).optional(),
+    details: ProjectDetailsSchema.optional(),
 });
 export type Project = z.infer<typeof ProjectSchema>;
 

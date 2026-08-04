@@ -70,7 +70,7 @@ const rawHobbyProjects = [
     },
     {
         name: "Braut & Rosé",
-        tagline: "A shared real-time trip planner for a group summer holiday, with live itinerary notes, bookings, World Cup schedule, and flight status.",
+        tagline: "Four couples on the same summer trip, arriving on different dates from different cities and staying in a mix of shared and separate places — all the coordinating was happening in a group chat, where details got buried and re-asked constantly. I built a shared trip planner so everyone could see the same itinerary notes, bookings, and schedules in real time and add to them directly, instead of scrolling back through chat history.",
         status: "Live",
         tags: ["React", "Vite", "Firebase", "Tailwind CSS"],
         githubUrl: "https://github.com/Cecinordahl/braut-og-rose",
@@ -81,6 +81,21 @@ const rawHobbyProjects = [
             "/images/projects/braut-og-rose/3.png",
             "/images/projects/braut-og-rose/4.png",
         ],
+        details: {
+            summary: "No accounts — everyone in the group unlocks the same shared trip with one passcode, and every device sees itinerary notes, bookings, and match/flight state update live via Firestore.",
+            highlights: [
+                "Live flight status via the AeroDataBox API, proxied through a Vercel serverless function so the RapidAPI key never reaches the client; results are cached in localStorage for 15 minutes to stay within the free tier's quota, with a manual refresh and a graceful fallback if the provider is unavailable.",
+                "Live World Cup schedule and scores via ESPN's public scoreboard endpoint (no API key needed, since API-Football's free tier excludes the 2026 tournament) — matches are looked up by expected UTC kickoff time rather than team name, since most fixtures start as 'winner of X' placeholders that resolve automatically as ESPN's data updates through the earlier rounds.",
+                "Real-time shared editing via Firebase Firestore's onSnapshot listeners — day notes, bookings, and match state sync live across every device in the group with no login, just a shared passcode on first visit.",
+                "Packing lists export as plain text via the Web Share API (falling back to clipboard copy), formatted to paste cleanly into Notes and become a checklist there.",
+                "Third-party fetches for flights and matches are staggered client-side to stay under provider rate limits, with a server-side retry-once-on-429 for extra resilience.",
+            ],
+            challenges: [
+                "Penalty-shootout wins showed as a flat 0-0: ESPN marks these games with a separate STATUS_FINAL_PEN status and reports each team's shootoutScore apart from the 90-minute score, which the UI was initially dropping — fixed by reading and displaying the shootout score explicitly.",
+                "All three tracked flights fetched simultaneously when the info card opened, tripping AeroDataBox's per-second rate limit — fixed by staggering client-side fetches 1.5s apart per flight and adding a server-side retry-once-on-429 with a clearer 'too many requests' message instead of a generic error.",
+                "A data-loss race condition: booking add/update/delete could fire before the initial Firestore snapshot had loaded, rebuilding the bookings array from empty defaults and silently wiping everyone else's bookings — fixed by making those actions no-op until real data has loaded, with a loading state shown instead of exposing the controls early.",
+            ],
+        },
     },
     {
         name: "Pocket Phrases",

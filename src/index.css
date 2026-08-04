@@ -331,6 +331,50 @@ a.card { display: block; }
 }
 .pill-active { font-weight: 700; }
 
+.details-toggle {
+    appearance: none;
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--muted);
+    font-family: inherit;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+.details-toggle:hover { color: var(--text); }
+
+.details-panel {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+}
+.details-panel p { margin: 0 0 10px; font-size: 14px; }
+
+.details-section + .details-section { margin-top: 12px; }
+
+.details-heading {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+}
+
+.details-panel ul {
+    margin: 0;
+    padding-left: 18px;
+}
+.details-panel li {
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+.details-panel li:last-child { margin-bottom: 0; }
+
 /* Layout helpers */
 .grid { display: grid; gap: 18px; }
 .grid-sm { gap: 14px; }

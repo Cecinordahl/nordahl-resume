@@ -24,6 +24,16 @@ export default function Portfolio() {
         searchParams.get("status")?.split(",").filter((s): s is Project["status"] => allStatuses.includes(s as Project["status"])) ?? [],
     );
 
+    const [expandedDetails, setExpandedDetails] = useState<Set<string>>(new Set());
+    function toggleDetails(name: string) {
+        setExpandedDetails((prev) => {
+            const next = new Set(prev);
+            if (next.has(name)) next.delete(name);
+            else next.add(name);
+            return next;
+        });
+    }
+
     const visibleProjects = activeStatuses.size === 0
         ? hobbyProjects
         : hobbyProjects.filter((p) => activeStatuses.has(p.status));
@@ -131,6 +141,45 @@ export default function Portfolio() {
                         )}
 
                         <p className="muted">{p.tagline}</p>
+
+                        {p.details && (
+                            <div style={{ marginTop: 4 }}>
+                                <button
+                                    type="button"
+                                    className="details-toggle"
+                                    onClick={() => toggleDetails(p.name)}
+                                    aria-expanded={expandedDetails.has(p.name)}
+                                >
+                                    {expandedDetails.has(p.name) ? "− Hide technical details" : "+ Technical details"}
+                                </button>
+
+                                {expandedDetails.has(p.name) && (
+                                    <div className="details-panel">
+                                        {p.details.summary && <p className="muted">{p.details.summary}</p>}
+
+                                        <div className="details-section">
+                                            <div className="details-heading">Technical highlights</div>
+                                            <ul>
+                                                {p.details.highlights.map((h, i) => (
+                                                    <li key={i}>{h}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+
+                                        {p.details.challenges && p.details.challenges.length > 0 && (
+                                            <div className="details-section">
+                                                <div className="details-heading">Challenges & fixes</div>
+                                                <ul>
+                                                    {p.details.challenges.map((c, i) => (
+                                                        <li key={i}>{c}</li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        )}
 
                         {p.githubUrl && repoDates[p.name] !== undefined && (
                             <p className="muted" style={{ fontSize: 12 }}>
