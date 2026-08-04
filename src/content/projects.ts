@@ -60,11 +60,23 @@ const rawHobbyProjects = [
     {
         name: "Trivia Arena",
         tagline:
-            "A Jeopardy-style multiplayer trivia game with a live host-controlled board, team steals, and a countdown timer, powered by a Spring Boot WebSocket backend and a React frontend.",
+            "I was usually the one building the Kahoot quiz for game night, and Kahoot has no way to generate a quiz automatically by category — I had to write every question and answer myself, which meant I already knew them all and couldn't actually play. Trivia Arena is my own answer to that: a real-time, Jeopardy-style board across 12 categories where teams buzz in, wrong or missed answers open a steal for the other team, and everything syncs live over WebSocket. Today's board runs on a curated 60-question bank; automatic per-category question generation — the actual fix for not being able to play my own game — is next.",
         status: "In progress",
         tags: ["React", "TypeScript", "Spring Boot", "Java"],
         githubUrl: "https://github.com/Cecinordahl/trivia-arena",
         liveUrl: "https://trivia-arena.onrender.com/",
+        details: {
+            summary: "A host creates a room, organizes players into teams, and starts the game from a lobby; the board shows 12 categories × 5 point values, and whoever's turn it is picks a question for everyone to answer against a host-configurable countdown.",
+            highlights: [
+                "Each question round is a server-authoritative two-phase timer: the picking team's exclusive window to answer, followed — on a wrong or missed answer — by a steal window opened to every other team, each phase running its own scheduled timeout and broadcasting the change over WebSocket.",
+                "Game state (rooms, teams, board, scores) is pushed to every connected client in real time over WebSocket/STOMP, so the shared board, buzz-ins, and score changes stay in sync across host and player screens without polling.",
+                "The frontend and backend ship as a single Docker image — Spring Boot serves the built React app as static resources from its own JAR — so the whole game runs from one process on Render's free tier.",
+                "The host sets an answer countdown between 10 and 300 seconds when starting the game, broadcast live to every client so everyone sees the same clock.",
+            ],
+            challenges: [
+                "Expanding from a handful of categories to twelve for full coverage broke the fixed-width board — columns started overlapping their own text — fixed by making the board grid scroll horizontally with a sane per-column minimum width instead of squeezing everything to fit.",
+            ],
+        },
     },
     {
         name: "Casa 360",
