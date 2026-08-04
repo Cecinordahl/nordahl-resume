@@ -15,6 +15,11 @@ public/rss.xml
 public/sitemap.xml
 public/robots.txt
 
+# Secrets — never commit real values
+.env
+.env.*
+!.env.example
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

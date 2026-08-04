@@ -239,6 +239,43 @@ a.card { display: block; }
     text-transform: uppercase;
 }
 .btn:hover { background: var(--hover-bg); text-decoration: none; }
+.btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.field {
+    display: grid;
+    gap: 6px;
+}
+
+.field-label {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+}
+
+textarea {
+    resize: vertical;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+    outline: 2px solid var(--text);
+    outline-offset: 1px;
+}
 
 .icon-link {
     display: inline-flex;
