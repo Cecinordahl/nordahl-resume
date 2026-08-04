@@ -125,11 +125,24 @@ const rawHobbyProjects = [
     },
     {
         name: "TanPlan",
-        tagline: "A mobile-first sunscreen planner that schedules reapplication reminders throughout the day based on live UV forecasts, swims, and skin sensitivity.",
+        tagline: "On a trip to France with friends, we kept setting manual phone timers to remind ourselves to reapply sunscreen — and still forgot, because nobody wants a sunburn ruining a beach day. TanPlan replaces the guesswork: you build a personal skin profile using the standardized Fitzpatrick test, then generate a reapplication plan for the day that accounts for your location's UV forecast, the sun-exposure window, and roughly how many swim or lunch breaks you're taking. A one-tap reset re-plans the rest of the day from that moment whenever you've just been in the water.",
         status: "Beta",
         tags: ["React", "TypeScript", "Firebase", "Tailwind CSS"],
         githubUrl: "https://github.com/Cecinordahl/tan-plan",
         liveUrl: "https://tan-plan.vercel.app/",
+        details: {
+            summary: "You answer 5 quick Fitzpatrick questions to get a skin type, then for each day enter a location, a sun-exposure window, and roughly how many swim and lunch breaks you expect; the app pulls an hourly UV forecast for that location and generates a reapplication schedule around it, exportable as a calendar file.",
+            highlights: [
+                "The reapplication interval tightens from a 2-hour baseline to 90 minutes automatically whenever the UV forecast at that time of day hits 8 or higher, or unconditionally for young children, easily-burning skin, or the two lightest Fitzpatrick types — so the schedule adapts to both the day's actual UV and the person's sensitivity, not just a flat rule.",
+                "Swim and lunch breaks aren't just markers on the schedule — swim breaks are spread evenly across the sun-exposure window as their own reapplication events, and lunch adds a reapplication both before and after the break, then anything within 30 minutes of another event gets merged so the plan never asks for two applications back to back.",
+                "The \"I just swam\" reset button doesn't regenerate the whole day: it keeps everything already logged up to that moment untouched, then re-runs the same scheduling logic for only the time remaining, using the current moment as a fresh starting point instead of guessing when the next swim will happen.",
+                "The Fitzpatrick skin-type quiz results, UV forecast, and location geocoding all run through Open-Meteo's free API with no key required, keeping the app's data costs at zero outside of Firebase's own free tier.",
+                "Plan generation is pure, I/O-free TypeScript — no Firebase, no fetch calls — fully covered by unit tests, and kept deliberately separate from the Firebase/Open-Meteo service layer that feeds it real data.",
+            ],
+            challenges: [
+                "The Fitzpatrick skin-type questionnaire originally had overlapping and ambiguous answer options (eye-color choices that meant the same thing, unclear tan-shade and freckle wording), leading to inconsistent self-reported skin types — fixed by deduplicating options, clarifying the wording, and adding a per-question info toggle with examples.",
+            ],
+        },
     },
     {
         name: "Braut & Rosé",
