@@ -18,6 +18,14 @@ const rawHobbyProjects = [
         tags: ["React", "TypeScript", "Firebase", "Vercel"],
         githubUrl: "https://github.com/Cecinordahl/workout-challenge",
         liveUrl: "https://workout-challenge-app.vercel.app/",
+        images: [
+            "/images/projects/workout-challenge/2.png",
+            "/images/projects/workout-challenge/3.png",
+            "/images/projects/workout-challenge/4.png",
+            "/images/projects/workout-challenge/5.png",
+            "/images/projects/workout-challenge/6.png",
+            "/images/projects/workout-challenge/7.png",
+        ],
     },
     {
         name: "Americano",
@@ -67,6 +75,20 @@ const rawHobbyProjects = [
         tags: ["React", "Vite", "Firebase", "Tailwind CSS"],
         githubUrl: "https://github.com/Cecinordahl/braut-og-rose",
         liveUrl: "https://braut-og-rose.vercel.app/",
+        images: [
+            "/images/projects/braut-og-rose/2.png",
+            "/images/projects/braut-og-rose/3.png",
+            "/images/projects/braut-og-rose/4.png",
+            "/images/projects/braut-og-rose/7.png",
+        ],
+    },
+    {
+        name: "Pocket Phrases",
+        tagline: "A situation-based travel phrase learner that builds short Spanish/French/German lessons for a chosen or described situation, with a Norwegian Bokmål UI.",
+        status: "Live",
+        tags: ["React", "TypeScript", "Java", "Spring Boot", "Anthropic API", "Firebase"],
+        githubUrl: "https://github.com/Cecinordahl/pocket-phrases",
+        liveUrl: "https://pocket-phrases.vercel.app",
     },
 ];
 

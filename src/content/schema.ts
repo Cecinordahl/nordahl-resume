@@ -50,6 +50,7 @@ export const ProjectSchema = z.object({
     githubUrl: z.string().url().optional(),
     liveUrl: z.string().url().optional(),
     tags: z.array(nonEmpty).min(1),
+    images: z.array(nonEmpty).optional(),
 });
 export type Project = z.infer<typeof ProjectSchema>;
 

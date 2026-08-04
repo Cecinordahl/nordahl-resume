@@ -31,3 +31,19 @@ export function ExternalLinkIcon() {
         </svg>
     );
 }
+
+export function ChevronLeftIcon() {
+    return (
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+            <path d="M10 3 5 8l5 5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+    );
+}
+
+export function ChevronRightIcon() {
+    return (
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+            <path d="M6 3 11 8l-5 5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+    );
+}
