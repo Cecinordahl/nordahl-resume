@@ -17,7 +17,13 @@ export async function fileExists(path: string): Promise<boolean> {
     const res = await fetch(`${GITHUB_API}/repos/${OWNER}/${REPO}/contents/${path}?ref=${BRANCH}`, {
         headers: authHeaders(),
     });
-    return res.status === 200;
+    if (res.status === 200) return true;
+    if (res.status === 404) return false;
+    // Anything else (401 bad credentials, 403 missing permission, 5xx, ...) is a
+    // real problem, not "the file doesn't exist" — surface it instead of silently
+    // proceeding as if the slug were free.
+    const body = await res.text();
+    throw new Error(`GitHub API error ${res.status}: ${body}`);
 }
 
 export async function createFile(path: string, content: string, message: string): Promise<void> {

@@ -1,7 +1,7 @@
 ---
 title: "AI Won't Replace Me, But It Might Move the Goalposts"
 date: 2026-08-04
-tags: ["\"AI\"","\"Software Engineering\"","\"Career\"","\"AI Regulation\""]
+tags: ["AI", "Software Engineering", "Career", "AI Regulation"]
 ---
 I keep coming back to the same tension: AI is the most useful tool I've been handed in my career, and also the thing most likely to quietly hollow out parts of the job I love. Both are true at once, and I think pretending otherwise — in either direction — is where people go wrong.
 

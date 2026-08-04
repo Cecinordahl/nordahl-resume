@@ -17,6 +17,17 @@ function passcodeMatches(submitted: string, expected: string): boolean {
     return a.length === b.length && timingSafeEqual(aPadded, bPadded);
 }
 
+// Tags come from a comma-separated free-text field, and it's natural to type
+// them the way they'd look in an array literal (e.g. `"AI", "Career"`) — strip
+// a single layer of wrapping quotes so that habit doesn't end up double-quoted
+// once the tag list is JSON-stringified into the frontmatter.
+function stripWrappingQuotes(s: string): string {
+    if (s.length >= 2 && ((s.startsWith('"') && s.endsWith('"')) || (s.startsWith("'") && s.endsWith("'")))) {
+        return s.slice(1, -1).trim();
+    }
+    return s;
+}
+
 function buildFrontmatter(title: string, tags: string[], draft: boolean): string {
     const date = new Date().toISOString().slice(0, 10);
     const lines = [
@@ -59,7 +70,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     const tagList = Array.isArray(tags)
-        ? tags.filter((t): t is string => typeof t === "string" && t.trim().length > 0).map((t) => t.trim())
+        ? tags
+              .filter((t): t is string => typeof t === "string" && t.trim().length > 0)
+              .map((t) => stripWrappingQuotes(t.trim()))
+              .filter(Boolean)
         : [];
 
     const slug = slugify(title);
