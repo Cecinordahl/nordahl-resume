@@ -5,11 +5,19 @@ export type {Project};
 const rawHobbyProjects = [
     {
         name: "EuroBonus Buddy",
-        tagline: "Help EuroBonus hunters maximize points and status progress with SAS.",
+        tagline: "I track my SAS EuroBonus status-point collecting in a personal Excel file with a dozen tabs — handy for me, but I don't want to hand over the whole document when friends and I compare notes on the cheapest way to the next tier, and it's honestly a mess to look at. EuroBonus Buddy is meant to replace it: a personal tracker for point and status data, plus a planner that compares different paths to a status goal — buying points outright, stacking car rentals, or a mix of both — ranked by cost or by speed, with a clean overview worth actually sharing. The plan is for anyone to be able to create their own account and track their own progress the same way, not just me.",
         status: "Planned",
-        tags: ["React", "TypeScript", "Spring"],
+        tags: ["React", "TypeScript", "Vite"],
         githubUrl: "https://github.com/Cecinordahl/eurobonusbuddy",
         // liveUrl: "https://<your-live-site>",
+        details: {
+            summary: "Enter your current status points, target tier, and months remaining in your qualification period; the planner generates a handful of candidate plans to close the gap and ranks them by either total cost or how fast they'd complete.",
+            highlights: [
+                "The \"buy Level Points\" option encodes SAS's actual eligibility rules rather than just offering a slider: it checks you're at least 6 months into the qualification period and have already earned the tier-specific minimum before allowing a purchase, then caps the amount at the tier's official ceiling and rounds to SAS's 100-point purchase blocks.",
+                "Plans with an unknown cost (like car rentals, whose real price isn't modeled yet) are still shown and ranked, but explicitly flagged with a warning rather than silently guessed at or hidden, so an uncosted plan is never mistaken for a free one.",
+                "The planner generates several candidate plans for the same goal — buying points outright, stacking multiple car rentals, or a hybrid of both — and ranks them by whichever optimization mode is selected: cheapest total cost, or fastest to close the gap.",
+            ],
+        },
     },
     {
         name: "WorkoutChallenge",
