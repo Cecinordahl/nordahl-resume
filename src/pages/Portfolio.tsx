@@ -16,6 +16,13 @@ const statusClass: Record<Project["status"], string> = {
 
 const allStatuses = Object.keys(statusClass) as Project["status"][];
 
+// undefined = nothing to show, null = fetch attempted but unavailable (e.g. private repo)
+function effectiveDates(p: Project, repoDates: Record<string, RepoDates | null>): RepoDates | null | undefined {
+    if (p.manualDates) return p.manualDates;
+    if (!p.githubUrl) return undefined;
+    return repoDates[p.name];
+}
+
 export default function Portfolio() {
     useDocumentTitle("Portfolio");
 
@@ -58,8 +65,8 @@ export default function Portfolio() {
     }, []);
 
     const sortedProjects = [...visibleProjects].sort((a, b) => {
-        const aDate = repoDates[a.name]?.pushedAt;
-        const bDate = repoDates[b.name]?.pushedAt;
+        const aDate = effectiveDates(a, repoDates)?.pushedAt;
+        const bDate = effectiveDates(b, repoDates)?.pushedAt;
         if (aDate && bDate) return new Date(bDate).getTime() - new Date(aDate).getTime();
         if (aDate) return -1;
         if (bDate) return 1;
@@ -104,7 +111,9 @@ export default function Portfolio() {
             </div>
 
             <div className="grid grid2">
-                {sortedProjects.map((p) => (
+                {sortedProjects.map((p) => {
+                    const dates = effectiveDates(p, repoDates);
+                    return (
                     <div key={p.name} className="card">
                         <div className="row-between">
                             <div className="title">{p.name}</div>
@@ -181,10 +190,10 @@ export default function Portfolio() {
                             </div>
                         )}
 
-                        {p.githubUrl && repoDates[p.name] !== undefined && (
+                        {dates !== undefined && (
                             <p className="muted" style={{ fontSize: 12 }}>
-                                {repoDates[p.name]
-                                    ? `Started ${formatMonthYear(repoDates[p.name]!.createdAt)} · Updated ${formatMonthYear(repoDates[p.name]!.pushedAt)}`
+                                {dates
+                                    ? `Started ${formatMonthYear(dates.createdAt)} · Updated ${formatMonthYear(dates.pushedAt)}`
                                     : "Dates unavailable (private repo)"}
                             </p>
                         )}
@@ -197,7 +206,8 @@ export default function Portfolio() {
                             ))}
                         </div>
                     </div>
-                ))}
+                    );
+                })}
                 {sortedProjects.length === 0 && (
                     <p className="muted">No projects match the selected filters.</p>
                 )}

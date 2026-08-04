@@ -25,6 +25,8 @@ export default function Education() {
                             ))}
                         </ul>
                     ) : null}
+
+                    {e.note && <p className="muted" style={{ fontSize: 13, marginTop: 8 }}>{e.note}</p>}
                 </div>
             ))}
         </div>

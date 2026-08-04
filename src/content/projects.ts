@@ -56,6 +56,7 @@ const rawHobbyProjects = [
         tags: ["Swift", "SwiftUI", "SwiftData"],
         // githubUrl: "https://github.com/<you>/<repo>",
         // liveUrl: "https://<your-live-site>",
+        manualDates: { createdAt: "2025-12-21", pushedAt: "2026-01-04" },
         details: {
             summary: "This iOS app generates and manages Americano-style tournaments for racket sports, with support for both traditional doubles Americano (4+ players) and a custom 3-player singles variant. Users create a tournament, get an auto-generated match schedule, record scores round by round, and track a live leaderboard, with everything saved locally so a tournament can be resumed later.",
             highlights: [

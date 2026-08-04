@@ -19,9 +19,30 @@ const rawCertifications = [
         badgeImage: "/images/badges/microsoft-certified-fundamentals-badge.png",
         credentialUrl: "https://learn.microsoft.com/en-us/users/cecinordahl/credentials/9f5df5727c9d231d",
     },
-    { name: "Technology Architect Associate Certificate", issuer: "Accenture", issued: "Nov 2023", issuedDate: "2023-11" },
-    { name: "Kotlin for Java Developers", issuer: "JetBrains", issued: "Oct 2024", issuedDate: "2024-10" },
-    { name: "Introduction to Docker", issuer: "LearnQuest", issued: "Oct 2024", issuedDate: "2024-10" },
+    {
+        name: "Technology Architect Associate Certificate",
+        issuer: "Accenture",
+        issued: "Nov 2023",
+        issuedDate: "2023-11",
+        badgeImage: "/images/badges/technology-architect-associate.png",
+        credentialUrl: "https://bcert.me/ssfxvrjgx",
+    },
+    {
+        name: "Kotlin for Java Developers",
+        issuer: "JetBrains",
+        issued: "Oct 2024",
+        issuedDate: "2024-10",
+        badgeImage: "/images/badges/jetbrains.png",
+        credentialUrl: "https://www.coursera.org/account/accomplishments/verify/TEROD5W2PKLP",
+    },
+    {
+        name: "Introduction to Docker",
+        issuer: "LearnQuest",
+        issued: "Oct 2024",
+        issuedDate: "2024-10",
+        badgeImage: "/images/badges/learnquest.png",
+        credentialUrl: "https://www.coursera.org/account/accomplishments/verify/TOGM989VVA59",
+    },
 ];
 
 const validated = parseContent(CertificationSchema, rawCertifications, "content/certifications.ts");

@@ -36,6 +36,7 @@ const rawEducation = [
             "ITPE3100 Datasikkerhet",
             "DATA1100 Teknologi og samfunn for programmerere",
         ],
+        note: "All courses completed while working full-time — those finished by December 2021 while at Academic Work and Accenture, and those finished between January 2022 and December 2023 while at Accenture and KLP.",
     },
     {
         institution: "University of Oslo",

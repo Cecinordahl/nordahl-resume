@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 const yearMonth = z.string().regex(/^\d{4}-\d{2}$/, "must be formatted YYYY-MM");
+const isoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "must be formatted YYYY-MM-DD");
 const nonEmpty = z.string().min(1, "must not be empty");
 
 export const WorkItemSchema = z.object({
@@ -30,6 +31,7 @@ export const EducationItemSchema = z.object({
     dateRange: nonEmpty,
     startDate: yearMonth,
     details: z.array(nonEmpty).optional(),
+    note: nonEmpty.optional(),
 });
 export type EducationItem = z.infer<typeof EducationItemSchema>;
 
@@ -59,6 +61,8 @@ export const ProjectSchema = z.object({
     tags: z.array(nonEmpty).min(1),
     images: z.array(nonEmpty).optional(),
     details: ProjectDetailsSchema.optional(),
+    // For projects with no GitHub repo to auto-fetch dates from (e.g. an unpublished Xcode app).
+    manualDates: z.object({ createdAt: isoDate, pushedAt: isoDate }).optional(),
 });
 export type Project = z.infer<typeof ProjectSchema>;
 

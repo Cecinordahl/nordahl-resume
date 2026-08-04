@@ -1,4 +1,5 @@
 import { useDocumentTitle } from "../lib/useDocumentTitle";
+import { ExternalLinkIcon } from "../components/icons";
 
 export default function Home() {
     useDocumentTitle("Home");
@@ -32,16 +33,17 @@ export default function Home() {
                         Tech lead and full-stack developer at Accenture, with a strong background in designing and delivering large-scale solutions.
                         I recently contributed to one of the largest tech transformations in Northern Europe for KLP — a project that was awarded
                         Konsulentprisen: Årets store oppdrag.
-
-                        Read more about the project{" "}
-                        <a
-                            href="https://www.konsulentguiden.no/konsulentprisen/norges-storste-digitale-transformasjon-klps-endringsprogram-setter-ny-standard-for-offentlig-pensjon/"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            here
-                        </a>.
                     </p>
+
+                    <a
+                        className="btn"
+                        href="https://www.konsulentguiden.no/konsulentprisen/norges-storste-digitale-transformasjon-klps-endringsprogram-setter-ny-standard-for-offentlig-pensjon/"
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{ display: "inline-flex", alignItems: "center", gap: 6 }}
+                    >
+                        Read more about the project <ExternalLinkIcon />
+                    </a>
 
 
                     <p className="muted">
