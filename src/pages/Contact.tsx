@@ -11,7 +11,7 @@ export default function Contact() {
                     <a href="mailto:cecilie.nordahl@gmail.com">cecilie.nordahl@gmail.com</a>
 
                     <a
-                        href="https://www.linkedin.com/in/cecilie-nordahl-72869171/"
+                        href="https://www.linkedin.com/in/cecilie-nordahl"
                         target="_blank"
                         rel="noreferrer"
                     >
