@@ -196,6 +196,70 @@ const rawHobbyProjects = [
             ],
         },
     },
+    {
+        name: "Voyage Collective",
+        tagline: "It started with a trip to Copenhagen, where I shot photos for a friend's brand collaboration with the Marriott — and we had so much fun working together that we wanted to keep doing it, at a bigger scale, without folding into a larger agency or bringing in outside people. That meant we needed a real front door: a way for hotels and brands to see us as a small, boutique two-person agency rather than two individual creators reaching out separately. This site gives us that — real audience stats, sample work, and clear collaboration packages a brand can browse and contact directly.",
+        status: "Live",
+        tags: ["React", "TypeScript", "Vite", "Tailwind CSS", "Vercel Serverless Functions", "Resend"],
+        githubUrl: "https://github.com/Cecinordahl/voyage-collective",
+        liveUrl: "https://voyage-collective.vercel.app",
+        details: {
+            highlights: [
+                "Self-hosted the Bodoni Moda display serif as local woff2 files instead of loading it from Google Fonts at runtime, keeping the page free of third-party network requests in line with its no-tracking privacy stance.",
+                "Contact form validation rules live in one shared TypeScript module imported by both the React form and the Vercel serverless function, so client-side and server-side validation can never drift out of sync.",
+                "A hidden honeypot field silently returns a fake success response to bots that fill it in, blocking spam submissions without a CAPTCHA or third-party script.",
+                "No database anywhere — the /api/contact function validates a submission, emails it via Resend, and discards it, matching a GDPR data-minimization approach spelled out in a companion privacy-notice page.",
+                "Creators, collaboration packages, and portfolio photos are all modeled as typed data objects in src/content/, so the two non-technical owners can edit copy, swap photos, or add real client case studies without touching any component code.",
+                "The portfolio's client-work subsection is coded to hide itself automatically whenever its data array is empty, letting the site ship honestly before any real case studies exist instead of showing placeholder clients.",
+            ],
+            challenges: [
+                "The contact API worked in local dev but crashed in production with a 500 error — Vercel's stricter ESM module resolution required an explicit .js extension on a relative import that the local TypeScript config didn't flag; fixed by adding the extension.",
+                "Resend's sandbox mode, active before a sending domain is verified, turned out to only deliver email to the account's own registered address regardless of the configured recipient; discovered while testing the live form, and worked around by pointing the recipient env var at that address until domain verification is complete.",
+            ],
+        },
+    },
+    {
+        name: "Sportfeed",
+        tagline: "I follow teams and athletes across a handful of different sports, and kept having to Google each one separately just to check if they were playing — with so many to track, matches and races were easy to miss entirely. Sportfeed collects them all into one dashboard: search and favorite any team, athlete, or racing series across football, F1, golf, and tennis, and see every upcoming or live event for your favorites merged into a single chronologically sorted list, with anything live pinned to the top.",
+        status: "In progress",
+        tags: ["React", "TypeScript", "Java", "Spring Boot", "Firebase"],
+        githubUrl: "https://github.com/Cecinordahl/sportfeed",
+        // liveUrl omitted: the backend API is deployed on Render, but the frontend dashboard isn't deployed yet (README lists it as "Coming soon").
+        details: {
+            summary: "You search across sports for teams, athletes, or racing series and add favorites; the dashboard endpoint then merges upcoming and live events for everything you follow into one chronological feed, live events pinned to the top.",
+            highlights: [
+                "Every sport is served through a single SportsDataProvider interface resolved per sport via a ProviderRegistry, so adding a new data source — like swapping ESPN's F1 feed for a different provider — means adding one class and changing one registry entry rather than touching the rest of the codebase.",
+                "Favorites are stored in Firestore with an externalId namespaced by provider (e.g. espn:soccer:eng.1:359), so swapping the data provider behind one sport never invalidates or collides with favorites saved for another.",
+                "The dashboard endpoint merges upcoming events across every sport a user follows into one chronologically sorted list, with any currently-live event pinned to the top regardless of sport.",
+                "Adding a favorite is idempotent by externalId, so re-favoriting a team or athlete that's already saved doesn't create a duplicate.",
+                "The backend deploys to Render's free tier as a multi-stage Docker build (JDK 21 to compile, JRE-only for the final image) since Render's free tier has no native Java runtime; a scheduled GitHub Actions workflow pings /health every 10 minutes to counteract the free tier's cold-start sleep.",
+            ],
+        },
+    },
+    {
+        name: "Phase Train",
+        tagline: "I train with Garmin and Runna but kept running into two things they handle badly: neither lets me build a plan around two goals at once — a faster 3K and a faster 10K, together — and if I get sick and pause, the plan just resumes exactly where it left off, with no adjustment for the time off or the fitness dip that follows. Phase Train is my attempt at something that reasons about my actual day-to-day situation — including where I am in my menstrual cycle — instead of handing me a fixed plan. So far that means real session logging, weekly plans, and a genuine pause/resume mechanism: marking yourself sick pauses every future session without touching what's already logged, and marking recovered resumes only from today forward. Dual-goal planning, cycle-phase-aware adjustments, and adapting the plan itself after a break are the next pieces to build.",
+        status: "In progress",
+        tags: ["Java", "Spring Boot", "PostgreSQL", "React", "TypeScript"],
+        githubUrl: "https://github.com/Cecinordahl/phase-train",
+        details: {
+            highlights: [
+                "Real server-side session-cookie authentication via Spring Security with CSRF protection, and self-service signup gated behind an email allowlist (defaults to just my own address) so a single-user MVP can't be signed up to by anyone else.",
+                "A sick/healthy cascade: marking yourself sick pauses every still-planned session from that date forward, and marking recovered resumes only sessions from today forward — sessions that already fell inside the illness window stay marked as history rather than being retroactively resurrected.",
+                "The domain model keeps what was planned (WeeklyPlan/PlannedSession) separate from what actually happened (RunSession/StrengthSession/ExerciseLog), with a RunSessionSource field distinguishing a manually logged run from one meant to sync from Strava later.",
+                "LoadRule already exists as its own entity and DTO so a training-load rule engine can be layered on top of existing data later, even though the enforcement logic itself isn't built yet.",
+                "Local dev runs on Docker Compose Postgres with Flyway auto-migrating the schema on backend startup.",
+            ],
+        },
+    },
+    {
+        name: "Eggspecting",
+        tagline: "I want one place that tells me where I am in my cycle and what that means for trying to conceive — when to start ovulation testing, how often and what time of day, and that the egg typically drops within about 48 hours of a peak result — instead of piecing it together from scattered corners of the internet. Eggspecting is meant to be that single source: cycle-based guidance alongside food advice, workout guidance by cycle phase, and a sense of what's actually normal (chemical pregnancies, a late period) so those moments don't cause unnecessary panic. It's planned first for myself and friends who want it, with the idea of opening it up to more women later.",
+        status: "Planned",
+        tags: ["Health", "Cycle Tracking", "Fertility"],
+        // githubUrl: "https://github.com/<you>/<repo>",
+        // liveUrl: "https://<your-live-site>",
+    },
 ];
 
 export const hobbyProjects: Project[] = parseContent(ProjectSchema, rawHobbyProjects, "content/projects.ts");
