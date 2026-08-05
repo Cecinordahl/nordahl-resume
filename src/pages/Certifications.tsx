@@ -12,8 +12,8 @@ export default function Certifications() {
             </div>
 
             {certifications.map((c) => (
-                <div key={c.name} className="card row-between" style={{ alignItems: "center" }}>
-                    <div>
+                <div key={c.name} className="card" style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                    <div style={{ flex: 1, minWidth: 0 }}>
                         <div className="title">{c.name}</div>
                         <div className="muted">
                             {c.issuer} · {c.issued}
@@ -25,7 +25,12 @@ export default function Certifications() {
                         )}
                     </div>
                     {c.badgeImage && (
-                        <a href={c.credentialUrl ?? c.badgeImage} target="_blank" rel="noreferrer">
+                        <a
+                            href={c.credentialUrl ?? c.badgeImage}
+                            target="_blank"
+                            rel="noreferrer"
+                            style={{ flexShrink: 0 }}
+                        >
                             <img
                                 src={c.badgeImage}
                                 alt={`${c.name} badge`}

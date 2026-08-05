@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
+import { CloseIcon, MenuIcon } from "./icons";
 
 const navItems = [
     { to: "/", label: "Home", end: true },
@@ -12,21 +14,35 @@ const navItems = [
 ];
 
 export default function NavBar() {
+    const [open, setOpen] = useState(false);
+
     return (
         <header className="nav">
             <div className="container navInner">
-                <nav className="navLinks">
+                <button
+                    type="button"
+                    className="navHamburger"
+                    onClick={() => setOpen((o) => !o)}
+                    aria-label={open ? "Close menu" : "Open menu"}
+                    aria-expanded={open}
+                >
+                    {open ? <CloseIcon /> : <MenuIcon />}
+                </button>
+
+                <nav className={`navLinks${open ? " navLinks-open" : ""}`}>
                     {navItems.map((item) => (
                         <NavLink
                             key={item.to}
                             to={item.to}
                             end={item.end}
+                            onClick={() => setOpen(false)}
                             className={({ isActive }) => (isActive ? "navLink-active" : undefined)}
                         >
                             {item.label}
                         </NavLink>
                     ))}
                 </nav>
+
                 <ThemeToggle />
             </div>
         </header>

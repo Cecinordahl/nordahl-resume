@@ -57,3 +57,27 @@ export function ZoomOutIcon() {
         </svg>
     );
 }
+
+export function MenuIcon() {
+    return (
+        <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
+            <path d="M2.5 4.5h11M2.5 8h11M2.5 11.5h11" strokeLinecap="round" />
+        </svg>
+    );
+}
+
+export function CloseIcon() {
+    return (
+        <svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
+            <path d="M3.5 3.5l9 9M12.5 3.5l-9 9" strokeLinecap="round" />
+        </svg>
+    );
+}
+
+export function ChevronDownIcon() {
+    return (
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+            <path d="M3 6l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+    );
+}

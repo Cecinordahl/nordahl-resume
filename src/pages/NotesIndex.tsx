@@ -1,21 +1,35 @@
+import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { getAllNotes } from "../lib/notes";
 import { useDocumentTitle } from "../lib/useDocumentTitle";
-import { InfoIcon } from "../components/icons";
+import { InfoIcon, ChevronDownIcon } from "../components/icons";
 
 export default function NotesIndex() {
     useDocumentTitle("Notes");
 
     const [searchParams, setSearchParams] = useSearchParams();
-    const activeTag = searchParams.get("tag");
+    const [filterOpen, setFilterOpen] = useState(false);
 
     const notes = getAllNotes();
     const allTags = [...new Set(notes.flatMap((n) => n.tags))].sort();
-    const visibleNotes = activeTag ? notes.filter((n) => n.tags.includes(activeTag)) : notes;
 
-    function selectTag(tag: string | null) {
-        if (tag) setSearchParams({ tag });
-        else setSearchParams({});
+    const activeTags = new Set(
+        searchParams.get("tags")?.split(",").filter((t) => allTags.includes(t)) ?? [],
+    );
+
+    const visibleNotes = activeTags.size === 0 ? notes : notes.filter((n) => n.tags.some((t) => activeTags.has(t)));
+
+    function toggleTag(tag: string) {
+        const next = new Set(activeTags);
+        if (next.has(tag)) next.delete(tag);
+        else next.add(tag);
+
+        if (next.size === 0) setSearchParams({});
+        else setSearchParams({ tags: [...next].join(",") });
+    }
+
+    function clearTags() {
+        setSearchParams({});
     }
 
     return (
@@ -42,24 +56,42 @@ export default function NotesIndex() {
             </div>
 
             {allTags.length > 0 && (
-                <div style={{ marginTop: 25 }}>
+                <div>
                     <button
                         type="button"
-                        className={`pill pill-filter${activeTag ? "" : " pill-active"}`}
-                        onClick={() => selectTag(null)}
+                        className="btn"
+                        onClick={() => setFilterOpen((o) => !o)}
+                        aria-expanded={filterOpen}
+                        style={{ display: "inline-flex", alignItems: "center", gap: 6 }}
                     >
-                        All
+                        Filter{activeTags.size > 0 ? ` (${activeTags.size})` : ""}
+                        <span style={{ display: "inline-flex", transform: filterOpen ? "rotate(180deg)" : undefined, transition: "transform 0.15s ease" }}>
+                            <ChevronDownIcon />
+                        </span>
                     </button>
-                    {allTags.map((t) => (
-                        <button
-                            type="button"
-                            key={t}
-                            className={`pill pill-filter${t === activeTag ? " pill-active" : ""}`}
-                            onClick={() => selectTag(t === activeTag ? null : t)}
-                        >
-                            {t}
-                        </button>
-                    ))}
+
+                    {filterOpen && (
+                        <div style={{ marginTop: 12 }}>
+                            <button
+                                type="button"
+                                className={`pill pill-filter${activeTags.size === 0 ? " pill-active" : ""}`}
+                                onClick={clearTags}
+                            >
+                                All
+                            </button>
+                            {allTags.map((t) => (
+                                <button
+                                    type="button"
+                                    key={t}
+                                    className={`pill pill-filter${activeTags.has(t) ? " pill-active" : ""}`}
+                                    onClick={() => toggleTag(t)}
+                                    aria-pressed={activeTags.has(t)}
+                                >
+                                    {t}
+                                </button>
+                            ))}
+                        </div>
+                    )}
                 </div>
             )}
 
@@ -74,7 +106,7 @@ export default function NotesIndex() {
                     </Link>
                 ))}
                 {visibleNotes.length === 0 && (
-                    <p className="muted">No notes tagged "{activeTag}".</p>
+                    <p className="muted">No notes match the selected tags.</p>
                 )}
             </div>
         </div>
