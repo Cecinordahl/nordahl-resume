@@ -252,14 +252,15 @@ const rawHobbyProjects = [
             ],
         },
     },
-    {
-        name: "Eggspecting",
-        tagline: "I want one place that tells me where I am in my cycle and what that means for trying to conceive — when to start ovulation testing, how often and what time of day, and that the egg typically drops within about 48 hours of a peak result — instead of piecing it together from scattered corners of the internet. Eggspecting is meant to be that single source: cycle-based guidance alongside food advice, workout guidance by cycle phase, and a sense of what's actually normal (chemical pregnancies, a late period) so those moments don't cause unnecessary panic. It's planned first for myself and friends who want it, with the idea of opening it up to more women later.",
-        status: "Planned",
-        tags: ["Health", "Cycle Tracking", "Fertility"],
-        // githubUrl: "https://github.com/<you>/<repo>",
-        // liveUrl: "https://<your-live-site>",
-    },
+    // Commented out: felt too personal to share publicly.
+    // {
+    //     name: "Eggspecting",
+    //     tagline: "I want one place that tells me where I am in my cycle and what that means for trying to conceive — when to start ovulation testing, how often and what time of day, and that the egg typically drops within about 48 hours of a peak result — instead of piecing it together from scattered corners of the internet. Eggspecting is meant to be that single source: cycle-based guidance alongside food advice, workout guidance by cycle phase, and a sense of what's actually normal (chemical pregnancies, a late period) so those moments don't cause unnecessary panic. It's planned first for myself and friends who want it, with the idea of opening it up to more women later.",
+    //     status: "Planned",
+    //     tags: ["Health", "Cycle Tracking", "Fertility"],
+    //     // githubUrl: "https://github.com/<you>/<repo>",
+    //     // liveUrl: "https://<your-live-site>",
+    // },
 ];
 
 export const hobbyProjects: Project[] = parseContent(ProjectSchema, rawHobbyProjects, "content/projects.ts");
