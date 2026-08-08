@@ -252,6 +252,28 @@ const rawHobbyProjects = [
             ],
         },
     },
+    {
+        name: "Weather or Not",
+        tagline: "Cecilie and her husband play tennis in Oslo, and being originally from rain-soaked Bergen, they'd fallen into the habit of just assuming the weather would hold — until a few bookings got lost to forgetting to check the forecast, or forgetting to cancel in time. One morning her husband asked if there was a way to get warned before rain wrecked a booking, so she built one that afternoon. Weather or Not watches a shared iCloud calendar of outdoor bookings and checks the forecast at set intervals before each one, sending a Telegram alert the moment rain looks likely enough to be worth cancelling for — with enough notice to still make the cancellation window.",
+        status: "Live",
+        tags: ["Java", "Spring Boot", "React", "TypeScript", "Firebase", "Telegram Bot API", "Open-Meteo API"],
+        githubUrl: "https://github.com/Cecinordahl/weather-or-not",
+        liveUrl: "https://weatherornotgo.vercel.app",
+        details: {
+            highlights: [
+                "Polls each user's private iCloud calendar via its ICS subscription link, geocodes each event's location through the Open-Meteo Geocoding API, then checks the Open-Meteo forecast API for rain probability at that time and place.",
+                "Runs a fixed check schedule — 3 days, 2 days, and 1 day before each event, plus a final check at a per-event configurable cutoff (default 8 hours, overridable via a `cutoff:<hours>` tag in the calendar event) — with tighter rain thresholds as the event gets closer, and sends a Telegram alert via a bot when a threshold is crossed.",
+                "Render's free tier has no Cron Job option, so the scheduled checks are triggered by an hourly GitHub Actions workflow calling a secret-guarded internal endpoint instead of relying on an always-on dyno.",
+                "Firestore check-log entries use deterministic document IDs (user + event + check-type) written inside a transaction, making the alert pipeline idempotent even if scheduler runs overlap.",
+                "A Telegram bot webhook handles /start (returns the chat ID needed for registration) and /stop (self-service data deletion), gated by a chat-ID allowlist ahead of a planned public rollout — a GDPR-conscious access-control design.",
+            ],
+            challenges: [
+                "Firestore writes kept failing with PERMISSION_DENIED despite verifiably correct IAM roles (confirmed via Google's Policy Troubleshooter); traced it to `FirestoreOptions.setCredentials()` producing broken gRPC auth in this specific client library version, reproduced locally by comparing a Python client against the same service account key, and fixed by switching to `setCredentialsProvider(FixedCredentialsProvider)`.",
+                "The ANSI Shadow FIGlet banner in the header rendered as a jagged mess at small font sizes — the font's thin 'shadow' line detail needs enough pixels to read as an emboss effect rather than noise — fixed by sizing it up and switching from a gradient text-clip to flat per-word colors.",
+                "An AI-generated logo image looked transparent in every preview but was actually a fully opaque PNG with a fake checkerboard baked into the pixels (a common image-gen limitation); recovered a real alpha channel with a small chroma-threshold script that treats grey/achromatic pixels as background.",
+            ],
+        },
+    },
     // Commented out: felt too personal to share publicly.
     // {
     //     name: "Eggspecting",
