@@ -254,7 +254,7 @@ const rawHobbyProjects = [
     },
     {
         name: "Weather or Not",
-        tagline: "Cecilie and her husband play tennis in Oslo, and being originally from rain-soaked Bergen, they'd fallen into the habit of just assuming the weather would hold — until a few bookings got lost to forgetting to check the forecast, or forgetting to cancel in time. One morning her husband asked if there was a way to get warned before rain wrecked a booking, so she built one that afternoon. Weather or Not watches a shared iCloud calendar of outdoor bookings and checks the forecast at set intervals before each one, sending a Telegram alert the moment rain looks likely enough to be worth cancelling for — with enough notice to still make the cancellation window.",
+        tagline: "My husband and I play tennis in Oslo, and being originally from rain-soaked Bergen, we'd fallen into the habit of just assuming the weather would hold — until a few bookings got lost to forgetting to check the forecast, or forgetting to cancel in time. One morning he asked if there was a way to get warned before rain wrecked a booking, so I built one that afternoon. Weather or Not watches a shared iCloud calendar of outdoor bookings and checks the forecast at set intervals before each one, sending a Telegram alert the moment rain looks likely enough to be worth cancelling for — with enough notice to still make the cancellation window.",
         status: "Live",
         tags: ["Java", "Spring Boot", "React", "TypeScript", "Firebase", "Telegram Bot API", "Open-Meteo API"],
         githubUrl: "https://github.com/Cecinordahl/weather-or-not",
