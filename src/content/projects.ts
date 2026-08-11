@@ -274,6 +274,29 @@ const rawHobbyProjects = [
             ],
         },
     },
+    {
+        name: "Booknook",
+        tagline: "After cycling through reading-tracker apps that all missed the one thing I actually wanted — a heads-up when the next book in a series I follow is coming out — I fell back to Goodreads, which handles what-I'm-reading fine but has grown so cluttered with features I don't need that it's a chore to use, and it still has no release notifications. The gap became obvious the day a colleague mentioned two releases in a series I follow were landing that fall — I'd half-heard about it already and forgotten the details entirely. Booknook is the invite-only tracker I built for my friend group instead: a visual bookshelf, series-follows with push notifications at whatever lead time you set, and enough low-friction ways to add a book that keeping it updated doesn't feel like a chore.",
+        status: "Live",
+        tags: ["Java", "Spring Boot", "React", "TypeScript", "Firebase", "PWA"],
+        githubUrl: "https://github.com/Cecinordahl/booknook",
+        liveUrl: "https://mybooknook-app.vercel.app/",
+        details: {
+            summary: "Everyone in the friend group signs in through an email allowlist, adds books by scanning a barcode or photographing a cover, and follows series on a dedicated page showing the next release date.",
+            highlights: [
+                "Books can be added three ways — scanning the ISBN barcode via the device camera, snapping a cover photo for on-device OCR (Tesseract.js) that pre-fills an editable title/author field and is never auto-saved or uploaded, or searching Google Books/Open Library directly.",
+                "Series tracking pulls release dates and completion status from the Hardcover.app GraphQL API, cached in Firestore with a configurable TTL so the app isn't hitting the API on every page load.",
+                "Release reminders run on Web Push (VAPID) rather than a third-party push service — a daily Spring @Scheduled job checks every followed series and fires a notification per user at each of their own configured \"days before release\" lead times, tracked per-follow so the same interval never fires twice.",
+                "Sign-in is gated by a Firestore-backed email allowlist enforced in a custom Spring Security filter that validates Firebase ID tokens, so there's no self-serve signup — new friends are added by hand in the Firestore console.",
+                "A one-time Goodreads CSV import (case-insensitive column matching, tolerant of export-format drift, skipping unusable rows instead of failing the whole import) lets people bring their existing \"read\"/\"want to read\" shelves over instead of starting from an empty library.",
+            ],
+            challenges: [
+                "Hardcover's GraphQL API returns duplicate book_series rows at the same series position (foreign-language editions, box sets, and dramatized adaptations all show up as separate \"books\") and a frequently-null is_completed flag rather than false — worked around by filtering client-side based on live schema introspection rather than trusting query params to do it.",
+                "The backend crashed on Render's container runtime because Alpine's musl libc breaks the native TLS implementation gRPC uses (a dependency of the Firebase Admin SDK) — fixed by switching the Dockerfile to a glibc-based base image.",
+                "Refreshing a deep link like a series page 404'd on Vercel, since it was serving static files for what's actually a client-side-routed SPA — fixed with a Vercel rewrite sending all paths to index.html.",
+            ],
+        },
+    },
     // Commented out: felt too personal to share publicly.
     // {
     //     name: "Eggspecting",
