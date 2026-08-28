@@ -5,23 +5,42 @@ export type {Project};
 const rawHobbyProjects = [
     {
         name: "EuroBonus Buddy",
-        tagline: "I track my SAS EuroBonus status-point collecting in a personal Excel file with a dozen tabs — handy for me, but I don't want to hand over the whole document when friends and I compare notes on the cheapest way to the next tier, and it's honestly a mess to look at. EuroBonus Buddy is meant to replace it: a personal tracker for point and status data, plus a planner that compares different paths to a status goal — buying points outright, stacking car rentals, or a mix of both — ranked by cost or by speed, with a clean overview worth actually sharing. The plan is for anyone to be able to create their own account and track their own progress the same way, not just me.",
+        tagline: "I track my SAS EuroBonus status-point collecting in a personal Excel file with a dozen tabs — handy " +
+            "for me, but I don't want to hand over the whole document when friends and I compare notes on the cheapest " +
+            "way to the next tier, and it's honestly a mess to look at. EuroBonus Buddy is meant to replace it: a " +
+            "personal tracker for point and status data, plus a planner that compares different paths to a status goal — " +
+            "buying points outright, stacking car rentals, or a mix of both — ranked by cost or by speed, with a clean " +
+            "overview worth actually sharing. The plan is for anyone to be able to create their own account and track " +
+            "their own progress the same way, not just me.",
         status: "Planned",
         tags: ["React", "TypeScript", "Vite"],
         githubUrl: "https://github.com/Cecinordahl/eurobonusbuddy",
         // liveUrl: "https://<your-live-site>",
         details: {
-            summary: "Enter your current status points, target tier, and months remaining in your qualification period; the planner generates a handful of candidate plans to close the gap and ranks them by either total cost or how fast they'd complete.",
+            summary: "Enter your current status points, target tier, and months remaining in your qualification period; " +
+                "the planner generates a handful of candidate plans to close the gap and ranks them by either total " +
+                "cost or how fast they'd complete.",
             highlights: [
-                "The \"buy Level Points\" option encodes SAS's actual eligibility rules rather than just offering a slider: it checks you're at least 6 months into the qualification period and have already earned the tier-specific minimum before allowing a purchase, then caps the amount at the tier's official ceiling and rounds to SAS's 100-point purchase blocks.",
-                "Plans with an unknown cost (like car rentals, whose real price isn't modeled yet) are still shown and ranked, but explicitly flagged with a warning rather than silently guessed at or hidden, so an uncosted plan is never mistaken for a free one.",
-                "The planner generates several candidate plans for the same goal — buying points outright, stacking multiple car rentals, or a hybrid of both — and ranks them by whichever optimization mode is selected: cheapest total cost, or fastest to close the gap.",
+                "The \"buy Level Points\" option encodes SAS's actual eligibility rules rather than just offering a " +
+                "slider: it checks you're at least 6 months into the qualification period and have already earned the " +
+                "tier-specific minimum before allowing a purchase, then caps the amount at the tier's official ceiling " +
+                "and rounds to SAS's 100-point purchase blocks.",
+                "Plans with an unknown cost (like car rentals, whose real price isn't modeled yet) are still shown and " +
+                "ranked, but explicitly flagged with a warning rather than silently guessed at or hidden, so an uncosted " +
+                "plan is never mistaken for a free one.",
+                "The planner generates several candidate plans for the same goal — buying points outright, stacking " +
+                "multiple car rentals, or a hybrid of both — and ranks them by whichever optimization mode is selected: " +
+                "cheapest total cost, or fastest to close the gap.",
             ],
         },
     },
     {
         name: "WorkoutChallenge",
-        tagline: "Inspired by Oslo Maraton's Julechallenge — pick a total distance and hit it by Christmas Eve — but frustrated it only ran in December with a flat, unskippable daily distance, I wanted that same not-knowing-what-today-brings motivation available year-round. WorkoutChallenge lets you set any date range and a total km goal, then generates a varied day-by-day plan with harder 'hero' days and lighter recovery days instead of splitting the distance evenly, tracking completion, streaks, and points with automatic Strava sync.",
+        tagline: "Inspired by Oslo Maraton's Julechallenge — pick a total distance and hit it by Christmas Eve — but " +
+            "frustrated it only ran in December with a flat, unskippable daily distance, I wanted that same " +
+            "not-knowing-what-today-brings motivation available year-round. WorkoutChallenge lets you set any date range " +
+            "and a total km goal, then generates a varied day-by-day plan with harder 'hero' days and lighter recovery " +
+            "days instead of splitting the distance evenly, tracking completion, streaks, and points with automatic Strava sync.",
         status: "Live",
         tags: ["React", "TypeScript", "Firebase", "Tailwind CSS", "Strava API", "Vercel"],
         githubUrl: "https://github.com/Cecinordahl/workout-challenge",
@@ -35,12 +54,23 @@ const rawHobbyProjects = [
             "/images/projects/workout-challenge/6.png",
         ],
         details: {
-            summary: "You set a total distance or time goal, a daily minimum and maximum, and a date range; the app generates a randomized day-by-day plan within those bounds and tracks your progress against it, syncing automatically from Strava.",
+            summary: "You set a total distance or time goal, a daily minimum and maximum, and a date range; the app " +
+                "generates a randomized day-by-day plan within those bounds and tracks your progress against it, syncing " +
+                "automatically from Strava.",
             highlights: [
-                "The daily plan is generated by a seeded-random engine that distributes the total goal unevenly across the challenge window — ramping difficulty gradually week over week, easing the final week, and mixing in randomized \"hero\" days (1.4-1.6x the baseline) and lighter recovery days (0.5-0.6x) — instead of splitting the goal into equal daily chunks.",
-                "Strava activities sync automatically: a webhook subscription notifies a Vercel serverless function the moment a qualifying run posts, which matches it to that day's active challenge and logs it without the user opening the app.",
-                "Hero days are worth double the points of normal or recovery days, and the streak counter tolerates days a user explicitly marks as skipped while still breaking on days left unmarked, rewarding honest tracking over silently missed days.",
-                "Points and streak calculations are deliberately duplicated between the client and the Vercel functions (each copy comments pointing at its counterpart) so the UI and the webhook-driven auto-logging path stay consistent without sharing a runtime.",
+                "The daily plan is generated by a seeded-random engine that distributes the total goal unevenly across " +
+                "the challenge window — ramping difficulty gradually week over week, easing the final week, and mixing " +
+                "in randomized \"hero\" days (1.4-1.6x the baseline) and lighter recovery days (0.5-0.6x) — instead of " +
+                "splitting the goal into equal daily chunks.",
+                "Strava activities sync automatically: a webhook subscription notifies a Vercel serverless function the " +
+                "moment a qualifying run posts, which matches it to that day's active challenge and logs it without the " +
+                "user opening the app.",
+                "Hero days are worth double the points of normal or recovery days, and the streak counter tolerates days " +
+                "a user explicitly marks as skipped while still breaking on days left unmarked, rewarding honest tracking " +
+                "over silently missed days.",
+                "Points and streak calculations are deliberately duplicated between the client and the Vercel functions " +
+                "(each copy comments pointing at its counterpart) so the UI and the webhook-driven auto-logging path stay " +
+                "consistent without sharing a runtime.",
             ],
             challenges: [
                 "Firebase Admin's auth module pulled in a JWT library that's ESM-only, which crashed every serverless function in production with ERR_REQUIRE_ESM the moment the new Strava routes started calling it — fixed by pinning that dependency to its last dual CJS/ESM major version via an npm override.",
@@ -51,7 +81,11 @@ const rawHobbyProjects = [
     },
     {
         name: "Americano",
-        tagline: "Some friends and I started playing Americano at padel, and the app we used worked fine with 4+ players and plenty of time — but with only 3 players, or with just 10 minutes left on a court booking after a longer game, none of the apps I tried had a mode that fit. Americano is my own version built to cover those gaps: it supports 3-player games and lets you pick the shortest possible format for whatever group size and time you actually have.",
+        tagline: "Some friends and I started playing Americano at padel, and the app we used worked fine with 4+ players " +
+            "and plenty of time — but with only 3 players, or with just 10 minutes left on a court booking after a longer " +
+            "game, none of the apps I tried had a mode that fit. Americano is my own version built to cover those gaps: " +
+            "it supports 3-player games and lets you pick the shortest possible format for whatever group size and time " +
+            "you actually have.",
         status: "Planned",
         tags: ["Swift", "SwiftUI", "SwiftData"],
         // githubUrl: "https://github.com/<you>/<repo>",
@@ -74,7 +108,7 @@ const rawHobbyProjects = [
             ],
         },
     },
-    {
+    { // TODO: modify this to a Claude Cowork type of daily ai digest. I have setup a simple cowork task with Claude to give me significant AI news each morning at 8am.
         name: "Daily AI Digest",
         tagline: "Email summaries of credible AI news from the last 24 hours.",
         status: "Planned",
@@ -181,6 +215,16 @@ const rawHobbyProjects = [
         tags: ["React", "TypeScript", "Java", "Spring Boot", "Anthropic API", "Firebase"],
         githubUrl: "https://github.com/Cecinordahl/pocket-phrases",
         liveUrl: "https://pocket-phrases.vercel.app",
+        images: [
+            "/images/projects/pocket-phrases/pp1.png",
+            "/images/projects/pocket-phrases/pp2.png",
+            "/images/projects/pocket-phrases/pp3.png",
+            "/images/projects/pocket-phrases/pp4.png",
+            "/images/projects/pocket-phrases/pp5.png",
+            "/images/projects/pocket-phrases/pp6.png",
+            "/images/projects/pocket-phrases/pp7.png",
+            "/images/projects/pocket-phrases/pp8.png",
+        ],
         details: {
             summary: "Pick a language and either a premade situation (restaurant, transport, emergencies, and other prebuilt modes) or describe your own; the app returns a short lesson you work through three ways — read, flashcard drill, and quiz — with no accounts, just progress saved locally on your device.",
             highlights: [
