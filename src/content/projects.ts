@@ -91,6 +91,14 @@ const rawHobbyProjects = [
         // githubUrl: "https://github.com/<you>/<repo>",
         // liveUrl: "https://<your-live-site>",
         manualDates: { createdAt: "2025-12-21", pushedAt: "2026-01-04" },
+        images: [ // TODO update ImageCarousel so that these portrait-oriented/iphone photos are visible
+            "/images/projects/americano/1.png",
+            "/images/projects/americano/2.png",
+            "/images/projects/americano/3.png",
+            "/images/projects/americano/4.png",
+            "/images/projects/americano/5.png",
+            "/images/projects/americano/6.png",
+        ],
         details: {
             summary: "This iOS app generates and manages Americano-style tournaments for racket sports, with support for both traditional doubles Americano (4+ players) and a custom 3-player singles variant. Users create a tournament, get an auto-generated match schedule, record scores round by round, and track a live leaderboard, with everything saved locally so a tournament can be resumed later.",
             highlights: [
@@ -247,6 +255,13 @@ const rawHobbyProjects = [
         tags: ["React", "TypeScript", "Vite", "Tailwind CSS", "Vercel Serverless Functions", "Resend"],
         githubUrl: "https://github.com/Cecinordahl/voyage-collective",
         liveUrl: "https://voyage-collective.vercel.app",
+        images: [
+            "/images/projects/voyage-collective/vc1.png",
+            "/images/projects/voyage-collective/vc2.png",
+            "/images/projects/voyage-collective/vc3.png",
+            "/images/projects/voyage-collective/vc4.png",
+            "/images/projects/voyage-collective/vc5.png",
+        ],
         details: {
             highlights: [
                 "Self-hosted the Bodoni Moda display serif as local woff2 files instead of loading it from Google Fonts at runtime, keeping the page free of third-party network requests in line with its no-tracking privacy stance.",
