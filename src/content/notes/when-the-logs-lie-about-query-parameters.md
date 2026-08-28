@@ -1,5 +1,6 @@
 ---
 title: "When the Logs Lie About Query Parameters"
+date: 2026-08-28
 tags: [Observability, HTTP, Debugging]
 ---
 

@@ -2,6 +2,7 @@ import { EducationItemSchema, parseContent, sortByStartDateDesc, type EducationI
 
 export type { EducationItem };
 
+{/* TODO add links for the courses at UiO and OsloMet. Add for AW Academy as well if theres a info page for that or maybe I have a certification or something */}
 const rawEducation = [
     {
         institution: "Rogers State University",

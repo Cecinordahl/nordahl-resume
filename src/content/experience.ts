@@ -13,7 +13,7 @@ const rawWorkExperience = [
         startDate: "2021-11",
         summary:
             "Key contributor on KLP—one of the largest technology initiatives in the Nordics—migrating an on-prem solution to cloud while improving tools for case handlers and members managing pensions.",
-        impactBullets: [
+        impactBullets: [ // TODO remove this: "grouping of provider services into Jira modules, and usage of Regulatory Base Values (Grunnbeløpet)." and add something else
             "Fullstack delivery across backend and frontend (Java/Spring + React/TypeScript), implementing new functionality, enhancements, and defect fixes.",
             "Contributed to workflow and event-driven capabilities using Camunda and Kafka.",
             "Before moving into a tech lead role, regularly took part in architectural decision-making — URL endpoint patterns, Camunda delegates and their connections to Java application services, grouping of provider services into Jira modules, and usage of Regulatory Base Values (Grunnbeløpet).",

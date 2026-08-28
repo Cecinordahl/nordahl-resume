@@ -85,10 +85,14 @@ export default function Portfolio() {
     return (
         <div className="grid grid-sm">
             <div>
-                <div className="h2">Portfolio</div>
-                <p className="muted">Hobby projects (links will be added as repositories go live).</p>
+                <div className="h2">Portfolio</div> {/* TODO re-phrase/word/improve the following two p sections */}
+                <p className="muted">Welcome to the showcase of my hobby projects (links will be added as repositories go live).</p>
+                <p className="muted">I genuinely love what I do for a living, so my motivation for learning, creating and building things doesn't stop when I get home from work. In my spare time, when I feel motivated, I enjoy making web- and iOS apps and exploring different ways to utilize technology for fun, to solve a problem, automate/streamline tasks, get a better UI than functionality I have created in excel, or simply to build/create something cool. Could be because I want to create something useful, because I want to learn a new topic, or rather just play around.</p>
             </div>
 
+            {/* TODO add a section to list the external services I use for my projects, ie Firebase, Vercel, Render, Anthropic API, Cloudflare, Telegram, etc. And why I chose then and what I use each of them for. */}
+
+            {/* TODO center status pills over the projects components below for mobile view */}
             <div style={{ marginTop: 10 }}>
                 <button
                     type="button"
