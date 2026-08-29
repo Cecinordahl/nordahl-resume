@@ -183,7 +183,18 @@ a.card { display: block; }
         gap: 14px;
         padding: 14px 0 4px;
     }
-    .navLinks.navLinks-open { display: flex; }
+    .navLinks.navLinks-open {
+        display: flex;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--nav-bg);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid var(--border);
+        padding: 14px 0 18px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
 
     /* Pins the theme toggle to the right of the hamburger when navLinks
        (the only other flex-growing sibling) is hidden/collapsed. */
@@ -363,6 +374,15 @@ textarea:focus {
     opacity: 1;
 }
 
+@media (max-width: 480px) {
+    .tooltip-bubble {
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(220px, calc(100vw - 48px));
+    }
+}
+
 .pill {
     display: inline-block;
     border: 1px solid var(--border);
@@ -399,6 +419,35 @@ textarea:focus {
     font-family: inherit;
 }
 .pill-active { font-weight: 700; }
+
+.pill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.pill-list .pill { margin: 0; }
+
+@media (max-width: 560px) {
+    .pill-list {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scrollbar-width: none;
+        padding-bottom: 2px;
+    }
+    .pill-list::-webkit-scrollbar { display: none; }
+    .pill-list .pill { flex: 0 0 auto; }
+}
+
+.status-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.status-filter .pill { margin: 0; }
+
+@media (max-width: 560px) {
+    .status-filter { justify-content: center; }
+}
 
 .details-toggle {
     appearance: none;
@@ -488,8 +537,9 @@ textarea:focus {
 .image-carousel-item {
     flex: 0 0 auto;
     scroll-snap-align: start;
-    width: 220px;
-    height: 140px;
+    height: 200px;
+    width: auto;
+    max-width: 320px;
     object-fit: cover;
     border: 1px solid var(--border);
     border-radius: 12px;

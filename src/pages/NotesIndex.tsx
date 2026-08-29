@@ -4,7 +4,6 @@ import { getAllNotes } from "../lib/notes";
 import { useDocumentTitle } from "../lib/useDocumentTitle";
 import { InfoIcon, ChevronDownIcon } from "../components/icons";
 
-// TODO when a note has been selected, the previous and next note that is displayed at the top should have a different design. theres too much text when displaying the titles. i think we should go for something more clean like just an arrow in each direction or perhaps make the note on the page itself a bit thinner and display the arrows on the sides of the note to reminisce a book and turning pages.
 export default function NotesIndex() {
     useDocumentTitle("Notes");
 
@@ -43,7 +42,6 @@ export default function NotesIndex() {
                     </p>
                 </div>
 
-                {/* TODO hovering on the RSS in mobile display cuts off the text box that shows up, so only half of it is displayed */}
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                     <a className="btn" href="/rss.xml" target="_blank" rel="noreferrer">RSS</a>
                     <span className="tooltip-wrap" tabIndex={0} aria-label="What is RSS?">
@@ -59,7 +57,6 @@ export default function NotesIndex() {
 
             {allTags.length > 0 && (
                 <div>
-                    {/* TODO when clicking on the filter button in mobile display, its a bit messy with just all the pills. I think we should try a cleaner way to display and use the filters for mobile. */}
                     <button
                         type="button"
                         className="btn"
@@ -74,7 +71,7 @@ export default function NotesIndex() {
                     </button>
 
                     {filterOpen && (
-                        <div style={{ marginTop: 12 }}>
+                        <div className="pill-list" style={{ marginTop: 12 }}>
                             <button
                                 type="button"
                                 className={`pill pill-filter${activeTags.size === 0 ? " pill-active" : ""}`}

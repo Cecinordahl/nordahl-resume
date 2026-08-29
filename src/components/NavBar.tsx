@@ -35,7 +35,6 @@ const navItems = [
 export default function NavBar() {
     const [open, setOpen] = useState(false);
 
-    {/* TODO When opening the hamburger menu in mobile display, open it over the content, not by moving content down to make space for the expanded hamburger menu.  */}
     return (
         <header className="nav">
             <div className="container navInner">

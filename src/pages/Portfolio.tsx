@@ -92,8 +92,7 @@ export default function Portfolio() {
 
             {/* TODO add a section to list the external services I use for my projects, ie Firebase, Vercel, Render, Anthropic API, Cloudflare, Telegram, etc. And why I chose then and what I use each of them for. */}
 
-            {/* TODO center status pills over the projects components below for mobile view */}
-            <div style={{ marginTop: 10 }}>
+            <div className="status-filter" style={{ marginTop: 10 }}>
                 <button
                     type="button"
                     className={`pill pill-filter${activeStatuses.size === 0 ? " pill-active" : ""}`}

@@ -91,7 +91,7 @@ const rawHobbyProjects = [
         // githubUrl: "https://github.com/<you>/<repo>",
         // liveUrl: "https://<your-live-site>",
         manualDates: { createdAt: "2025-12-21", pushedAt: "2026-01-04" },
-        images: [ // TODO update ImageCarousel so that these portrait-oriented/iphone photos are visible
+        images: [
             "/images/projects/americano/1.png",
             "/images/projects/americano/2.png",
             "/images/projects/americano/3.png",

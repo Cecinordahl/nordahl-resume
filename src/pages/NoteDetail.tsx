@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import { getAllNotes, getNoteBySlug } from "../lib/notes";
 import { highlightLanguages } from "../lib/highlightLanguages";
+import { ChevronLeftIcon, ChevronRightIcon } from "../components/icons";
 
 const rehypeHighlightOptions = { languages: highlightLanguages };
 import { useDocumentTitle } from "../lib/useDocumentTitle";
@@ -33,12 +34,16 @@ export default function NoteDetail() {
             <div className="row-between">
                 <div>
                     {newer && (
-                        <Link className="btn" to={`/notes/${newer.slug}`}>← {newer.title}</Link>
+                        <Link className="icon-link" to={`/notes/${newer.slug}`} aria-label={`Newer note: ${newer.title}`} title={newer.title}>
+                            <ChevronLeftIcon />
+                        </Link>
                     )}
                 </div>
                 <div>
                     {older && (
-                        <Link className="btn" to={`/notes/${older.slug}`}>{older.title} →</Link>
+                        <Link className="icon-link" to={`/notes/${older.slug}`} aria-label={`Older note: ${older.title}`} title={older.title}>
+                            <ChevronRightIcon />
+                        </Link>
                     )}
                 </div>
             </div>
