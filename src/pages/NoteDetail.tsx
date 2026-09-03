@@ -56,7 +56,7 @@ export default function NoteDetail() {
                 </div>
             </div>
 
-            <div className="card">
+            <div className="card note-content">
                 <ReactMarkdown rehypePlugins={[[rehypeHighlight, rehypeHighlightOptions]]}>{note.content}</ReactMarkdown>
             </div>
 

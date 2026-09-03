@@ -4,7 +4,11 @@ date: 2026-09-03
 tags: ["Focus", "Team Practices", "Developer Experience"]
 ---
 
-I've been reading a book about why attention has collapsed over the last couple of decades, and its central claim has stuck with me: broken attention isn't a personal failing you can willpower your way out of. It's something the environment takes from you. For software development, that environment is unusually good at taking — and I think the implications for how teams organise themselves are underrated.
+![Abstract illustration of a person's attention fragmenting into a stream of notification icons and screens](/images/notes/attention-is-a-team-resource-not-a-personal-virtue/hero.jpg)
+
+![Cover of Stolen Focus by Johann Hari](/images/notes/attention-is-a-team-resource-not-a-personal-virtue/stolen-focus-cover.jpg)
+
+I got to thinking about this because I'm currently reading *[Stolen Focus](https://www.bloomsbury.com/uk/stolen-focus-9781526620245/)* by Johann Hari — a book about why attention has collapsed over the last couple of decades. Its central claim has stuck with me: broken attention isn't a personal failing you can willpower your way out of. It's something the environment takes from you. For software development, that environment is unusually good at taking — and I think the implications for how teams organise themselves are underrated.
 
 ## The switching cost is the whole story
 

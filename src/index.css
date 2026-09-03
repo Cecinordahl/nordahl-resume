@@ -517,6 +517,15 @@ textarea:focus {
     filter: saturate(0.95) contrast(0.95);
 }
 
+.note-content img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 16px 0;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+
 /* Portfolio image carousel */
 .image-carousel {
     position: relative;
