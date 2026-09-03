@@ -119,7 +119,7 @@ export default function Portfolio() {
                 <p className="muted">My curiosity for building things doesn't clock out at 5pm. In my spare time I make web and iOS apps to solve a problem, automate something tedious, replace a clunky spreadsheet, or just try out a new tool or idea — sometimes to create something genuinely useful, sometimes purely to learn, and sometimes just to play.</p>
             </div>
 
-            <div className="card">
+            <div>
                 <button
                     type="button"
                     className="btn"
