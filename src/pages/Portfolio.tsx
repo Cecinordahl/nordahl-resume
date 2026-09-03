@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { hobbyProjects } from "../content/projects";
 import type { Project } from "../content/projects";
 import { useDocumentTitle } from "../lib/useDocumentTitle";
-import { ExternalLinkIcon, GitHubIcon } from "../components/icons";
+import { ChevronDownIcon, ExternalLinkIcon, GitHubIcon } from "../components/icons";
 import { ImageCarousel } from "../components/ImageCarousel";
 import { fetchRepoDates, formatMonthYear, type RepoDates } from "../lib/githubRepoDates";
 
@@ -57,6 +57,8 @@ export default function Portfolio() {
     const activeStatuses = new Set(
         searchParams.get("status")?.split(",").filter((s): s is Project["status"] => allStatuses.includes(s as Project["status"])) ?? [],
     );
+
+    const [toolsOpen, setToolsOpen] = useState(false);
 
     const [expandedDetails, setExpandedDetails] = useState<Set<string>>(new Set());
     function toggleDetails(name: string) {
@@ -118,15 +120,29 @@ export default function Portfolio() {
             </div>
 
             <div className="card">
-                <div className="kicker" style={{ textAlign: "left" }}>Tools & services</div>
-                <div className="grid grid2" style={{ marginTop: 12 }}>
-                    {externalServices.map((s) => (
-                        <div key={s.name}>
-                            <div className="title">{s.name}</div>
-                            <p className="muted" style={{ marginTop: 4 }}>{s.why}</p>
-                        </div>
-                    ))}
-                </div>
+                <button
+                    type="button"
+                    className="btn"
+                    onClick={() => setToolsOpen((o) => !o)}
+                    aria-expanded={toolsOpen}
+                    style={{ display: "inline-flex", alignItems: "center", gap: 6 }}
+                >
+                    Tools & services
+                    <span style={{ display: "inline-flex", transform: toolsOpen ? "rotate(180deg)" : undefined, transition: "transform 0.15s ease" }}>
+                        <ChevronDownIcon />
+                    </span>
+                </button>
+
+                {toolsOpen && (
+                    <div className="grid grid2" style={{ marginTop: 12 }}>
+                        {externalServices.map((s) => (
+                            <div key={s.name}>
+                                <div className="title">{s.name}</div>
+                                <p className="muted" style={{ marginTop: 4 }}>{s.why}</p>
+                            </div>
+                        ))}
+                    </div>
+                )}
             </div>
 
             <div className="status-filter" style={{ marginTop: 10 }}>
