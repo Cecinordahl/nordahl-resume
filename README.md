@@ -83,3 +83,10 @@ no CI file needed). `vercel.json` adds a rewrite so client-side routes (e.g.
 `/notes/some-slug`) resolve correctly on refresh/direct load. `@vercel/analytics` is
 wired in via `<Analytics />` in `App.tsx` — it only reports when actually served from
 Vercel, so it's a no-op in local dev.
+
+## Upcoming tweaks
+
+Nitpicky things to fix when there's time:
+
+- Crop the portrait project screenshots to the edges of the phone frame — the
+  black corner triangles from the device mockup shouldn't be visible.
