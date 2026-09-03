@@ -83,6 +83,43 @@ export default function Home() {
                     </div>
                 </div>
             </section>
+
+            {/* Journey */}
+            <section className="card">
+                <div className="kicker" style={{ textAlign: "left" }}>How I got here</div>
+
+                <p className="muted">
+                    I played competitive golf from a young age, all the way through a golf scholarship at Rogers State
+                    University in Oklahoma, where I earned a Bachelor of Technology in Applied Technology while playing
+                    at the collegiate level.
+                </p>
+
+                <p className="muted">
+                    The plan after that was straightforward: work in Norway for a year, then head back to the US for a
+                    master's degree. Instead, I took a job as a flight attendant and fell in love with it — one year
+                    turned into four, spent flying for SAS. When SAS restructured after COVID hit, I took a severance
+                    package. I'd already lined up a few informatics courses on the side for that fall, so I started
+                    working part-time at Vinmonopolet while studying at the University of Oslo.
+                </p>
+
+                <p className="muted">
+                    About a year later I applied to Academic Work Academy's 12-week Java program, completed it, and
+                    started my career at Accenture. I kept studying alongside full-time work, genuinely enjoying it, and
+                    at one point naively enrolled in a full software engineering bachelor's degree at OsloMet on top of
+                    it. The coursework went smoothly since I already knew most of the material, but after realizing I
+                    already had three years of real software engineering experience on my résumé, I decided finishing
+                    that second degree wasn't worth prioritizing anymore.
+                </p>
+
+                <p className="muted">
+                    It's now nearing five years as a fullstack developer, and I enjoy it more every year. What I love
+                    most is that I never stop learning — there's always something new to get better at, whether that's
+                    frontend, a new tool, a different architecture, or just understanding the domain a little more
+                    deeply.
+                </p>
+
+                <div className="h2">Golf taught me patience with a long game; this career just gave me a longer one to play.</div>
+            </section>
         </div>
     );
 }

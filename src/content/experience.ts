@@ -13,10 +13,10 @@ const rawWorkExperience = [
         startDate: "2021-11",
         summary:
             "Key contributor on KLP—one of the largest technology initiatives in the Nordics—migrating an on-prem solution to cloud while improving tools for case handlers and members managing pensions.",
-        impactBullets: [ // TODO remove this: "grouping of provider services into Jira modules, and usage of Regulatory Base Values (Grunnbeløpet)." and add something else
+        impactBullets: [
             "Fullstack delivery across backend and frontend (Java/Spring + React/TypeScript), implementing new functionality, enhancements, and defect fixes.",
             "Contributed to workflow and event-driven capabilities using Camunda and Kafka.",
-            "Before moving into a tech lead role, regularly took part in architectural decision-making — URL endpoint patterns, Camunda delegates and their connections to Java application services, grouping of provider services into Jira modules, and usage of Regulatory Base Values (Grunnbeløpet).",
+            "Before moving into a tech lead role, regularly took part in architectural decision-making — URL endpoint patterns and Camunda delegates and their connections to Java application services.",
             "Assistant Defect Manager (since 2022): led triage and assignment; handled 393 defects (2023) and 210 defects (2024 through Sep).",
             "Subject Matter Expert for a critical payment area; partnered with product owner to prioritize fixes and design stable solutions.",
             "Technical Solution Designer (since early 2023); designed solutions within team and cross-team; earned [Technology Architect Associate (TAA)](https://bcert.me/ssfxvrjgx).",

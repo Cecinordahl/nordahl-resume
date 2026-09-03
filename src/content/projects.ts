@@ -116,13 +116,20 @@ const rawHobbyProjects = [
             ],
         },
     },
-    { // TODO: modify this to a Claude Cowork type of daily ai digest. I have setup a simple cowork task with Claude to give me significant AI news each morning at 8am.
-        name: "Daily AI Digest",
-        tagline: "Email summaries of credible AI news from the last 24 hours.",
-        status: "Planned",
-        tags: ["Automation", "Email", "AI"],
-        // githubUrl: "https://github.com/<you>/<repo>",
-        // liveUrl: "https://<your-live-site>",
+    {
+        name: "Automated AI News Digest",
+        tagline: "Two scheduled Claude tasks — a daily pulse and a weekly deep dive — that search the web and send me a written AI news summary without me having to go looking for it.",
+        status: "Live",
+        tags: ["Automation", "Claude", "AI"],
+        details: {
+            summary: "Two recurring, cron-scheduled Claude tasks tied to my Claude account, each defined by a schedule plus a standing natural-language prompt describing what to look for, how to judge whether something's worth including, and how to format the output. Every run starts a fresh Claude session with no memory of past runs, so there's no database or persistent state — the instructions are the \"program,\" and Claude re-derives what's new each time by searching live.",
+            highlights: [
+                "Daily AI News Watch runs every morning at 8:00 AM Oslo time, scanning roughly the last 24 hours for notable model/product releases, real research findings, funding or policy news, and creative AI integrations worth trying — and says so in one line on a quiet day instead of padding the summary with minor items.",
+                "Weekly AI Deep Dive runs every Sunday at 8:00 AM Oslo time, splitting the past week into the 3–5 most significant developments (each written up with context and a source link) plus a scannable one-line-each list of everything else.",
+                "Web search spans major tech news outlets, AI lab blogs and announcements (OpenAI, Anthropic, Google DeepMind, Meta AI), arXiv, and communities like Hacker News and AI/ML subreddits.",
+                "Both tasks deliver their output as a Claude message with a push notification, so the summary shows up wherever I'm already checking Claude — no separate feed or dashboard to log into.",
+            ],
+        },
     },
     {
         name: "Trivia Arena",

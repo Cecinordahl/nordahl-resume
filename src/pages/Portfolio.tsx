@@ -16,6 +16,33 @@ const statusClass: Record<Project["status"], string> = {
 
 const allStatuses = Object.keys(statusClass) as Project["status"][];
 
+const externalServices: { name: string; why: string }[] = [
+    {
+        name: "Vercel",
+        why: "Hosts the frontend for almost every project here, auto-deployed from GitHub on push. Serverless functions also handle anything that needs a server-side secret — webhook receivers, API proxies, contact form submissions — without running a separate backend.",
+    },
+    {
+        name: "Firebase",
+        why: "Auth and Firestore for projects that need real-time sync or a login without standing up their own backend — e.g. shared trip data syncing live across devices, or an admin panel gated behind Firebase-authenticated users. Free Spark tier covers everything.",
+    },
+    {
+        name: "Render",
+        why: "Hosts the Spring Boot backends as Docker containers on the free tier — the only practical free option for an always-available Java service. The tradeoff is cold starts after inactivity, which I work around with keep-alive pings or an explicit \"waking up\" state in the UI.",
+    },
+    {
+        name: "Anthropic API",
+        why: "Powers Claude-generated content inside a couple of apps — e.g. a language-learning app's free-text lesson generator, using Claude's structured outputs so generated content is schema-validated instead of parsed from free text. Also what runs the scheduled AI news digest task above.",
+    },
+    {
+        name: "Telegram Bot API",
+        why: "Used for push-style alerts (like a rain warning before an outdoor booking) without building notification infrastructure — everyone already has Telegram, and the bot API gives simple two-way commands for free.",
+    },
+    {
+        name: "Cloudflare",
+        why: "DNS management for a couple of project domains. (Placeholder — Cecilie, confirm/adjust this one.)",
+    },
+];
+
 // undefined = nothing to show, null = fetch attempted but unavailable (e.g. private repo)
 function effectiveDates(p: Project, repoDates: Record<string, RepoDates | null>): RepoDates | null | undefined {
     if (p.manualDates) return p.manualDates;
@@ -85,12 +112,22 @@ export default function Portfolio() {
     return (
         <div className="grid grid-sm">
             <div>
-                <div className="h2">Portfolio</div> {/* TODO re-phrase/word/improve the following two p sections */}
-                <p className="muted">Welcome to the showcase of my hobby projects (links will be added as repositories go live).</p>
-                <p className="muted">I genuinely love what I do for a living, so my motivation for learning, creating and building things doesn't stop when I get home from work. In my spare time, when I feel motivated, I enjoy making web- and iOS apps and exploring different ways to utilize technology for fun, to solve a problem, automate/streamline tasks, get a better UI than functionality I have created in excel, or simply to build/create something cool. Could be because I want to create something useful, because I want to learn a new topic, or rather just play around.</p>
+                <div className="h2">Portfolio</div>
+                <p className="muted">A showcase of my hobby projects — small apps I build outside of work, for myself, my husband, or friends. Links go live as each project ships.</p>
+                <p className="muted">My curiosity for building things doesn't clock out at 5pm. In my spare time I make web and iOS apps to solve a problem, automate something tedious, replace a clunky spreadsheet, or just try out a new tool or idea — sometimes to create something genuinely useful, sometimes purely to learn, and sometimes just to play.</p>
             </div>
 
-            {/* TODO add a section to list the external services I use for my projects, ie Firebase, Vercel, Render, Anthropic API, Cloudflare, Telegram, etc. And why I chose then and what I use each of them for. */}
+            <div className="card">
+                <div className="kicker" style={{ textAlign: "left" }}>Tools & services</div>
+                <div className="grid grid2" style={{ marginTop: 12 }}>
+                    {externalServices.map((s) => (
+                        <div key={s.name}>
+                            <div className="title">{s.name}</div>
+                            <p className="muted" style={{ marginTop: 4 }}>{s.why}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
 
             <div className="status-filter" style={{ marginTop: 10 }}>
                 <button
