@@ -43,7 +43,7 @@ const externalServices: { name: string; why: string }[] = [
     },
 ];
 
-// undefined = nothing to show, null = fetch attempted but unavailable (e.g. private repo)
+// undefined = nothing to show, null = fetch attempted but unavailable (private repo, rate limit, network error, etc.)
 function effectiveDates(p: Project, repoDates: Record<string, RepoDates | null>): RepoDates | null | undefined {
     if (p.manualDates) return p.manualDates;
     if (!p.githubUrl) return undefined;
@@ -74,7 +74,7 @@ export default function Portfolio() {
         ? hobbyProjects
         : hobbyProjects.filter((p) => activeStatuses.has(p.status));
 
-    // undefined = not checked yet, null = checked but unavailable (e.g. private repo), otherwise the fetched dates
+    // undefined = not checked yet, null = checked but unavailable (private repo, rate limit, network error, etc.), otherwise the fetched dates
     const [repoDates, setRepoDates] = useState<Record<string, RepoDates | null>>({});
 
     useEffect(() => {
@@ -250,7 +250,7 @@ export default function Portfolio() {
                             <p className="muted" style={{ fontSize: 12 }}>
                                 {dates
                                     ? `Started ${formatMonthYear(dates.createdAt)} · Updated ${formatMonthYear(dates.pushedAt)}`
-                                    : "Dates unavailable (private repo)"}
+                                    : "Dates unavailable"}
                             </p>
                         )}
 
