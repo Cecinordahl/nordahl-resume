@@ -24,53 +24,46 @@ There's a structural detail here that I think gets missed. When someone opens wi
 
 Which means declining buys nothing. You lose the context *and* become the person who says no. The polite instinct — take the question, be helpful — turns out to be the rational one at that point, because the decision was made for you the moment you were addressed.
 
-That reframes where an intervention has to sit. It has to fire *before* the interruption arrives. Anything downstream of that is theatre.
+That reframes where the intervention has to sit. It has to happen *before* the interruption arrives, and it has to happen on the interrupter's side. Anything downstream of that is theatre.
 
-## Why individual fixes tend to fail
+## Signals only work if the team agrees they're binding
 
-The common approaches all put the burden on the person being interrupted. Headphones as a do-not-disturb signal is the classic example, and it tends to half-work, which is to say it fails.
+The usual approach is a do-not-disturb signal — headphones on, or a status set in the chat client. These get dismissed as ineffective, but I don't think the signal is the problem. The problem is that they're often introduced as one person's preference rather than as a team agreement, so respecting them becomes optional and there's no shared understanding of what each state actually means.
 
-The failure modes are fairly predictable:
+A signal with defined semantics is a different thing entirely. Something like:
 
-- It's an **opt-in signal** that depends on everyone else remembering and interpreting it correctly.
-- There's **no cost to ignoring it**, and no penalty for defecting.
-- It leaves the interrupted person holding the enforcement burden — they have to be the one who bristles, which nobody wants to be.
-- Most importantly, it **says where not to go without saying where to go instead**. Someone with a real blocker will come over anyway, because their alternative is staying blocked.
+- **Do not disturb / explicit focus state** — genuinely do not interrupt. Not in person, not with a message. Whatever it is, it waits.
+- **Busy** — don't walk over, but a short message is fine. Something like "got 2 minutes?" and then wait to see if there's a response. The key part is that no response is an acceptable answer, not a prompt to escalate to a tap on the shoulder.
+- **Available** — normal rules, walk over if you like.
 
-This mirrors the book's argument against digital detoxes. You unplug, feel wonderful, return to the identical environment, and lose it within a week. A fix requiring individual discipline against a structural pressure will lose to the structural pressure eventually. Every time.
+The important word is *agreed*. Signals don't fail because signals are weak; they fail when half the team treats them as decoration. That's fixable with an explicit conversation, and it's a much lighter intervention than restructuring how the team handles questions.
 
-## Route, don't block
+## The question the interrupter should ask first
 
-If attention is a collective resource, the defence has to be collective too.
+The higher-leverage piece, though, sits entirely on the interrupter's side. Before breaking someone's focus, there are two questions worth internalising as a team habit.
 
-The pattern I find most convincing is some form of **rotating interrupt duty** — one named person each day whose job is to field the drive-by questions, the quick clarifications, the where-does-this-live queries. Everyone else is genuinely protected, and there's a clear, socially acceptable answer to "who do I ask?"
+**Am I stuck, or do I need a rubber duck?** A surprising share of interruptions are really requests for a sounding board. Articulating the problem out loud is what resolves it — the other person is incidental, and often barely gets a word in. That work can be done alone, in writing, or with an actual rubber duck. If explaining it clearly would solve it, the interruption wasn't needed.
 
-What makes it work:
+**Am I blocked right now, or does it just feel urgent?** Being genuinely unable to proceed until you get an answer is rare. Much more common is being mildly stalled on one thread while three others remain open. If the answer might exist elsewhere — in documentation, in a search of past discussions, in an already-answered question in a shared channel, or from someone with more slack — that's the cheaper route. Sometimes the honest answer is to park it, get a coffee, and come back; a fair number of these questions dissolve on the walk.
 
-- It gives the interrupter a **better destination**, not a closed door. Nobody has to be told no.
-- The cost is **bounded and shared** — one day in rotation instead of every day partially.
-- Nobody personally enforces anything. The norm lives in the team, not in individuals.
-- The person on duty *expects* interruption, so they naturally take shallower work that day. The switching cost is low when there's no deep model to evict.
+Neither question is about discouraging people from asking. Asking is good, and a team where people are afraid to ask is worse than a team with too many interruptions. The point is to make the asker briefly aware that there's a cost on the other side, because that cost is invisible from where they're standing. Someone deep in a problem looks exactly like someone doing nothing in particular.
 
-Some adjacent patterns follow the same shape:
+## Why this is still a collective fix
 
-| Individual framing (fragile) | Collective framing (durable) |
-|---|---|
-| "Mute your chat when focusing" | Async-by-default: questions go to a shared channel, not a direct message |
-| "Block focus time in your calendar" | A shared no-meeting block, same hours across the team |
-| "Respect the headphones" | A named interrupt-duty rotation |
-| "Turn off your notifications" | Explicit expectations on response times — non-urgent gets hours, urgent gets a call |
+It might look like this pushes the burden back onto individuals, which is the failure mode the book warns about — the digital-detox pattern, where you unplug, feel wonderful, return to an identical environment, and lose it within a week.
 
-The move is identical each time: take the rule out of individual willpower and put it into a team agreement with a default behaviour attached.
+I think the distinction holds, and it's a useful one. The burden isn't on the *interrupted* person here. Nobody has to bristle, enforce, or perform their unavailability. What's being asked is that the team share a norm about interrupting: what the signals mean, and what to check before overriding them. That's an agreement about collective behaviour, and it survives without anyone having to be the bad guy.
+
+The rule of thumb I'd extract: any focus practice that requires the person losing focus to defend it will erode. Practices that live on the interrupter's side don't have that weakness.
 
 ## Framing matters more than the mechanism
 
-One thing I think is worth being deliberate about: any of these proposed as a personal preference collapses straight back into an individual fix. It reads as an accommodation for one person's temperament, and it lasts exactly as long as everyone's goodwill.
+One thing worth being deliberate about: any of this proposed as a personal preference collapses straight back into an individual fix. It reads as an accommodation for one person's temperament, and lasts exactly as long as everyone's goodwill.
 
 Framed around a shared cost, it holds better — rework caused by dropped context, decisions made with half a model in mind, days that end without a clear sense of what was actually built. Those are team problems with team consequences, and they justify team-level agreements.
 
 ## Where I've landed
 
-It's tempting to treat focus as something you're either good or bad at on a given day. The more useful model is that it's a resource the working environment continuously draws down, and the only durable defences are the ones built into the environment itself.
+It's tempting to treat focus as something you're either good or bad at on a given day. The more useful model is that it's a resource the working environment continuously draws down, and the only durable defences are the ones built into how a team agrees to behave.
 
 Individual habits still matter — notification settings and deep-work blocks are worth having. But expecting them to hold on their own is the mistake. They're the last line, not the first.
