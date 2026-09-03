@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { getAllNotes, getNoteBySlug } from "../lib/notes";
 import { highlightLanguages } from "../lib/highlightLanguages";
@@ -57,7 +58,7 @@ export default function NoteDetail() {
             </div>
 
             <div className="card note-content">
-                <ReactMarkdown rehypePlugins={[[rehypeHighlight, rehypeHighlightOptions]]}>{note.content}</ReactMarkdown>
+                <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[[rehypeHighlight, rehypeHighlightOptions]]}>{note.content}</ReactMarkdown>
             </div>
 
             <Link className="btn" to="/notes">Back to all notes</Link>

@@ -526,6 +526,50 @@ textarea:focus {
     border: 1px solid var(--border);
 }
 
+/* Second image in a note floats beside the paragraph that follows it,
+   instead of stacking full-width under the first (hero) image. */
+.note-content img:nth-of-type(2) {
+    float: right;
+    width: 200px;
+    max-width: 40%;
+    margin: 0 0 8px 20px;
+}
+
+.note-content h2 {
+    clear: both;
+}
+
+.note-content table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 14px;
+}
+
+.note-content th,
+.note-content td {
+    text-align: left;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    vertical-align: top;
+}
+
+.note-content th {
+    background: var(--hover-bg);
+    font-weight: 700;
+}
+
+@media (max-width: 560px) {
+    .note-content img:nth-of-type(2) {
+        float: none;
+        width: 100%;
+        max-width: 100%;
+        margin: 16px 0;
+    }
+}
+
 /* Portfolio image carousel */
 .image-carousel {
     position: relative;
