@@ -363,6 +363,49 @@ const rawHobbyProjects = [
             ],
         },
     },
+    {
+        name: "Wherewear",
+        tagline: "I keep clothes split across a few different places — home, a cabin, a place in Spain — and kept " +
+            "losing track of what was actually where, so packing for a trip meant either overpacking out of " +
+            "uncertainty or discovering once there that the thing I needed was sitting in a different wardrobe " +
+            "entirely. Wherewear tracks inventory location by location and generates an editable packing list per " +
+            "place and season, so packing starts from what you actually own where you actually are instead of " +
+            "guesswork. A shopping list ties into the same system, letting you buy something in one country while " +
+            "tagging it for the wardrobe it's actually meant for, and a receipt-photo importer and product-photo " +
+            "lookup cut down on typing every item in by hand.",
+        status: "Live",
+        tags: ["React", "TypeScript", "Java", "Spring Boot", "Firebase", "Google Gemini API", "SerpAPI"],
+        githubUrl: "https://github.com/Cecinordahl/wherewear",
+        liveUrl: "https://wherewear.vercel.app",
+        details: {
+            summary: "You add locations for each place you keep clothes, log inventory item by item (with an " +
+                "optional brand and photo), then generate an editable packing list per location and season; a " +
+                "shopping list tracks what still needs buying, tagged separately by where to buy it and which " +
+                "wardrobe it's ultimately for.",
+            highlights: [
+                "Receipt-photo import sends a photo of a shopping receipt to Google's Gemini vision API, which " +
+                "returns a cleaned-up name, category, and optional brand for every purchased item, landing on an " +
+                "editable review screen before anything is actually saved to inventory.",
+                "Product photo lookup searches by text or by an uploaded photo via SerpAPI and lets you save the " +
+                "matched image directly onto an inventory item, instead of hunting one down and uploading it manually.",
+                "The shopping list groups items by wardrobe destination first, then by where to buy them, since the " +
+                "two are independent — buying something in Norway for the Spain wardrobe is a normal case, not an " +
+                "edge case, and the data model keeps 'where to buy' and 'what it's needed for' as separate fields.",
+                "Render's free backend tier sleeps after inactivity, so the frontend blocks the whole app behind an " +
+                "explicit wake-up check that polls a health endpoint until the backend actually responds, rather than " +
+                "letting a sleeping backend silently fail the first real request.",
+                "Firestore security rules are the actual access-control layer: every document carries a userId, and " +
+                "the rules enforce that a signed-in user can only ever read or write their own documents, matching a " +
+                "single-owner-account GDPR posture rather than relying on the backend alone to check ownership.",
+            ],
+            challenges: [
+                "The default Gemini model id was retired mid-project, and once re-pinned to a newer one, Google's " +
+                "newer API-key format silently stopped working with the old `?key=` query-param auth, returning a " +
+                "401 that read like a bad key — fixed by switching to a rolling `-latest` model alias so retirement " +
+                "can't break it again, and moving auth to the `x-goog-api-key` header, which both key formats support.",
+            ],
+        },
+    },
     // Commented out: felt too personal to share publicly.
     // {
     //     name: "Eggspecting",
