@@ -92,12 +92,12 @@ const rawHobbyProjects = [
         // liveUrl: "https://<your-live-site>",
         manualDates: { createdAt: "2025-12-21", pushedAt: "2026-01-04" },
         images: [
-            "/images/projects/americano/1.png",
-            "/images/projects/americano/2.png",
-            "/images/projects/americano/3.png",
-            "/images/projects/americano/4.png",
-            "/images/projects/americano/5.png",
-            "/images/projects/americano/6.png",
+            "/images/projects/americano/americano1.png",
+            "/images/projects/americano/americano2.png",
+            "/images/projects/americano/americano3.png",
+            "/images/projects/americano/americano4.png",
+            "/images/projects/americano/americano5.png",
+            "/images/projects/americano/americano6.png",
         ],
         details: {
             summary: "This iOS app generates and manages Americano-style tournaments for racket sports, with support for both traditional doubles Americano (4+ players) and a custom 3-player singles variant. Users create a tournament, get an auto-generated match schedule, record scores round by round, and track a live leaderboard, with everything saved locally so a tournament can be resumed later.",
