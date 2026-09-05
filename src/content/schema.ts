@@ -40,12 +40,20 @@ export const WorkItemSchema = z.object({
 });
 export type WorkItem = z.infer<typeof WorkItemSchema>;
 
+export const EducationCourseSchema = z.object({
+    name: nonEmpty,
+    term: nonEmpty,
+    url: z.string().url().optional(),
+});
+export type EducationCourse = z.infer<typeof EducationCourseSchema>;
+
 export const EducationItemSchema = z.object({
     institution: nonEmpty,
     program: nonEmpty,
     dateRange: nonEmpty,
     startDate: yearMonth,
     details: z.array(nonEmpty).optional(),
+    courses: z.array(EducationCourseSchema).optional(),
     note: nonEmpty.optional(),
 });
 export type EducationItem = z.infer<typeof EducationItemSchema>;
