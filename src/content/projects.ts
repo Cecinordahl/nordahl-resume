@@ -406,6 +406,60 @@ const rawHobbyProjects = [
             ],
         },
     },
+    {
+        // TODO: confirm this display name — "Personal Site" is a placeholder.
+        name: "Personal Site",
+        tagline: "As a developer, building a web-based resume felt like the obvious move — plenty of people in the " +
+            "field do it. But I wanted more than a static CV: the unconventional route that got me here (competitive " +
+            "golf, a few years as a flight attendant, then a late pivot into code) isn't something you'd put on a " +
+            "résumé, yet it's a real part of the story, and I wanted a place to actually keep and organize the " +
+            "running list of side projects I build for fun along with the technical notes and half-formed thoughts " +
+            "I'd otherwise lose in scattered docs. So the site grew into three things at once — a résumé, a " +
+            "portfolio that tracks each hobby project from Planned through Live, and a notes section for research " +
+            "and reflections I can come back to — built as much to keep track of my own work and learning as to " +
+            "show it to anyone else.",
+        status: "Live",
+        tags: ["React", "TypeScript", "Vite", "React Router", "Zod", "Vercel Serverless Functions"],
+        githubUrl: "https://github.com/Cecinordahl/nordahl-resume",
+        liveUrl: "https://nordahl-resume.vercel.app",
+        details: {
+            highlights: [
+                "Resume content — work history, education, certifications, and hobby projects — lives as typed " +
+                "TypeScript modules validated against Zod schemas at module load time, so a missing field, bad date " +
+                "format, or duplicate slug fails the build immediately with a clear error instead of shipping a " +
+                "broken page.",
+                "Notes are markdown files with YAML frontmatter, auto-discovered at build time via Vite's " +
+                "`import.meta.glob` rather than a hand-maintained index, and support tag filtering, an RSS feed, " +
+                "and a `draft: true` flag for previewing an unpublished note at its direct URL.",
+                "A passcode-gated Vercel serverless endpoint lets a new note be published straight to the GitHub " +
+                "repo via GitHub's Contents API, with the passcode checked using a timing-safe constant-time " +
+                "comparison rather than a plain `===`.",
+                "Each hobby project's \"Started\"/\"Updated\" dates are fetched live from GitHub's repo API in the " +
+                "browser and cached in `sessionStorage` for an hour, rather than hardcoded, so the portfolio " +
+                "timeline stays accurate without manual upkeep.",
+                "A custom image carousel/lightbox supports pointer-based drag-to-pan and a click-to-zoom toggle, " +
+                "with keyboard navigation (Escape to close, arrow keys to move between images) and body-scroll " +
+                "locking while open.",
+                "The production build (`npm run build`) chains content validation, RSS/sitemap generation, the " +
+                "full Vitest suite, and a TypeScript check before running Vite's build — there's no separate CI " +
+                "file, so this single command is what actually gates what Vercel deploys.",
+            ],
+            challenges: [
+                "The note-publishing endpoint originally treated any non-200 response from GitHub's \"does this " +
+                "file exist\" check as \"the slug is free,\" which meant a real failure (bad credentials, missing " +
+                "permissions, a GitHub outage) would silently look identical to an available slug — fixed by only " +
+                "treating a 404 as \"free\" and throwing on anything else.",
+                "Tags typed into the admin publish form the way they'd naturally look in an array literal (e.g. " +
+                "`\"AI\", \"Career\"`) ended up double-quoted once serialized into the note's frontmatter — fixed " +
+                "by stripping one layer of wrapping quotes off each tag before writing it out.",
+                "The lightbox's non-zoomed image relied on `max-height: 100%` against a flex parent with no " +
+                "explicit height — a percentage height against an indefinite parent is invalid per the CSS spec " +
+                "and gets dropped, so portrait screenshots rendered at full, unconstrained height and overflowed " +
+                "the screen instead of scaling down to fit — fixed by setting the height limit directly on the " +
+                "image in viewport units instead.",
+            ],
+        },
+    },
     // Commented out: felt too personal to share publicly.
     // {
     //     name: "Eggspecting",
