@@ -15,7 +15,7 @@ const rawHobbyProjects = [
         status: "Planned",
         tags: ["React", "TypeScript", "Vite"],
         githubUrl: "https://github.com/Cecinordahl/eurobonusbuddy",
-        // liveUrl: "https://<your-live-site>",
+        liveUrl: "https://eurobonusbuddy.vercel.app",
         details: {
             summary: "Enter your current status points, target tier, and months remaining in your qualification period; " +
                 "the planner generates a handful of candidate plans to close the gap and ranks them by either total " +

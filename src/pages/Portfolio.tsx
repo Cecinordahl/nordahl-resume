@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { hobbyProjects } from "../content/projects";
 import type { Project } from "../content/projects";
 import { useDocumentTitle } from "../lib/useDocumentTitle";
-import { ChevronDownIcon, ExternalLinkIcon, GitHubIcon } from "../components/icons";
+import { ExternalLinkIcon, GitHubIcon } from "../components/icons";
 import { ImageCarousel } from "../components/ImageCarousel";
 import { fetchRepoDates, formatMonthYear, type RepoDates } from "../lib/githubRepoDates";
 
@@ -120,17 +120,16 @@ export default function Portfolio() {
             </div>
 
             <div>
+                <p className="muted">Some of the tools and services I reach for when building these — mostly picked for generous free tiers and low setup effort, since these are side projects, not funded products.</p>
+
                 <button
                     type="button"
-                    className="btn"
+                    className="details-toggle"
                     onClick={() => setToolsOpen((o) => !o)}
                     aria-expanded={toolsOpen}
-                    style={{ display: "inline-flex", alignItems: "center", gap: 6 }}
+                    style={{ display: "inline-flex", alignItems: "center", gap: 4, marginTop: 6 }}
                 >
-                    Tools & services
-                    <span style={{ display: "inline-flex", transform: toolsOpen ? "rotate(180deg)" : undefined, transition: "transform 0.15s ease" }}>
-                        <ChevronDownIcon />
-                    </span>
+                    {toolsOpen ? "− Hide tools & services" : "+ Tools & services"}
                 </button>
 
                 {toolsOpen && (

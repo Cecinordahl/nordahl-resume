@@ -81,3 +81,49 @@ export function ChevronDownIcon() {
         </svg>
     );
 }
+
+export function GraduationCapIcon() {
+    return (
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden="true">
+            <path d="M1 5.5 8 2.5l7 3-7 3-7-3Z" strokeLinejoin="round" />
+            <path d="M4 7v3.2c0 .9 1.79 2.3 4 2.3s4-1.4 4-2.3V7" strokeLinejoin="round" />
+            <path d="M14 5.5V10" strokeLinecap="round" />
+        </svg>
+    );
+}
+
+export function FlagIcon() {
+    return (
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden="true">
+            <path d="M3.5 1.5v13" strokeLinecap="round" />
+            <path d="M3.5 2.5h8.2c.6 0 .9.7.5 1.1L10.3 6l1.9 2.4c.4.4.1 1.1-.5 1.1H3.5" strokeLinejoin="round" />
+        </svg>
+    );
+}
+
+export function PlaneIcon() {
+    return (
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden="true">
+            <path d="M14.5 8 9.6 6.4 8.4 1.9c-.08-.3-.5-.3-.6 0L7.2 6l-4.7 1.6c-.3.1-.3.5 0 .6L7.2 10l.6 4.1c.05.3.5.3.6 0L9 10l4.9-1.4c.3-.1.3-.5 0-.6Z" strokeLinejoin="round" strokeLinecap="round" />
+        </svg>
+    );
+}
+
+export function WineGlassIcon() {
+    return (
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden="true">
+            <path d="M5 1.5h6c0 3.2-1.3 5-3 5s-3-1.8-3-5Z" strokeLinejoin="round" />
+            <path d="M8 6.5v6" strokeLinecap="round" />
+            <path d="M5.3 14.5h5.4" strokeLinecap="round" />
+        </svg>
+    );
+}
+
+export function CodeIcon() {
+    return (
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden="true">
+            <path d="M5.5 4.5 1.5 8l4 3.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M10.5 4.5 14.5 8l-4 3.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+    );
+}
