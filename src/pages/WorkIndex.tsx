@@ -136,16 +136,22 @@ export default function WorkIndex() {
                 </div>
 
                 {mainTimeline.map((t, i) => {
-                    const ContentTag = t.slug ? Link : "div";
+                    const content = (
+                        <>
+                            <div className="timeline-logo-row">{t.icon}</div>
+                            <div className="timeline-role">{t.role}</div>
+                            <div className="muted">{t.org}</div>
+                            <div className="muted timeline-date">{t.dateRange}</div>
+                        </>
+                    );
                     return (
                         <div className="timeline-item" style={{ gridColumn: i + 1 }} key={t.role}>
                             <div className="timeline-marker" />
-                            <ContentTag className="timeline-content" to={t.slug ? `/work/${t.slug}` : undefined}>
-                                <div className="timeline-logo-row">{t.icon}</div>
-                                <div className="timeline-role">{t.role}</div>
-                                <div className="muted">{t.org}</div>
-                                <div className="muted timeline-date">{t.dateRange}</div>
-                            </ContentTag>
+                            {t.slug ? (
+                                <Link className="timeline-content" to={`/work/${t.slug}`}>{content}</Link>
+                            ) : (
+                                <div className="timeline-content">{content}</div>
+                            )}
                         </div>
                     );
                 })}
@@ -179,18 +185,26 @@ export default function WorkIndex() {
                 </div>
 
                 {mainTimeline.map((t, i) => {
-                    const SpineItemTag = t.slug ? Link : "div";
-                    return (
-                        <SpineItemTag
-                            className="timeline-spine-item"
-                            style={{ gridColumn: spineLowerColumns[i] }}
-                            to={t.slug ? `/work/${t.slug}` : undefined}
-                            key={t.role}
-                        >
+                    const content = (
+                        <>
                             <div className="timeline-steps-icon">{t.icon}</div>
                             <div className="timeline-step-year">{t.startYear}</div>
                             <div className="timeline-step-title">{t.role}</div>
-                        </SpineItemTag>
+                        </>
+                    );
+                    return t.slug ? (
+                        <Link
+                            className="timeline-spine-item"
+                            style={{ gridColumn: spineLowerColumns[i] }}
+                            to={`/work/${t.slug}`}
+                            key={t.role}
+                        >
+                            {content}
+                        </Link>
+                    ) : (
+                        <div className="timeline-spine-item" style={{ gridColumn: spineLowerColumns[i] }} key={t.role}>
+                            {content}
+                        </div>
                     );
                 })}
             </div>
