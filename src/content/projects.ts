@@ -12,7 +12,7 @@ const rawHobbyProjects = [
             "buying points outright, stacking car rentals, or a mix of both — ranked by cost or by speed, with a clean " +
             "overview worth actually sharing. The plan is for anyone to be able to create their own account and track " +
             "their own progress the same way, not just me.",
-        status: "Planned",
+        status: "Live",
         tags: ["React", "TypeScript", "Vite"],
         githubUrl: "https://github.com/Cecinordahl/eurobonusbuddy",
         liveUrl: "https://eurobonusbuddy.vercel.app",
