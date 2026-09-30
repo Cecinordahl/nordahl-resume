@@ -109,6 +109,8 @@ export default function NotesIndex() {
                     <p className="muted">No notes match the selected tags.</p>
                 )}
             </div>
+
+            <Link to="/admin/notes" className="admin-link">Admin only · Add note</Link>
         </div>
     );
 }
