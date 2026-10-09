@@ -46,7 +46,9 @@ caffeinate -dimsu claude remote-control
 
 > Use with caution: this keeps the machine awake and unattended while an agent that runs with your permissions can be reached from outside it. Only do it on a device you're allowed to, and stop it when you're done.
 
-Wrapping matters. The wake lock is scoped to the child process, so it releases the instant the session ends. No orphaned process keeping the laptop awake for three days because I forgot about it. Stopping it is just interrupting the foreground process, and `pmset -g assertions` confirms nothing is still holding the lock.
+Wrapping matters. The wake lock is scoped to the child process, so it releases the instant the session ends. No orphaned process keeping the laptop awake for three days because I forgot about it.
+
+To stop it, press `Ctrl+C` in the terminal where it's running. That ends the session and the wake lock together. If that terminal is out of reach, `pkill caffeinate` from another one does the same: killing `caffeinate` takes the wrapped session down with it. Note that it hits every `caffeinate` process on the machine, not just this one. Either way, `pmset -g assertions` confirms nothing is still holding the lock.
 
 Two things bit me here that the docs don't lead with. Closing the lid overrides all of it unless you're on power with an external display — clamshell sleep doesn't care about wake locks. And on a managed device, the MDM profile can enforce the sleep policy regardless of what you set locally. The assertions output will tell you which side won.
 
