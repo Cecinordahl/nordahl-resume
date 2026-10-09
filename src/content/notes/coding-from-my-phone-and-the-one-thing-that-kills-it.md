@@ -41,8 +41,10 @@ My first instinct was crude: start a long video, or wedge a key down. Both work 
 macOS has a built-in utility for exactly this, and the good version wraps the command instead of running standalone:
 
 ```bash
-caffeinate -dimsu <agent-command>
+caffeinate -dimsu claude remote-control
 ```
+
+> Use with caution: this keeps the machine awake and unattended while an agent that runs with your permissions can be reached from outside it. Only do it on a device you're allowed to, and stop it when you're done.
 
 Wrapping matters. The wake lock is scoped to the child process, so it releases the instant the session ends. No orphaned process keeping the laptop awake for three days because I forgot about it. Stopping it is just interrupting the foreground process, and `pmset -g assertions` confirms nothing is still holding the lock.
 
