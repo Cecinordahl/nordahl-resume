@@ -137,5 +137,7 @@ export const BookSchema = z.object({
         .array(z.string().regex(/^https:\/\/open\.spotify\.com\/episode\/[A-Za-z0-9]+/, "must be a Spotify episode link"))
         .optional(),
     deepstashUrl: z.string().url().optional(),
+    // Library listing at Deichman (Oslo public library), e.g. https://deichman.no/utgivelse/<id>
+    deichmanUrl: z.string().regex(/^https:\/\/deichman\.no\//, "must be a deichman.no link").optional(),
 });
 export type Book = z.infer<typeof BookSchema>;
