@@ -13,6 +13,7 @@ const rawBooks = [
         recommended: true,
         face: "cover",
         color: "#1f3a5f",
+        coverImage: "/images/books/the-pragmatic-programmer.jpg",
         year: 1999,
         blurb: "Short, anecdote-driven tips. The same mentor tone as Clean Code, but broader.",
         categories: ["Craft books with a story feel"],
