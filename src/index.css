@@ -1450,9 +1450,6 @@ pre code { background: none; padding: 0; }
     text-transform: uppercase;
     border: 1px solid currentColor;
 }
-.book-status-read { color: var(--status-live-fg); background: var(--status-live-bg); }
-.book-status-reading { color: var(--status-inprogress-fg); background: var(--status-inprogress-bg); }
-.book-status-wishlist { color: var(--status-beta-fg); background: var(--status-beta-bg); }
 .book-status-recommended { color: #c0392b; background: rgba(192, 57, 43, 0.12); }
 
 @media (max-width: 560px) {
@@ -1478,6 +1475,6 @@ pre code { background: none; padding: 0; }
     .book, .book-tooltip, .book-modal { transition: none; animation: none; }
 }
 
-/* Curated collections sit under the status filters, in sentence case so long names stay readable */
+/* Category filters use sentence case so long names stay readable */
 .category-filter .pill { text-transform: none; letter-spacing: 0.02em; font-size: 13px; }
 .book-modal-categories { font-size: 13px; margin-top: -4px; }
