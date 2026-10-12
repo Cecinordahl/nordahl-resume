@@ -130,6 +130,12 @@ function Tooltip({ book, onOpen }: { book: Book; onOpen: () => void }) {
     );
 }
 
+// open.spotify.com/episode/<id>?si=... -> open.spotify.com/embed/episode/<id>
+function spotifyEmbedUrl(url: string) {
+    const id = new URL(url).pathname.split("/").pop();
+    return `https://open.spotify.com/embed/episode/${id}`;
+}
+
 function BookDetails({ book, onClose }: { book: Book; onClose: () => void }) {
     useEffect(() => {
         const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
@@ -176,11 +182,32 @@ function BookDetails({ book, onClose }: { book: Book; onClose: () => void }) {
                             <ReactMarkdown remarkPlugins={[remarkGfm]}>{book.notes}</ReactMarkdown>
                         </div>
                     )}
+                    {book.podcastEpisodes && (
+                        <div className="book-modal-podcasts">
+                            <div className="details-heading">Listen</div>
+                            {book.podcastEpisodes.map((url) => (
+                                <iframe
+                                    key={url}
+                                    title={`Podcast episode about ${book.title}`}
+                                    src={spotifyEmbedUrl(url)}
+                                    width="100%"
+                                    height="152"
+                                    loading="lazy"
+                                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                                />
+                            ))}
+                        </div>
+                    )}
                     <div className="book-modal-links">
                         {book.relatedNote && (
                             <Link className="btn" to={`/notes/${book.relatedNote}`}>
                                 Read my note
                             </Link>
+                        )}
+                        {book.deepstashUrl && (
+                            <a className="btn" href={book.deepstashUrl} target="_blank" rel="noreferrer">
+                                Key ideas on Deepstash
+                            </a>
                         )}
                         {book.url && (
                             <a className="btn" href={book.url} target="_blank" rel="noreferrer">

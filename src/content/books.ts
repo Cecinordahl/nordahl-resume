@@ -4,6 +4,7 @@ export type { Book };
 
 // Shelf order = array order. To add your own thoughts on a book, add a `notes` field (Markdown).
 // `face: "cover"` stands a book face-out; everything else is shelved spine-out.
+// Optional extras: `podcastEpisodes` (Spotify episode links) and `deepstashUrl`.
 const rawBooks = [
     {
         slug: "the-pragmatic-programmer",
@@ -59,6 +60,17 @@ const rawBooks = [
         blurb: "Journalistic and story-driven. It's about attention rather than computer science, but it sits next to it.",
         categories: ["Beyond the code"],
         relatedNote: "attention-is-a-team-resource-not-a-personal-virtue",
+    },
+    {
+        slug: "deep-work",
+        title: "Deep Work",
+        author: "Cal Newport",
+        color: "#22313f",
+        year: 2016,
+        blurb: "Rules for focused success in a distracted world — why undistracted, cognitively demanding work is rare and valuable.",
+        categories: ["Beyond the code"],
+        podcastEpisodes: ["https://open.spotify.com/episode/5TAmY56aFV2J6Byn0qg94H"],
+        deepstashUrl: "https://dsta.sh/f2eC6c",
     },
     {
         slug: "a-philosophy-of-software-design",
