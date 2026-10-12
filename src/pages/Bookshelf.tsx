@@ -205,8 +205,8 @@ function BookDetails({ book, onClose }: { book: Book; onClose: () => void }) {
                             </Link>
                         )}
                         {book.deepstashUrl && (
-                            <a className="btn" href={book.deepstashUrl} target="_blank" rel="noreferrer">
-                                Key ideas on Deepstash
+                            <a className="deepstash-link" href={book.deepstashUrl} target="_blank" rel="noreferrer">
+                                <img src="/images/logos/deepstash.jpg" alt="Key ideas on Deepstash" width={164} height={40} />
                             </a>
                         )}
                         {book.url && (
