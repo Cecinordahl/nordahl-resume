@@ -36,6 +36,7 @@ const paths = [
     "/work",
     "/portfolio",
     "/notes",
+    "/bookshelf",
     "/education",
     "/certifications",
     "/contact",

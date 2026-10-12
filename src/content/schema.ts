@@ -113,3 +113,24 @@ export function assertUnique(values: string[], field: string, sourceLabel: strin
 export function sortByStartDateDesc<T extends { startDate: string }>(items: T[]): T[] {
     return [...items].sort((a, b) => (a.startDate < b.startDate ? 1 : a.startDate > b.startDate ? -1 : 0));
 }
+
+export const BookSchema = z.object({
+    slug: nonEmpty,
+    title: nonEmpty,
+    author: nonEmpty,
+    // read = finished, reading = on the nightstand, wishlist = future reads
+    status: z.enum(["read", "reading", "wishlist"]),
+    recommended: z.boolean().optional(),
+    // "cover" stands the book face-out on the shelf; "spine" (default) shelves it spine-out.
+    face: z.enum(["cover", "spine"]).optional(),
+    color: z.string().regex(/^#[0-9a-fA-F]{6}$/, "must be a hex color like #1f3a5f"),
+    coverImage: nonEmpty.optional(),
+    year: z.number().int().optional(),
+    blurb: nonEmpty,
+    // Your own thoughts, in Markdown. Shown as "My notes" in the details view.
+    notes: nonEmpty.optional(),
+    // Slug of a related note under /notes.
+    relatedNote: nonEmpty.optional(),
+    url: z.string().url().optional(),
+});
+export type Book = z.infer<typeof BookSchema>;

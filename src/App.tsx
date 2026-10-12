@@ -12,6 +12,7 @@ const NotesIndex = lazy(() => import("./pages/NotesIndex"));
 const NoteDetail = lazy(() => import("./pages/NoteDetail"));
 const Education = lazy(() => import("./pages/Education"));
 const Certifications = lazy(() => import("./pages/Certifications"));
+const Bookshelf = lazy(() => import("./pages/Bookshelf"));
 const AdminNewNote = lazy(() => import("./pages/AdminNewNote"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
@@ -29,6 +30,7 @@ export default function App() {
                     <Route path="/notes/:slug" element={<NoteDetail />} />
                     <Route path="/education" element={<Education />} />
                     <Route path="/certifications" element={<Certifications />} />
+                    <Route path="/bookshelf" element={<Bookshelf />} />
                     <Route path="/admin/notes" element={<AdminNewNote />} />
                     <Route path="*" element={<NotFound />} />
                 </Route>

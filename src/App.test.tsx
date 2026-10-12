@@ -27,6 +27,11 @@ describe("App routing", () => {
         expect(await screen.findByText("Workflows as a Shared Language")).toBeInTheDocument();
     });
 
+    it("renders the bookshelf with books on it", async () => {
+        renderAt("/bookshelf");
+        expect(await screen.findByRole("button", { name: /Clean Code by Robert C. Martin/ })).toBeInTheDocument();
+    });
+
     it("renders NotFound for an unknown top-level route", async () => {
         renderAt("/this-route-does-not-exist");
         expect(await screen.findByText("Page not found")).toBeInTheDocument();
