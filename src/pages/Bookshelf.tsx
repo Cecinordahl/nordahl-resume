@@ -27,9 +27,9 @@ const statusLabels: Record<Book["status"], string> = {
 
 // Small props placed between books, keyed by the index of the book they follow.
 const decorAfter: Record<number, "plant" | "bookend" | "mug"> = {
-    4: "plant",
-    11: "bookend",
-    17: "mug",
+    3: "plant",
+    8: "bookend",
+    13: "mug",
 };
 
 function matches(book: Book, filter: Filter) {
