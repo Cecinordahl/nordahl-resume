@@ -132,5 +132,10 @@ export const BookSchema = z.object({
     // Slug of a related note under /notes.
     relatedNote: nonEmpty.optional(),
     url: z.string().url().optional(),
+    // Spotify episode links (open.spotify.com/episode/...), shown as embedded players.
+    podcastEpisodes: z
+        .array(z.string().regex(/^https:\/\/open\.spotify\.com\/episode\/[A-Za-z0-9]+/, "must be a Spotify episode link"))
+        .optional(),
+    deepstashUrl: z.string().url().optional(),
 });
 export type Book = z.infer<typeof BookSchema>;
