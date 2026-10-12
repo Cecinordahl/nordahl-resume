@@ -18,6 +18,16 @@ const rawBooks = [
         categories: ["Craft books with a story feel"],
     },
     {
+        slug: "clean-code",
+        title: "Clean Code",
+        author: "Robert C. Martin",
+        status: "read",
+        color: "#2f4f3a",
+        year: 2008,
+        blurb: "Naming, functions, comments and formatting — the small decisions that make code readable.",
+        categories: ["Craft books with a story feel"],
+    },
+    {
         slug: "domain-driven-design",
         title: "Domain-Driven Design",
         author: "Eric Evans",
@@ -50,7 +60,7 @@ const rawBooks = [
         coverImage: "/images/notes/attention-is-a-team-resource-not-a-personal-virtue/stolen-focus-cover.jpg",
         year: 2022,
         blurb: "Journalistic and story-driven. It's about attention rather than computer science, but it sits next to it.",
-        categories: ["Easy reads about computer science"],
+        categories: ["Beyond the code"],
         relatedNote: "attention-is-a-team-resource-not-a-personal-virtue",
     },
     {
