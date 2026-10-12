@@ -14,12 +14,6 @@ const filters: { id: Filter; label: string }[] = [
     ...categories.map((c): { id: Filter; label: string } => ({ id: `category:${c}`, label: c })),
 ];
 
-const statusLabels: Record<Book["status"], string> = {
-    read: "Read",
-    reading: "Currently reading",
-    wishlist: "Wishlist",
-};
-
 // Small props placed between books, keyed by the index of the book they follow.
 const decorAfter: Record<number, "plant" | "bookend" | "mug"> = {
     3: "plant",
@@ -169,10 +163,11 @@ function BookDetails({ book, onClose }: { book: Book; onClose: () => void }) {
                         {book.author}
                         {book.year && <> · {book.year}</>}
                     </div>
-                    <div className="book-modal-badges">
-                        <span className={`book-status book-status-${book.status}`}>{statusLabels[book.status]}</span>
-                        {book.recommended && <span className="book-status book-status-recommended">★ Recommended</span>}
-                    </div>
+                    {book.recommended && (
+                        <div className="book-modal-badges">
+                            <span className="book-status book-status-recommended">★ Recommended</span>
+                        </div>
+                    )}
                     <p>{book.blurb}</p>
                     {book.categories && <div className="muted book-modal-categories">{book.categories.join(" · ")}</div>}
                     {book.notes && (
@@ -224,7 +219,7 @@ export default function Bookshelf() {
         <div className="grid grid-sm">
             <div>
                 <div className="h2">Bookshelf</div>
-                <p className="muted">A curation of reads and resources — favorites, what I’m reading now, and what’s next.</p>
+                <p className="muted">A curation of reads and resources.</p>
             </div>
 
             <div className="status-filter category-filter">

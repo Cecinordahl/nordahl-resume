@@ -118,8 +118,6 @@ export const BookSchema = z.object({
     slug: nonEmpty,
     title: nonEmpty,
     author: nonEmpty,
-    // read = finished, reading = on the nightstand, wishlist = future reads
-    status: z.enum(["read", "reading", "wishlist"]),
     recommended: z.boolean().optional(),
     // "cover" stands the book face-out on the shelf; "spine" (default) shelves it spine-out.
     face: z.enum(["cover", "spine"]).optional(),
