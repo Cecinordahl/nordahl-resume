@@ -1477,3 +1477,7 @@ pre code { background: none; padding: 0; }
 @media (prefers-reduced-motion: reduce) {
     .book, .book-tooltip, .book-modal { transition: none; animation: none; }
 }
+
+/* Curated collections sit under the status filters, in sentence case so long names stay readable */
+.category-filter .pill { text-transform: none; letter-spacing: 0.02em; font-size: 13px; }
+.book-modal-categories { font-size: 13px; margin-top: -4px; }

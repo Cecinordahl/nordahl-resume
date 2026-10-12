@@ -29,7 +29,7 @@ describe("App routing", () => {
 
     it("renders the bookshelf with books on it", async () => {
         renderAt("/bookshelf");
-        expect(await screen.findByRole("button", { name: /Clean Code by Robert C. Martin/ })).toBeInTheDocument();
+        expect(await screen.findByRole("button", { name: /The Pragmatic Programmer by David Thomas/ })).toBeInTheDocument();
     });
 
     it("renders NotFound for an unknown top-level route", async () => {

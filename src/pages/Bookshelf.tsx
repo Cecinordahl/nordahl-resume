@@ -5,15 +5,19 @@ import remarkGfm from "remark-gfm";
 import { books, type Book } from "../content/books";
 import { useDocumentTitle } from "../lib/useDocumentTitle";
 
-type Filter = "all" | "recommended" | "read" | "reading" | "wishlist";
+// Status filters, plus one `category:<name>` filter per curated collection found in the content.
+type Filter = "all" | "recommended" | "read" | "reading" | "wishlist" | `category:${string}`;
 
-const filters: { id: Filter; label: string }[] = [
+const statusFilters: { id: Filter; label: string }[] = [
     { id: "all", label: "All" },
     { id: "recommended", label: "Recommended" },
     { id: "read", label: "Read" },
     { id: "reading", label: "Reading" },
     { id: "wishlist", label: "Wishlist" },
 ];
+
+const categories = [...new Set(books.flatMap((b) => b.categories ?? []))];
+const categoryFilters: { id: Filter; label: string }[] = categories.map((c) => ({ id: `category:${c}`, label: c }));
 
 const statusLabels: Record<Book["status"], string> = {
     read: "Read",
@@ -23,14 +27,15 @@ const statusLabels: Record<Book["status"], string> = {
 
 // Small props placed between books, keyed by the index of the book they follow.
 const decorAfter: Record<number, "plant" | "bookend" | "mug"> = {
-    4: "plant",
-    11: "bookend",
-    17: "mug",
+    3: "plant",
+    8: "bookend",
+    13: "mug",
 };
 
 function matches(book: Book, filter: Filter) {
     if (filter === "all") return true;
     if (filter === "recommended") return !!book.recommended;
+    if (filter.startsWith("category:")) return !!book.categories?.includes(filter.slice("category:".length));
     return book.status === filter;
 }
 
@@ -176,6 +181,7 @@ function BookDetails({ book, onClose }: { book: Book; onClose: () => void }) {
                         {book.recommended && <span className="book-status book-status-recommended">★ Recommended</span>}
                     </div>
                     <p>{book.blurb}</p>
+                    {book.categories && <div className="muted book-modal-categories">{book.categories.join(" · ")}</div>}
                     {book.notes && (
                         <div className="note-content">
                             <div className="details-heading">My notes</div>
@@ -219,7 +225,7 @@ export default function Bookshelf() {
         return () => document.removeEventListener("pointerdown", onDown);
     }, [active]);
 
-    const counts = Object.fromEntries(filters.map((f) => [f.id, books.filter((b) => matches(b, f.id)).length]));
+    const counts = Object.fromEntries([...statusFilters, ...categoryFilters].map((f) => [f.id, books.filter((b) => matches(b, f.id)).length]));
 
     return (
         <div className="grid grid-sm">
@@ -228,19 +234,21 @@ export default function Bookshelf() {
                 <p className="muted">A curation of reads and resources — favorites, what I’m reading now, and what’s next.</p>
             </div>
 
-            <div className="status-filter">
-                {filters.map((f) => (
-                    <button
-                        key={f.id}
-                        type="button"
-                        className={`pill pill-filter${filter === f.id ? " pill-active" : ""}`}
-                        onClick={() => setFilter(f.id)}
-                        aria-pressed={filter === f.id}
-                    >
-                        {f.label} · {counts[f.id]}
-                    </button>
-                ))}
-            </div>
+            {[statusFilters, categoryFilters].map((group, gi) => (
+                <div key={gi} className={`status-filter${gi === 1 ? " category-filter" : ""}`}>
+                    {group.map((f) => (
+                        <button
+                            key={f.id}
+                            type="button"
+                            className={`pill pill-filter${filter === f.id ? " pill-active" : ""}`}
+                            onClick={() => setFilter(f.id)}
+                            aria-pressed={filter === f.id}
+                        >
+                            {f.label} · {counts[f.id]}
+                        </button>
+                    ))}
+                </div>
+            ))}
 
             <div className="shelf" ref={shelfRef}>
                 {books.map((book, i) => {
