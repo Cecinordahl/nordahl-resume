@@ -127,6 +127,8 @@ export const BookSchema = z.object({
     coverImage: nonEmpty.optional(),
     year: z.number().int().optional(),
     blurb: nonEmpty,
+    // Curated collections the book belongs to, e.g. "Craft books with a story feel". Shown as extra filters.
+    categories: z.array(nonEmpty).optional(),
     // Your own thoughts, in Markdown. Shown as "My notes" in the details view.
     notes: nonEmpty.optional(),
     // Slug of a related note under /notes.
