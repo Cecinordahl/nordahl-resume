@@ -117,6 +117,7 @@ export default function Portfolio() {
             <PageHeader label="02 — Portfolio" title="Portfolio">
                 <p>A showcase of my hobby projects — small apps I build outside of work, for myself, my husband, or friends. Links go live as each project ships.</p>
                 <p>My curiosity for building things doesn't clock out at 5pm. In my spare time I make web and iOS apps to solve a problem, automate something tedious, replace a clunky spreadsheet, or just try out a new tool or idea — sometimes to create something genuinely useful, sometimes purely to learn, and sometimes just to play.</p>
+                <p>I build these with a mix of vibe coding and writing the code myself. AI tools let me ship ideas fast, but I deliberately keep my own hands on the keyboard too. I don't want to hand everything over and lose my own knowledge of, and curiosity about, the code itself.</p>
             </PageHeader>
 
             <div className="page-section">
