@@ -12,10 +12,9 @@ const rawHobbyProjects = [
             "buying points outright, stacking car rentals, or a mix of both — ranked by cost or by speed, with a clean " +
             "overview worth actually sharing. The plan is for anyone to be able to create their own account and track " +
             "their own progress the same way, not just me.",
-        status: "Live",
+        status: "In progress",
         tags: ["React", "TypeScript", "Vite"],
         githubUrl: "https://github.com/Cecinordahl/eurobonusbuddy",
-        liveUrl: "https://eurobonusbuddy.vercel.app",
         details: {
             summary: "Enter your current status points, target tier, and months remaining in your qualification period; " +
                 "the planner generates a handful of candidate plans to close the gap and ranks them by either total " +
@@ -327,11 +326,10 @@ const rawHobbyProjects = [
     },
     {
         name: "Booknook",
-        tagline: "After cycling through reading-tracker apps that all missed the one thing I actually wanted — a heads-up when the next book in a series I follow is coming out — I fell back to Goodreads, which handles what-I'm-reading fine but has grown so cluttered with features I don't need that it's a chore to use, and it still has no release notifications. The gap became obvious the day a colleague mentioned two releases in a series I follow were landing that fall — I'd half-heard about it already and forgotten the details entirely. Booknook is the invite-only tracker I built for my friend group instead: a visual bookshelf, series-follows with push notifications at whatever lead time you set, and enough low-friction ways to add a book that keeping it updated doesn't feel like a chore.",
-        status: "Live",
+        tagline: "After cycling through reading-tracker apps that all missed the one thing I actually wanted — a heads-up when the next book in a series I follow is coming out — I fell back to Goodreads, which handles what-I'm-reading fine but has grown so cluttered with features I don't need that it's a chore to use, and it still has no release notifications. The gap became obvious the day a colleague mentioned two releases in a series I follow were landing that fall — I'd half-heard about it already and forgotten the details entirely. Booknook is the invite-only tracker I'm building for my friend group instead: a visual bookshelf, series-follows with push notifications at whatever lead time you set, and enough low-friction ways to add a book that keeping it updated doesn't feel like a chore.",
+        status: "In progress",
         tags: ["Java", "Spring Boot", "React", "TypeScript", "Firebase", "PWA"],
         githubUrl: "https://github.com/Cecinordahl/booknook",
-        liveUrl: "https://mybooknook-app.vercel.app/",
         details: {
             summary: "Everyone in the friend group signs in through an email allowlist, adds books by scanning a barcode or photographing a cover, and follows series on a dedicated page showing the next release date.",
             highlights: [
