@@ -9,10 +9,13 @@ import { ChevronLeftIcon, ChevronRightIcon } from "../components/icons";
 const rehypeHighlightOptions = { languages: highlightLanguages };
 import { useDocumentTitle } from "../lib/useDocumentTitle";
 import PageHeader from "../components/PageHeader";
+import CodeBlock from "../components/CodeBlock";
 
 // Markdown has no video syntax, so `![alt](clip.mp4)` renders as a video.
 // The poster is expected next to the clip as `clip-poster.jpg`.
 const markdownComponents: Components = {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars -- drop the hast node so it isn't spread onto <pre>
+    pre: ({ node, ...props }) => <CodeBlock {...props} />,
     img: ({ src, alt }) => {
         if (typeof src === "string" && src.endsWith(".mp4")) {
             return (
