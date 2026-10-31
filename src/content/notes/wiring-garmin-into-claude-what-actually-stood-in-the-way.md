@@ -84,6 +84,12 @@ Now any new chat in the project can either refresh the dashboard or act as a coa
 
 If you want to build this yourself, this is the prompt I wish I'd started with. It's written for **Claude** (claude.ai with code execution and artifacts). Generate your Garmin Personal API key first, but don't paste it into the chat until Claude asks for it.
 
+Here's the whole flow in 90 seconds:
+
+![Step-by-step video: from creating a Garmin Personal API key to a finished dashboard in Claude](/images/notes/garmin/garmin-dashboard-steps.mp4)
+
+*Voice-over generated with [ElevenLabs](https://elevenlabs.io).*
+
 ```text
 I want to connect my Garmin data to Claude and build a personal dashboard.
 
