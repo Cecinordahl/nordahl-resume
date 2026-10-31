@@ -53,8 +53,6 @@ A comparison that helped me:
 - **Custom connectors (Claude):** Claude doesn't call arbitrary REST APIs. It talks to an **MCP server**, so for Garmin you'd host a small one yourself.
 - **Ready-made connectors:** Strava has an official one in Claude's directory. Garmin doesn't, at least not yet.
 
-(A side note on my old StravaGPT: it died on `Bad Request – field: scope, code: invalid`. The likely cause is that Strava wants comma-separated scopes like `read,activity:read_all`, and the request sent them space-separated. Unconfirmed, but it fits the symptom: the token only ever got `read`.)
-
 ## What I ended up with
 
 The setup that works today, with no installs on my locked-down work laptop:
