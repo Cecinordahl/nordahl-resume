@@ -4,6 +4,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { books, type Book } from "../content/books";
 import { useDocumentTitle } from "../lib/useDocumentTitle";
+import PageHeader from "../components/PageHeader";
 
 // "All", plus one filter per curated category found in the content.
 type Filter = "all" | `category:${string}`;
@@ -243,11 +244,10 @@ export default function Bookshelf() {
     const counts = Object.fromEntries(filters.map((f) => [f.id, books.filter((b) => matches(b, f.id)).length]));
 
     return (
-        <div className="grid grid-sm">
-            <div>
-                <div className="h2">Bookshelf</div>
-                <p className="muted">A curation of reads and resources.</p>
-            </div>
+        <div className="page">
+            <PageHeader label="04 — Bookshelf" title="Bookshelf">
+                <p>A curation of reads and resources.</p>
+            </PageHeader>
 
             <div className="status-filter category-filter">
                 {filters.map((f) => (

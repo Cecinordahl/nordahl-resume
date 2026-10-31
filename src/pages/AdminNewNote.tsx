@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDocumentTitle } from "../lib/useDocumentTitle";
+import PageHeader from "../components/PageHeader";
 
 type Status = { kind: "idle" } | { kind: "submitting" } | { kind: "success"; slug: string } | { kind: "error"; message: string };
 
@@ -48,11 +49,10 @@ export default function AdminNewNote() {
     }
 
     return (
-        <div className="grid grid-sm">
-            <div>
-                <div className="h2">New note</div>
-                <p className="muted">Publishes directly to the site by committing a markdown file to GitHub. Live in about a minute.</p>
-            </div>
+        <div className="page">
+            <PageHeader label="Admin" title="New note">
+                <p>Publishes directly to the site by committing a markdown file to GitHub. Live in about a minute.</p>
+            </PageHeader>
 
             <form className="card" onSubmit={onSubmit} style={{ display: "grid", gap: 12 }}>
                 <label className="field">

@@ -5,105 +5,88 @@ export default function Home() {
     useDocumentTitle("Home");
 
     return (
-        <div className="grid grid-lg">
-            {/* Hero */}
-            <section className="card" style={{ padding: 26 }}>
-                <div className="kicker">Senior Fullstack Developer</div>
-                <h1 className="h1">Cecilie Nordahl</h1>
+        <div className="home">
+            {/* Masthead: one large name, with a small label row in the gap beneath it */}
+            <header className="home-masthead">
+                <h1 className="home-title">Cecilie Nordahl</h1>
 
-                <div className="hero-photo">
-                    <img src="/images/portrait.jpg" alt="Portrait of Cecilie Nordahl" />
+                <div className="home-meta">
+                    {/* Phones get a shorter 3-line version. There, each .home-meta-line becomes its own line,
+                        nudged individually so the labels follow the outline of the head. */}
+                    <span>
+                        <span className="home-meta-long">Tech lead, architect, and fullstack developer</span>
+                        <span className="home-meta-short">
+                            <span className="home-meta-line">Tech lead</span>
+                            <span className="home-meta-line">Architect</span>
+                            <span className="home-meta-line">Fullstack dev</span>
+                        </span>
+                    </span>
+                    <span className="home-meta-right">
+                        <span className="home-meta-line">Experience</span>{" "}
+                        <span className="home-meta-line">since 2021</span>
+                    </span>
                 </div>
+            </header>
 
-                <p className="muted" style={{ maxWidth: 760, margin: "18px auto 0", textAlign: "center" }}>
-                    I build software that makes sense- to users, stakeholders, and the teams that maintain it.
-                    I care as much about understanding the problem as I do about writing the solution.
+            {/* Full-width colour band; the background-free portrait rises out of it into the title */}
+            <figure className="home-band">
+                <img className="home-cutout" src="/images/portrait-cutout.webp" alt="Portrait of Cecilie Nordahl" />
+            </figure>
+
+            {/* About */}
+            <section className="home-section">
+                <div className="home-label">About</div>
+                <h2 className="home-heading">
+                    I build software that makes sense — to users, stakeholders, and the teams that maintain it.
+                </h2>
+
+                <p>
+                    Tech lead and full-stack developer at Accenture, with a strong background in designing and
+                    delivering large-scale solutions. I recently contributed to one of the largest tech
+                    transformations in Northern Europe for KLP — a project that was awarded Konsulentprisen: Årets
+                    store oppdrag.{" "}
+                    <a
+                        className="home-link"
+                        href="https://www.konsulentguiden.no/konsulentprisen/norges-storste-digitale-transformasjon-klps-endringsprogram-setter-ny-standard-for-offentlig-pensjon/"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        Read about the project <ExternalLinkIcon />
+                    </a>
                 </p>
-
-
-            </section>
-
-            {/* Image + About (editorial blocks) */}
-            <section className="card about-card">
-                <div className="media">
-                    <img src="/images/portrait.jpg" alt="Portrait of Cecilie Nordahl" />
-                </div>
-
-                <div className="kicker" style={{ textAlign: "left" }}>About</div>
-
-                <p className="muted">
-                    Tech lead and full-stack developer at Accenture, with a strong background in designing and delivering large-scale solutions.
-                    I recently contributed to one of the largest tech transformations in Northern Europe for KLP — a project that was awarded
-                    Konsulentprisen: Årets store oppdrag.
+                <p>
+                    I work across front- and back-end, defect analysis, and solution design, and as a team lead I’ve
+                    been closely involved in technical direction and collaboration. My experience includes languages
+                    like Java, Kotlin, Python, and C# and technologies like Spring, React, Kafka and Camunda.
                 </p>
-
-                <a
-                    className="btn"
-                    href="https://www.konsulentguiden.no/konsulentprisen/norges-storste-digitale-transformasjon-klps-endringsprogram-setter-ny-standard-for-offentlig-pensjon/"
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{ display: "inline-flex", alignItems: "center", gap: 6 }}
-                >
-                    Read more about the project <ExternalLinkIcon />
-                </a>
-
-
-                <p className="muted">
-                    I work across front- and back-end, defect analysis, and solution design, and as a team lead I’ve been closely involved in technical direction and collaboration.
-                    My experience includes languages like Java, Kotlin, Python, and C# and technologies like Kafka and Camunda.
+                <p>
+                    I care about writing clean, maintainable code — but I believe great software starts with
+                    understanding the domain. Developers who invest time in learning the business and context behind a
+                    system communicate better with product owners and build solutions that actually fit the problem.
                 </p>
-
-                <p className="muted">
-                    I care about writing clean, maintainable code- but I believe great software starts with understanding the domain.
-                    Developers who invest time in learning the business and context behind a system communicate better with product owners and build solutions that actually fit the problem.
-                </p>
-
-                <p className="muted">
-                    Always open to sharing ideas, learning from others, and improving how we build things.
-                </p>
-
-                <div className="h2">Code is like humor- when you have to explain it, it's bad.</div>
-
-
-                <div className="kicker" style={{ textAlign: "left", marginTop: 12 }}>Tech stack</div>
-                <div style={{ marginTop: 12 }}>
-                    <span className="pill">Java</span>
-                    <span className="pill">Kotlin</span>
-                    <span className="pill">C#</span>
-                    <span className="pill">Python</span>
-                    <span className="pill">Spring</span>
-                    <span className="pill">React</span>
-                    <span className="pill">TypeScript</span>
-                    <span className="pill">JavaScript</span>
-                    <span className="pill">SQL</span>
-                    <span className="pill">Camunda</span>
-                    <span className="pill">Kafka</span>
-                    <span className="pill">Docker</span>
-                    <span className="pill">Azure</span>
-                    <span className="pill">Firebase</span>
-                    <span className="pill">Tailwind CSS</span>
-                </div>
+                <p>Always open to sharing ideas, learning from others, and improving how we build things.</p>
             </section>
 
             {/* Journey */}
-            <section className="card">
-                <div className="kicker" style={{ textAlign: "left" }}>How I got here</div>
+            <section className="home-section">
+                <div className="home-label">How I got here</div>
+                <h2 className="home-heading">
+                    Golf taught me patience with a long game; this career just gave me a longer one to play.
+                </h2>
 
-                <p className="muted">
+                <p>
                     I played competitive golf from a young age, all the way through a golf scholarship at Rogers State
                     University in Oklahoma, where I earned a Bachelor of Technology in Applied Technology while playing
                     at the collegiate level.
                 </p>
-
-                <p className="muted">
+                <p>
                     The plan after that was straightforward: work in Norway for a year, then head back to the US for a
                     master's degree. Instead, I took a job as a flight attendant and fell in love with it — one year
                     turned into four, spent flying for SAS. When SAS restructured after COVID hit, I took a severance
                     package. I'd already lined up a few informatics courses on the side for that fall, so I started
                     working part-time at Vinmonopolet while studying at the University of Oslo.
                 </p>
-
-                <p className="muted">
+                <p>
                     About a year later I applied to Academic Work Academy's 12-week Java program, completed it, and
                     started my career at Accenture. I kept studying alongside full-time work, genuinely enjoying it, and
                     at one point naively enrolled in a full software engineering bachelor's degree at OsloMet on top of
@@ -111,15 +94,12 @@ export default function Home() {
                     already had three years of real software engineering experience on my résumé, I decided finishing
                     that second degree wasn't worth prioritizing anymore.
                 </p>
-
-                <p className="muted">
+                <p>
                     It's now nearing five years as a fullstack developer, and I enjoy it more every year. What I love
                     most is that I never stop learning — there's always something new to get better at, whether that's
                     frontend, a new tool, a different architecture, or just understanding the domain a little more
                     deeply.
                 </p>
-
-                <div className="h2">Golf taught me patience with a long game; this career just gave me a longer one to play.</div>
             </section>
         </div>
     );

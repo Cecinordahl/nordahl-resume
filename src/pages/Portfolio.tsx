@@ -5,6 +5,7 @@ import type { Project } from "../content/projects";
 import { useDocumentTitle } from "../lib/useDocumentTitle";
 import { ExternalLinkIcon, GitHubIcon } from "../components/icons";
 import { ImageCarousel } from "../components/ImageCarousel";
+import PageHeader from "../components/PageHeader";
 import { fetchRepoDates, formatMonthYear, type RepoDates } from "../lib/githubRepoDates";
 
 const statusClass: Record<Project["status"], string> = {
@@ -112,28 +113,27 @@ export default function Portfolio() {
     }
 
     return (
-        <div className="grid grid-sm">
-            <div>
-                <div className="h2">Portfolio</div>
-                <p className="muted">A showcase of my hobby projects — small apps I build outside of work, for myself, my husband, or friends. Links go live as each project ships.</p>
-                <p className="muted">My curiosity for building things doesn't clock out at 5pm. In my spare time I make web and iOS apps to solve a problem, automate something tedious, replace a clunky spreadsheet, or just try out a new tool or idea — sometimes to create something genuinely useful, sometimes purely to learn, and sometimes just to play.</p>
-            </div>
+        <div className="page">
+            <PageHeader label="02 — Portfolio" title="Portfolio">
+                <p>A showcase of my hobby projects — small apps I build outside of work, for myself, my husband, or friends. Links go live as each project ships.</p>
+                <p>My curiosity for building things doesn't clock out at 5pm. In my spare time I make web and iOS apps to solve a problem, automate something tedious, replace a clunky spreadsheet, or just try out a new tool or idea — sometimes to create something genuinely useful, sometimes purely to learn, and sometimes just to play.</p>
+            </PageHeader>
 
-            <div>
-                <p className="muted">Some of the tools and services I reach for when building these — mostly picked for generous free tiers and low setup effort, since these are side projects, not funded products.</p>
+            <div className="page-section">
+                <p>Some of the tools and services I reach for when building these — mostly picked for generous free tiers and low setup effort, since these are side projects, not funded products.</p>
 
                 <button
                     type="button"
                     className="details-toggle"
                     onClick={() => setToolsOpen((o) => !o)}
                     aria-expanded={toolsOpen}
-                    style={{ display: "inline-flex", alignItems: "center", gap: 4, marginTop: 6 }}
+                    style={{ display: "inline-flex", alignItems: "center", gap: 4, justifySelf: "start" }}
                 >
                     {toolsOpen ? "− Hide tools & services" : "+ Tools & services"}
                 </button>
 
                 {toolsOpen && (
-                    <div className="grid grid2" style={{ marginTop: 12 }}>
+                    <div className="grid grid2">
                         {externalServices.map((s) => (
                             <div key={s.name}>
                                 <div className="title">{s.name}</div>
@@ -144,128 +144,130 @@ export default function Portfolio() {
                 )}
             </div>
 
-            <div className="status-filter" style={{ marginTop: 10 }}>
-                <button
-                    type="button"
-                    className={`pill pill-filter${activeStatuses.size === 0 ? " pill-active" : ""}`}
-                    onClick={() => setSearchParams({})}
-                >
-                    All
-                </button>
-                {allStatuses.map((s) => (
+            <div className="page-section">
+                <div className="status-filter">
                     <button
                         type="button"
-                        key={s}
-                        className={`pill pill-filter${activeStatuses.has(s) ? " pill-active" : ""}`}
-                        onClick={() => toggleStatus(s)}
-                        aria-pressed={activeStatuses.has(s)}
+                        className={`pill pill-filter${activeStatuses.size === 0 ? " pill-active" : ""}`}
+                        onClick={() => setSearchParams({})}
                     >
-                        {s}
+                        All
                     </button>
-                ))}
-            </div>
+                    {allStatuses.map((s) => (
+                        <button
+                            type="button"
+                            key={s}
+                            className={`pill pill-filter${activeStatuses.has(s) ? " pill-active" : ""}`}
+                            onClick={() => toggleStatus(s)}
+                            aria-pressed={activeStatuses.has(s)}
+                        >
+                            {s}
+                        </button>
+                    ))}
+                </div>
 
-            <div className="grid grid2">
-                {sortedProjects.map((p) => {
-                    const dates = effectiveDates(p, repoDates);
-                    return (
-                    <div key={p.name} className="card">
-                        <div className="row-between">
-                            <div className="title">{p.name}</div>
-                            <span className={`status-badge ${statusClass[p.status]}`}>{p.status}</span>
-                        </div>
-
-                        {(p.githubUrl || p.liveUrl) && (
-                            <div style={{ marginTop: 8 }}>
-                                {p.githubUrl && (
-                                    <a
-                                        className="icon-link"
-                                        href={p.githubUrl}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        aria-label={`${p.name} on GitHub`}
-                                        title="View source on GitHub"
-                                    >
-                                        <GitHubIcon />
-                                    </a>
-                                )}
-                                {p.liveUrl && (
-                                    <a
-                                        className="icon-link"
-                                        href={p.liveUrl}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        aria-label={`${p.name} live site`}
-                                        title="View live site"
-                                    >
-                                        <ExternalLinkIcon />
-                                    </a>
-                                )}
+                <div className="grid grid2 project-grid">
+                    {sortedProjects.map((p) => {
+                        const dates = effectiveDates(p, repoDates);
+                        return (
+                        <div key={p.name} className="card">
+                            <div className="row-between">
+                                <div className="title">{p.name}</div>
+                                <span className={`status-badge ${statusClass[p.status]}`}>{p.status}</span>
                             </div>
-                        )}
 
-                        <p className="muted">{p.tagline}</p>
+                            {(p.githubUrl || p.liveUrl) && (
+                                <div style={{ marginTop: 8 }}>
+                                    {p.githubUrl && (
+                                        <a
+                                            className="icon-link"
+                                            href={p.githubUrl}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            aria-label={`${p.name} on GitHub`}
+                                            title="View source on GitHub"
+                                        >
+                                            <GitHubIcon />
+                                        </a>
+                                    )}
+                                    {p.liveUrl && (
+                                        <a
+                                            className="icon-link"
+                                            href={p.liveUrl}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            aria-label={`${p.name} live site`}
+                                            title="View live site"
+                                        >
+                                            <ExternalLinkIcon />
+                                        </a>
+                                    )}
+                                </div>
+                            )}
 
-                        {p.details && (
-                            <div style={{ marginTop: 4 }}>
-                                <button
-                                    type="button"
-                                    className="details-toggle"
-                                    onClick={() => toggleDetails(p.name)}
-                                    aria-expanded={expandedDetails.has(p.name)}
-                                >
-                                    {expandedDetails.has(p.name) ? "− Hide technical details" : "+ Technical details"}
-                                </button>
+                            <p className="muted">{p.tagline}</p>
 
-                                {expandedDetails.has(p.name) && (
-                                    <div className="details-panel">
-                                        {p.details.summary && <p className="muted">{p.details.summary}</p>}
+                            {p.details && (
+                                <div style={{ marginTop: 4 }}>
+                                    <button
+                                        type="button"
+                                        className="details-toggle"
+                                        onClick={() => toggleDetails(p.name)}
+                                        aria-expanded={expandedDetails.has(p.name)}
+                                    >
+                                        {expandedDetails.has(p.name) ? "− Hide technical details" : "+ Technical details"}
+                                    </button>
 
-                                        <div className="details-section">
-                                            <div className="details-heading">Technical highlights</div>
-                                            <ul>
-                                                {p.details.highlights.map((h, i) => (
-                                                    <li key={i}>{h}</li>
-                                                ))}
-                                            </ul>
-                                        </div>
+                                    {expandedDetails.has(p.name) && (
+                                        <div className="details-panel">
+                                            {p.details.summary && <p className="muted">{p.details.summary}</p>}
 
-                                        {p.details.challenges && p.details.challenges.length > 0 && (
                                             <div className="details-section">
-                                                <div className="details-heading">Challenges & fixes</div>
+                                                <div className="details-heading">Technical highlights</div>
                                                 <ul>
-                                                    {p.details.challenges.map((c, i) => (
-                                                        <li key={i}>{c}</li>
+                                                    {p.details.highlights.map((h, i) => (
+                                                        <li key={i}>{h}</li>
                                                     ))}
                                                 </ul>
                                             </div>
-                                        )}
-                                    </div>
-                                )}
+
+                                            {p.details.challenges && p.details.challenges.length > 0 && (
+                                                <div className="details-section">
+                                                    <div className="details-heading">Challenges & fixes</div>
+                                                    <ul>
+                                                        {p.details.challenges.map((c, i) => (
+                                                            <li key={i}>{c}</li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+
+                            {dates !== undefined && (
+                                <p className="muted" style={{ fontSize: 12 }}>
+                                    {dates
+                                        ? `Started ${formatMonthYear(dates.createdAt)} · Updated ${formatMonthYear(dates.pushedAt)}`
+                                        : "Dates unavailable"}
+                                </p>
+                            )}
+
+                            {p.images && <ImageCarousel projectName={p.name} images={p.images} />}
+
+                            <div>
+                                {p.tags.map((t) => (
+                                    <span key={t} className="pill">{t}</span>
+                                ))}
                             </div>
-                        )}
-
-                        {dates !== undefined && (
-                            <p className="muted" style={{ fontSize: 12 }}>
-                                {dates
-                                    ? `Started ${formatMonthYear(dates.createdAt)} · Updated ${formatMonthYear(dates.pushedAt)}`
-                                    : "Dates unavailable"}
-                            </p>
-                        )}
-
-                        {p.images && <ImageCarousel projectName={p.name} images={p.images} />}
-
-                        <div>
-                            {p.tags.map((t) => (
-                                <span key={t} className="pill">{t}</span>
-                            ))}
                         </div>
-                    </div>
-                    );
-                })}
-                {sortedProjects.length === 0 && (
-                    <p className="muted">No projects match the selected filters.</p>
-                )}
+                        );
+                    })}
+                    {sortedProjects.length === 0 && (
+                        <p className="muted">No projects match the selected filters.</p>
+                    )}
+                </div>
             </div>
         </div>
     );

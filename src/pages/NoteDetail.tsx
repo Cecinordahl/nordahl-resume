@@ -8,6 +8,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "../components/icons";
 
 const rehypeHighlightOptions = { languages: highlightLanguages };
 import { useDocumentTitle } from "../lib/useDocumentTitle";
+import PageHeader from "../components/PageHeader";
 
 // Markdown has no video syntax, so `![alt](clip.mp4)` renders as a video.
 // The poster is expected next to the clip as `clip-poster.jpg`.
@@ -32,10 +33,13 @@ export default function NoteDetail() {
 
     if (!note) {
         return (
-            <div className="card">
-                <div className="title">Not found</div>
-                <p className="muted">That note doesn’t exist.</p>
-                <Link className="btn" to="/notes">Back to notes</Link>
+            <div className="page">
+                <PageHeader label="Notes" title="Not found">
+                    <p>That note doesn’t exist.</p>
+                </PageHeader>
+                <div>
+                    <Link className="btn" to="/notes">Back to notes</Link>
+                </div>
             </div>
         );
     }
@@ -46,16 +50,15 @@ export default function NoteDetail() {
     const older = index >= 0 && index < allNotes.length - 1 ? allNotes[index + 1] : null;
 
     return (
-        <div className="grid grid-sm">
-            <div className="row-between">
+        <div className="page">
+            <div className="row-between" style={{ alignItems: "center" }}>
+                <Link className="back-link" to="/notes">← All notes</Link>
                 <div>
                     {newer && (
                         <Link className="icon-link" to={`/notes/${newer.slug}`} aria-label={`Newer note: ${newer.title}`} title={newer.title}>
                             <ChevronLeftIcon />
                         </Link>
                     )}
-                </div>
-                <div>
                     {older && (
                         <Link className="icon-link" to={`/notes/${older.slug}`} aria-label={`Older note: ${older.title}`} title={older.title}>
                             <ChevronRightIcon />
@@ -64,19 +67,15 @@ export default function NoteDetail() {
                 </div>
             </div>
 
-            <div className="card">
-                <div className="h2">{note.meta.title}</div>
-                <div className="muted">{note.meta.date}</div>
-                <div>
-                    {note.meta.tags.map((t) => <span key={t} className="pill">{t}</span>)}
-                </div>
-            </div>
+            <PageHeader label={`${note.meta.date} · ${note.meta.tags.join(" · ")}`} title={note.meta.title} size="md" />
 
-            <div className="card note-content">
+            <div className="prose note-content">
                 <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[[rehypeHighlight, rehypeHighlightOptions]]} components={markdownComponents}>{note.content}</ReactMarkdown>
             </div>
 
-            <Link className="btn" to="/notes">Back to all notes</Link>
+            <div>
+                <Link className="btn" to="/notes">Back to all notes</Link>
+            </div>
         </div>
     );
 }

@@ -1,13 +1,12 @@
 :root {
-    --bg: #f4f0ea;              /* warm paper */
-    --surface: rgba(255,255,255,0.55);
-    --text: #1a1a1a;
-    --muted: #6b6b6b;
-    --border: rgba(0, 0, 0, 0.10);
-    --nav-bg: rgba(244, 240, 234, 0.88);
+    --bg: #f5f3ee;              /* editorial off-white */
+    --surface: rgba(255,255,255,0.45);
+    --text: #141414;
+    --muted: #5f5c57;
+    --border: rgba(20, 20, 20, 0.14);
+    --nav-bg: rgba(245, 243, 238, 0.94);
     --hover-bg: rgba(255,255,255,0.35);
     --media-bg: rgba(255,255,255,0.35);
-    --dot: rgba(0,0,0,0.03);
     --script-color: rgba(0,0,0,0.45);
 
     --code-bg: rgba(0,0,0,0.04);
@@ -26,12 +25,13 @@
     --status-live-fg: #166534;
     --status-live-bg: rgba(22,163,74,0.14);
 
-    --serif: "Playfair Display", ui-serif, Georgia, serif;
+    --serif: "Instrument Serif", ui-serif, Georgia, serif;
     --sans: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     --script: "Allura", cursive;
 
-    --max: 980px;               /* slightly narrower */
-    --radius: 20px;
+    --max: 980px;
+    --radius: 2px;
 }
 
 :root[data-theme="dark"] {
@@ -43,7 +43,6 @@
     --nav-bg: rgba(26, 23, 18, 0.88);
     --hover-bg: rgba(255,255,255,0.08);
     --media-bg: rgba(255,255,255,0.05);
-    --dot: rgba(255,255,255,0.035);
     --script-color: rgba(255,255,255,0.4);
 
     --code-bg: rgba(255,255,255,0.05);
@@ -73,8 +72,7 @@
         --nav-bg: rgba(26, 23, 18, 0.88);
         --hover-bg: rgba(255,255,255,0.08);
         --media-bg: rgba(255,255,255,0.05);
-        --dot: rgba(255,255,255,0.035);
-        --script-color: rgba(255,255,255,0.4);
+            --script-color: rgba(255,255,255,0.4);
 
         --code-bg: rgba(255,255,255,0.05);
         --code-keyword: #e39a63;
@@ -102,10 +100,8 @@ body {
     color: var(--text);
     font-family: var(--sans);
     line-height: 1.7;
-    letter-spacing: 0.01em;
-
-    background-image: radial-gradient(var(--dot) 1px, transparent 0);
-    background-size: 22px 22px;
+    letter-spacing: 0.005em;
+    -webkit-font-smoothing: antialiased;
 }
 
 a { color: inherit; text-decoration: none; }
@@ -117,15 +113,15 @@ a:hover { opacity: 0.85; text-decoration: underline; }
     padding: 34px 18px;
 }
 
+/* Editorial "row" instead of a boxed card: a thin rule above, generous vertical padding. */
 .card {
-    border: 1px solid var(--border);
-    background: var(--surface);
-    border-radius: var(--radius);
-    padding: 18px;
-    backdrop-filter: blur(8px);
+    border-top: 1px solid var(--border);
+    padding: 28px 0;
 }
 
 a.card { display: block; }
+a.card:hover { opacity: 1; text-decoration: none; }
+a.card:hover .title { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
 
 /* Nav */
 .nav {
@@ -142,21 +138,32 @@ a.card { display: block; }
     align-items: center;
     flex-wrap: wrap;
     gap: 14px;
+    max-width: 1180px;
+    padding-top: 14px;
+    padding-bottom: 14px;
 }
 
 .navLinks {
     display: flex;
     flex: 1 1 auto;
     flex-wrap: wrap;
-    gap: 16px;
-    font-size: 12px;
-    letter-spacing: 0.12em;
+    gap: 22px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     justify-content: center;
+    padding-left: 46px; /* = theme toggle width + gap, so the links are centred on the page */
 }
 
-.navLinks a { opacity: 0.88; }
-.navLinks a.navLink-active { opacity: 1; text-decoration: underline; }
+.navLinks a { color: var(--muted); }
+.navLinks a:hover { color: var(--text); opacity: 1; text-decoration: none; }
+.navLinks a.navLink-active {
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    text-decoration-thickness: 1px;
+}
 
 .navHamburger {
     display: none;
@@ -172,7 +179,7 @@ a.card { display: block; }
 }
 .navHamburger:hover { background: var(--hover-bg); }
 
-@media (max-width: 800px) {
+@media (max-width: 960px) {
     .navHamburger { display: inline-flex; }
 
     .navLinks {
@@ -217,33 +224,37 @@ a.card { display: block; }
 }
 .themeToggle:hover { background: var(--hover-bg); }
 
-.brand {
-    font-family: var(--serif);
-    letter-spacing: 0.04em;
-    font-size: 18px;
-}
 
 /* Typography */
 .h1 {
     font-family: var(--serif);
-    font-size: 52px;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
+    font-weight: 400;
+    font-size: 60px;
+    line-height: 1.02;
+    letter-spacing: -0.01em;
     margin: 0 0 10px;
     text-align: center;
 }
 
 @media (max-width: 560px) {
-    .h1 { font-size: 34px; }
+    .h1 { font-size: 40px; }
 }
 
 .h2 {
     font-family: var(--serif);
-    font-size: 26px;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.15;
     margin: 0 0 10px;
 }
 
-.title { font-weight: 700; }
+.title {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 1.15;
+    letter-spacing: -0.005em;
+}
 
 .muted { color: var(--muted); }
 
@@ -257,8 +268,9 @@ a.card { display: block; }
 }
 
 .kicker {
-    font-size: 12px;
-    letter-spacing: 0.14em;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--muted);
     text-align: center;
@@ -273,18 +285,19 @@ a.card { display: block; }
 /* Buttons/pills: make them more “editorial” */
 .btn {
     display: inline-block;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    padding: 10px 16px;
+    border: 1px solid var(--text);
+    border-radius: var(--radius);
+    padding: 11px 18px;
     background: transparent;
     color: inherit;
     font: inherit;
-    font-size: 12px;
-    letter-spacing: 0.12em;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     cursor: pointer;
 }
-.btn:hover { background: var(--hover-bg); text-decoration: none; }
+.btn:hover { background: var(--text); color: var(--bg); opacity: 1; text-decoration: none; }
 .btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
 .field {
@@ -389,9 +402,10 @@ textarea:focus {
 .pill {
     display: inline-block;
     border: 1px solid var(--border);
-    border-radius: 999px;
+    border-radius: var(--radius);
     padding: 6px 10px;
-    font-size: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-right: 8px;
@@ -401,7 +415,7 @@ textarea:focus {
 .status-badge {
     display: inline-block;
     padding: 4px 10px;
-    border-radius: 999px;
+    border-radius: var(--radius);
     font-size: 11px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -783,51 +797,315 @@ textarea:focus {
 .grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 @media (max-width: 900px) { .grid2 { grid-template-columns: minmax(0, 1fr); } }
 
-/* Image blocks */
-.about-card { display: flow-root; }
-
-.media {
-    float: left;
-    width: 220px;
-    margin: 0 20px 12px 0;
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--media-bg);
-    overflow: hidden;
+/* ---------- Inner pages ---------- */
+.page {
+    display: grid;
+    gap: 56px;
+    padding: 32px 0 80px;
 }
 
-.media img {
-    width: 100%;
-    height: auto;
+.page-header {
+    display: grid;
+    gap: 22px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--text);
+}
+.page-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    min-height: 32px;
+}
+.page-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+.page-actions { display: flex; align-items: center; gap: 8px; }
+.page-title {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(56px, 9vw, 104px);
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+}
+.page-title-md { font-size: clamp(40px, 6vw, 68px); line-height: 1; text-wrap: balance; }
+
+.page-intro {
+    max-width: 640px;
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--muted);
+}
+.page-intro p { margin: 0 0 14px; }
+.page-intro p:last-child { margin-bottom: 0; }
+
+/* A labelled block inside a page */
+.page-section { display: grid; gap: 20px; }
+.page-section > p { max-width: 640px; margin: 0; color: var(--muted); }
+.section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* Stack of .card rows: rows are separated by their own top rule, so no extra gap */
+.entries { display: grid; }
+.entries > .card:last-child { border-bottom: 1px solid var(--border); }
+.entry-list { padding-left: 18px; }
+.entry-list li { margin-bottom: 4px; }
+.text-link {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 14px;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+}
+
+/* Contact: label column + large value */
+.card.contact-row {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    align-items: baseline;
+    gap: 16px;
+}
+
+/* Notes list: date column + title/tags */
+.card.note-row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    align-items: baseline;
+    gap: 16px;
+}
+.note-row-date { margin-top: 0; }
+
+@media (max-width: 560px) {
+    .card.contact-row, .card.note-row { grid-template-columns: 1fr; gap: 6px; }
+}
+.entry-meta {
+    margin-top: 6px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+.entry-body { margin: 12px 0 0; color: var(--muted); max-width: 680px; }
+
+/* Long-form content (work detail, notes): readable column, serif headings */
+.prose { max-width: 680px; font-size: 16px; line-height: 1.75; }
+.prose p, .prose li { color: var(--muted); }
+.prose h2, .prose h3, .prose h4 {
+    font-family: var(--serif);
+    font-weight: 400;
+    color: var(--text);
+    line-height: 1.15;
+}
+.prose h2 { font-size: 34px; margin: 48px 0 14px; }
+.prose h3 { font-size: 28px; margin: 40px 0 12px; }
+.prose h4 { font-size: 22px; margin: 32px 0 10px; }
+.prose > :first-child { margin-top: 0; }
+.prose a:not(.btn) { color: var(--text); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+
+.back-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+@media (max-width: 720px) {
+    .page { gap: 40px; padding-top: 16px; }
+    .page-header { padding-bottom: 28px; gap: 16px; }
+}
+
+/* ---------- Home (editorial, after designInspo1) ---------- */
+/* Lets the photo band break out of .container to full viewport width without
+   a horizontal scrollbar (100vw includes the vertical scrollbar on Windows). */
+html, body { overflow-x: clip; }
+
+.home {
+    --band-h: clamp(380px, 52vh, 520px);
+    --cutout-h: calc(var(--band-h) + 220px); /* how far the photo rises above the band */
+    display: grid;
+    gap: 120px;
+    padding-bottom: 80px;
+}
+
+.home-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 1.5;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+.home-meta-right { text-align: right; }
+.home-meta-short { display: none; }
+
+.home-masthead {
+    display: grid;
+    padding-top: 36px;
+}
+
+/* Label row sits in the gap between the name and the band. It is positioned absolutely so it
+   doesn't push the band (and the portrait standing in it) down. */
+.home-masthead > .home-meta {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 44px);
+    z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    white-space: nowrap;
+}
+/* Each label starts ~20px from the hair. The hair's half-width at this height is a fixed
+   fraction of the portrait's height (measured from the cutout: 18.3% left, 17.5% right). */
+.home-masthead > .home-meta > :first-child {
+    justify-self: end;
+    text-align: right;
+    padding-right: calc(var(--cutout-h) * 0.183 + 20px);
+}
+.home-masthead > .home-meta > :last-child {
+    justify-self: start;
+    text-align: left;
+    padding-left: calc(var(--cutout-h) * 0.175 + 20px);
+}
+
+.home-title {
+    margin: 0;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(56px, 12.5vw, 150px);
+    line-height: 0.9;
+    letter-spacing: -0.025em;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Full-bleed warm band (like designInspo1). The cutout portrait sits on its bottom edge and is
+   taller than the band, so the head rises above it and overlaps the lower part of the title. */
+:root { --band: linear-gradient(to bottom, #e4dccf, #d6cbb9); }
+:root[data-theme="dark"] { --band: linear-gradient(to bottom, #3a332a, #2e2821); }
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --band: linear-gradient(to bottom, #3a332a, #2e2821); }
+}
+
+/* No z-index here on purpose: the title stays behind the band/portrait (z 1) while the
+   label row (z 2) can sit in front of the band when it wraps onto extra lines on phones. */
+.home-masthead { position: relative; }
+
+.home-band {
+    position: relative;
+    z-index: 1;
+    width: 100vw;
+    height: var(--band-h);
+    margin: -37px 0 0 calc(50% - 50vw); /* band starts ~80px under the title */
+    background: var(--band);
+}
+.home-cutout {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    height: var(--cutout-h);
+    width: auto;
+    transform: translateX(-50%);
     display: block;
-    filter: saturate(0.95) contrast(0.95);
 }
 
-.hero-photo { display: none; }
+/* Pull the first section up closer to the photo band than the general section gap */
+.home-band + .home-section { margin-top: -56px; }
 
-@media (max-width: 640px) {
-    .about-card .media { display: none; }
+.home-section {
+    max-width: 640px;
+    width: 100%;
+    margin: 0 auto;
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--muted);
+}
+.home-section p { margin: 0 0 18px; }
 
-    .hero-photo {
-        display: block;
-        width: 100%;
-        max-width: 220px;
-        height: 240px;
-        margin: 16px auto 0;
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        background: var(--media-bg);
-        overflow: hidden;
+.home-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 20px;
+}
+
+.home-heading {
+    margin: 0 0 32px;
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(30px, 4.2vw, 42px);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    text-wrap: balance;
+}
+
+.home-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+}
+
+@media (max-width: 720px) {
+    .home { gap: 80px; }
+    .home-masthead { padding-top: 20px; }
+    /* Narrow side columns beside the head: smaller text, allowed to wrap */
+    .home-masthead > .home-meta {
+        top: calc(100% + 4px);
+        white-space: normal;
+        font-size: 9px;
+        line-height: 1.45;
+        letter-spacing: 0.02em;
     }
+    /* The labels sit higher on the head here, where it is narrower: hair half-width at this
+       height is 18.25% (left) and 16.4% (right) of the portrait height. Combined with the row's
+       16px column gap this leaves ~10px (left) and ~5px (right) between text and hair. */
+    .home-masthead > .home-meta > :first-child { padding-right: calc(var(--cutout-h) * 0.1825 + 2px); }
+    .home-masthead > .home-meta > :last-child { padding-left: calc(var(--cutout-h) * 0.164 - 3px); }
+    .home { --band-h: 300px; --cutout-h: calc(var(--band-h) + 130px); }
+    .home-band { margin-top: -31px; }
+    .home-band + .home-section { margin-top: -32px; }
+}
 
-    .hero-photo img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center 35%;
-        display: block;
-        filter: saturate(0.95) contrast(0.95);
-    }
+/* Phones: short 3-line label and fixed line breaks, so both labels fit beside the head */
+@media (max-width: 480px) {
+    .home-masthead > .home-meta { white-space: nowrap; }
+    .home-meta-short { display: inline; }
+    .home-meta-long { display: none; }
+
+    /* One label line per row, each nudged towards the head so the text follows its outline
+       (head is narrowest at the top). Offsets measured against the cutout: ~6px to the hair. */
+    .home-meta-line { display: block; position: relative; }
+    .home-meta-short > .home-meta-line:nth-child(1) { left: 10px; }
+    .home-meta-short > .home-meta-line:nth-child(2) { left: 6px; }
+    .home-meta-short > .home-meta-line:nth-child(3) { left: 4px; }
+    .home-meta-right > .home-meta-line:nth-child(1) { left: -12px; }
+    .home-meta-right > .home-meta-line:nth-child(2) { left: -6px; }
+}
+@media (max-width: 370px) {
+    .home-masthead > .home-meta { font-size: 8px; }
+}
+
+@media (max-width: 420px) {
+    .home-title { font-size: 15vw; }
 }
 
 .note-content img {

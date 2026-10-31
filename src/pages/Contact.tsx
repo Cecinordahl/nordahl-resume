@@ -1,35 +1,39 @@
 import { useDocumentTitle } from "../lib/useDocumentTitle";
+import PageHeader from "../components/PageHeader";
+
+const links = [
+    { label: "Email", value: "cecilie.nordahl@gmail.com", href: "mailto:cecilie.nordahl@gmail.com", external: false },
+    { label: "LinkedIn", value: "cecilie-nordahl", href: "https://www.linkedin.com/in/cecilie-nordahl", external: true },
+    { label: "GitHub", value: "Cecinordahl", href: "https://github.com/Cecinordahl", external: true },
+];
 
 export default function Contact() {
     useDocumentTitle("Contact");
 
     return (
-        <div className="grid">
-            <div className="card">
-                <div className="h2">Contact</div>
-                <div className="muted" style={{ display: "grid", gap: 6 }}>
-                    <a href="mailto:cecilie.nordahl@gmail.com">cecilie.nordahl@gmail.com</a>
+        <div className="page">
+            <PageHeader label="07 — Contact" title="Contact">
+                <p>Always open to sharing ideas, learning from others, and improving how we build things.</p>
+            </PageHeader>
 
+            <div className="entries">
+                {links.map((l) => (
                     <a
-                        href="https://www.linkedin.com/in/cecilie-nordahl"
-                        target="_blank"
-                        rel="noreferrer"
+                        key={l.label}
+                        className="card contact-row"
+                        href={l.href}
+                        {...(l.external ? { target: "_blank", rel: "noreferrer" } : {})}
                     >
-                        LinkedIn
+                        <span className="section-label">{l.label}</span>
+                        <span className="title">{l.value}</span>
                     </a>
+                ))}
+            </div>
 
-                    <a
-                        href="https://github.com/Cecinordahl"
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        GitHub
-                    </a>
-
-                    <a className="btn" href="/ResumeNordahl.pdf" download style={{ marginTop: 10, justifySelf: "start" }}>
-                        Download PDF resume
-                    </a>
-                </div>
+            <div>
+                <a className="btn" href="/ResumeNordahl.pdf" download>
+                    Download PDF resume
+                </a>
             </div>
         </div>
     );
