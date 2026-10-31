@@ -45,6 +45,8 @@ export default function Home() {
                     delivering large-scale solutions. I recently contributed to one of the largest tech
                     transformations in Northern Europe for KLP — a project that was awarded Konsulentprisen: Årets
                     store oppdrag.{" "}
+                </p>
+                <p>
                     <a
                         className="home-link"
                         href="https://www.konsulentguiden.no/konsulentprisen/norges-storste-digitale-transformasjon-klps-endringsprogram-setter-ny-standard-for-offentlig-pensjon/"
@@ -76,8 +78,7 @@ export default function Home() {
 
                 <p>
                     I played competitive golf from a young age, all the way through a golf scholarship at Rogers State
-                    University in Oklahoma, where I earned a Bachelor of Technology in Applied Technology while playing
-                    at the collegiate level.
+                    University in Oklahoma, where I earned a Bachelor of Technology in Applied Technology.
                 </p>
                 <p>
                     The plan after that was straightforward: work in Norway for a year, then head back to the US for a
@@ -95,7 +96,7 @@ export default function Home() {
                     that second degree wasn't worth prioritizing anymore.
                 </p>
                 <p>
-                    It's now nearing five years as a fullstack developer, and I enjoy it more every year. What I love
+                    I'm now clocking in at five years as a fullstack developer, and I enjoy it more every year. What I love
                     most is that I never stop learning — there's always something new to get better at, whether that's
                     frontend, a new tool, a different architecture, or just understanding the domain a little more
                     deeply.
