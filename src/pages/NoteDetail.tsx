@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import { getAllNotes, getNoteBySlug } from "../lib/notes";
@@ -8,6 +8,21 @@ import { ChevronLeftIcon, ChevronRightIcon } from "../components/icons";
 
 const rehypeHighlightOptions = { languages: highlightLanguages };
 import { useDocumentTitle } from "../lib/useDocumentTitle";
+
+// Markdown has no video syntax, so `![alt](clip.mp4)` renders as a video.
+// The poster is expected next to the clip as `clip-poster.jpg`.
+const markdownComponents: Components = {
+    img: ({ src, alt }) => {
+        if (typeof src === "string" && src.endsWith(".mp4")) {
+            return (
+                <video controls preload="metadata" poster={src.replace(/\.mp4$/, "-poster.jpg")} aria-label={alt}>
+                    <source src={src} type="video/mp4" />
+                </video>
+            );
+        }
+        return <img src={src} alt={alt} />;
+    },
+};
 
 export default function NoteDetail() {
     const { slug } = useParams();
@@ -58,7 +73,7 @@ export default function NoteDetail() {
             </div>
 
             <div className="card note-content">
-                <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[[rehypeHighlight, rehypeHighlightOptions]]}>{note.content}</ReactMarkdown>
+                <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[[rehypeHighlight, rehypeHighlightOptions]]} components={markdownComponents}>{note.content}</ReactMarkdown>
             </div>
 
             <Link className="btn" to="/notes">Back to all notes</Link>
