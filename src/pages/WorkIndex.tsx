@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { workExperience } from "../content/experience";
 import { useDocumentTitle } from "../lib/useDocumentTitle";
 import PageHeader from "../components/PageHeader";
+import RoleList from "../components/RoleList";
 
 const logos = "/images/logos";
 
@@ -66,9 +67,6 @@ const mainTimeline: { role: string; org: string; dateRange: string; startYear: s
     },
 ];
 
-// Oldest → newest, for the quicklinks row under the page title.
-const quicklinks = mainTimeline.filter((t): t is typeof mainTimeline[number] & { slug: string } => !!t.slug);
-
 // Each segment is colored by whichever employer was active during that span — e.g. the RSU-red
 // segment runs 2011–2016 because that's when "Golf Scholar & Student" was ongoing.
 const desktopSegments = [
@@ -102,14 +100,6 @@ export default function WorkIndex() {
                     Before that I spent a lot of summers at Bergen Golf Club and a lot of Christmases at
                     Iversen & Co, so I've picked up bits of domain knowledge from quite a few different corners.
                 </p>
-                <div className="quicklinks">
-                    {quicklinks.map((t) => (
-                        <Link key={t.slug} to={`/work/${t.slug}`} className="quicklink">
-                            {t.icon}
-                            <span>{t.org}</span>
-                        </Link>
-                    ))}
-                </div>
             </PageHeader>
 
             {/* Desktop: floating top line for summer jobs, spanning before/after the main sequence */}
@@ -229,7 +219,7 @@ export default function WorkIndex() {
                                 <div className="title">{w.company}</div>
                                 <div className="entry-meta">{w.location} · {w.dateRange}</div>
                             </div>
-                            <div className="entry-meta">{w.rolePublic}{w.roleOfficial ? ` · ${w.roleOfficial}` : ""}</div>
+                            <div className="entry-meta"><RoleList roles={w.roles} /></div>
                             <p className="entry-body">{w.summary}</p>
                         </Link>
                     ))}

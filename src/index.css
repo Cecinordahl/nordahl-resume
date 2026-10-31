@@ -867,6 +867,20 @@ textarea:focus {
     text-decoration-thickness: 1px;
 }
 
+/* Roles at one workplace: "A · B · C" on one line. A role never breaks in the middle; if the
+   line is too narrow it wraps between roles. */
+.role { white-space: nowrap; }
+.role + .role::before { content: " · "; white-space: normal; }
+/* Work list on phones: slightly smaller so all roles fit on one line */
+@media (max-width: 560px) {
+    .entry-meta .role { font-size: 10px; letter-spacing: 0.02em; }
+    /* Scales with the screen so the three roles just fit on one line (full line ≈ 25× font size) */
+    .page-intro .role { font-size: max(11px, min(16px, calc(3.9vw - 2.5px))); }
+}
+@media (max-width: 380px) {
+    .entry-meta .role { font-size: 9px; letter-spacing: 0; }
+}
+
 /* Contact: label column + large value */
 .card.contact-row {
     display: grid;

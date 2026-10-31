@@ -18,8 +18,8 @@ export const WorkItemSchema = z.object({
     slug: nonEmpty,
     company: nonEmpty,
     location: nonEmpty,
-    rolePublic: nonEmpty,
-    roleOfficial: nonEmpty.optional(),
+    // One or more roles held at this workplace, shown "A · B · C" (one per line on phones).
+    roles: z.array(nonEmpty).min(1),
     dateRange: nonEmpty,
     startDate: yearMonth,
     endDate: yearMonth.optional(),

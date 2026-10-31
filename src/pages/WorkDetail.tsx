@@ -4,6 +4,7 @@ import { getWorkBySlug } from "../content/experience";
 import { useDocumentTitle } from "../lib/useDocumentTitle";
 import { ExternalLinkIcon } from "../components/icons";
 import PageHeader from "../components/PageHeader";
+import RoleList from "../components/RoleList";
 
 const MARKDOWN_LINK = /\[([^\]]+)\]\(([^)]+)\)/g;
 
@@ -69,8 +70,7 @@ export default function WorkDetail() {
 
             <PageHeader label={`${work.location} · ${work.dateRange}`} title={work.company}>
                 <p>
-                    {work.rolePublic}
-                    {work.roleOfficial ? ` · ${work.roleOfficial}` : ""}
+                    <RoleList roles={work.roles} />
                 </p>
             </PageHeader>
 
