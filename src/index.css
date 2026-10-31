@@ -839,6 +839,16 @@ textarea:focus {
     border: 1px solid var(--border);
 }
 
+.note-content video {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 16px 0;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--media-bg);
+}
+
 /* Hero image (first paragraph in the note) is cropped shorter so it
    doesn't dominate the top of the page. */
 .note-content p:first-of-type img {
