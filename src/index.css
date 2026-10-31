@@ -926,6 +926,12 @@ textarea:focus {
 /* Long-form content (work detail, notes): readable column, serif headings */
 .prose { max-width: 680px; font-size: 16px; line-height: 1.75; }
 .prose p, .prose li { color: var(--muted); }
+/* Notes: bullets sit inside the text, so wrapped lines start at the same left edge
+   as normal paragraphs. Nested lists keep a small indent. */
+.note-content ul, .note-content ol { list-style-position: inside; padding-left: 0; }
+.note-content li ul, .note-content li ol { padding-left: 1.25em; }
+.note-content li > p { display: inline; }
+.note-content li + li { margin-top: 8px; }
 .prose h2, .prose h3, .prose h4 {
     font-family: var(--serif);
     font-weight: 400;
