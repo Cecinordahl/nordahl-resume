@@ -39,7 +39,7 @@ When Claude first tried calling Garmin from the sandbox, the request was blocked
 
 At first the block felt arbitrary. It makes sense once you think about what the sandbox can do. Code running there could read your data and send it anywhere. If the AI read a web page with hidden instructions, it could be tricked into sending your data to a stranger's server. An allowlist closes that door by default.
 
-The fix took ten seconds: add `personal.connectapi.garmin.com` to the allowed domains in Claude's settings (under Capabilities). Garmin's own API is about as safe a domain as you can open. After that, the sandbox could exchange my key for a token and pull 90 days of data in one go: 114 activities, plus daily sleep, HRV, stress and Body Battery.
+The fix took about ten seconds, just add `personal.connectapi.garmin.com` to the allowed domains in Claude's settings (under Capabilities). Garmin's own API is about as safe a domain as you can open. After that, the sandbox could exchange my key for a token and pull 90 days of data in one go: 114 activities, plus daily sleep, HRV, stress and Body Battery.
 
 What I'd stress: none of this was hard. Adding a domain and generating a key are easier than most app settings. What was hard was *knowing* that this was the path. Claude tends not to suggest loosening a security setting on its own, and it couldn't know what the sandbox would allow until it tested.
 

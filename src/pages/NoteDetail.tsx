@@ -67,9 +67,17 @@ export default function NoteDetail() {
                 </div>
             </div>
 
-            <PageHeader label={`${note.meta.date} · ${note.meta.tags.join(" · ")}`} title={note.meta.title} size="md" />
+            {/* Magazine-style article header: title, then a byline between two thin rules */}
+            <header className="article-header">
+                <h1 className="page-title page-title-md">{note.meta.title}</h1>
+                <div className="article-byline">
+                    <div>Written by Cecilie Nordahl · {note.meta.date}</div>
+                    <div className="muted">{note.meta.tags.join(" · ")}</div>
+                </div>
+            </header>
 
-            <div className="prose note-content">
+            {/* One column on phones; two justified columns on desktop (see .article in index.css) */}
+            <div className="prose note-content article">
                 <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[[rehypeHighlight, rehypeHighlightOptions]]} components={markdownComponents}>{note.content}</ReactMarkdown>
             </div>
 

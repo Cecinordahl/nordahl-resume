@@ -800,6 +800,9 @@ textarea:focus {
 /* ---------- Inner pages ---------- */
 .page {
     display: grid;
+    /* minmax(0, …) stops wide children (code blocks, tables) from stretching
+       the column past the viewport on mobile; they scroll inside instead. */
+    grid-template-columns: minmax(0, 1fr);
     gap: 56px;
     padding: 32px 0 80px;
 }
@@ -925,6 +928,55 @@ textarea:focus {
 .prose h4 { font-size: 22px; margin: 32px 0 10px; }
 .prose > :first-child { margin-top: 0; }
 .prose a:not(.btn) { color: var(--text); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+
+/* ---------- Notes: magazine-style article ---------- */
+.article-header { display: grid; gap: 36px; }
+.article-byline {
+    display: grid;
+    gap: 2px;
+    padding: 14px 0;
+    border-top: 1px solid var(--text);
+    border-bottom: 1px solid var(--text);
+    font-family: var(--mono);
+    font-size: 11px;
+    line-height: 1.7;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+/* Desktop: two justified columns. Each heading (and any wide block: code, tables, video, hero
+   image) spans both columns, so a long note reads as a series of short two-column blocks
+   instead of one column that runs the whole page height. */
+@media (min-width: 900px) {
+    .article {
+        max-width: none;
+        columns: 2;
+        column-gap: 48px;
+        font-size: 15.5px;
+        line-height: 1.7;
+    }
+    .article p,
+    .article li {
+        text-align: justify;
+        hyphens: auto;
+    }
+    .article p { margin: 0 0 0.9em; }
+    .article p + p { text-indent: 1.4em; }
+
+    .article h2,
+    .article h3,
+    .article pre,
+    .article table,
+    .article hr,
+    .article > p:has(> video),
+    .article > p:first-of-type:has(> img) {
+        column-span: all;
+    }
+    .article h2 { margin: 56px 0 20px; }
+    .article h3 { margin: 40px 0 16px; }
+    .article > :first-child { margin-top: 0; }
+    .article blockquote { break-inside: avoid; }
+}
 
 .back-link {
     font-family: var(--mono);
@@ -1154,7 +1206,7 @@ html, body { overflow-x: clip; }
    wraps a standalone image in its own <p>; unwrap that paragraph so the
    <img> participates directly in the note's flow and the float actually
    sits next to the following text instead of trapped in an empty p. */
-.note-content p:nth-of-type(2) {
+.note-content p:nth-of-type(2):has(> img) {
     display: contents;
 }
 
