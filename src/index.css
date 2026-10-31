@@ -1179,8 +1179,10 @@ html, body { overflow-x: clip; }
     .home-masthead > .home-meta { font-size: 8px; }
 }
 
-@media (max-width: 420px) {
-    .home-title { font-size: 15vw; }
+/* Phones: the name spans the full content width (viewport minus the container's 18px
+   side padding). "Cecilie Nordahl" in Instrument Serif is ~4.85× its font-size wide (4.9 leaves a hair of room). */
+@media (max-width: 480px) {
+    .home-title { font-size: calc((100vw - 36px) / 4.9); letter-spacing: -0.02em; }
 }
 
 .note-content img {
