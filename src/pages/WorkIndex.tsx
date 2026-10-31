@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { workExperience } from "../content/experience";
 import { useDocumentTitle } from "../lib/useDocumentTitle";
+import PageHeader from "../components/PageHeader";
 
 const logos = "/images/logos";
 
@@ -94,24 +95,22 @@ export default function WorkIndex() {
     useDocumentTitle("Work");
 
     return (
-        <div>
-            <div className="h2">Work experience</div>
-
-            <div className="quicklinks">
-                {quicklinks.map((t) => (
-                    <Link key={t.slug} to={`/work/${t.slug}`} className="quicklink">
-                        {t.icon}
-                        <span>{t.org}</span>
-                    </Link>
-                ))}
-            </div>
-
-            <p className="muted">
-                I've got a fairly varied background — flight attendant, then wine advisor, now developer.
-                Before that I spent a lot of summers at Bergen Golf Club and a lot of Christmases at
-                Iversen & Co, so I've picked up bits of domain knowledge from quite a few different corners.
-            </p>
-            <br/>
+        <div className="page">
+            <PageHeader label="01 — Work" title="Work experience">
+                <p>
+                    I've got a fairly varied background — flight attendant, then wine advisor, now developer.
+                    Before that I spent a lot of summers at Bergen Golf Club and a lot of Christmases at
+                    Iversen & Co, so I've picked up bits of domain knowledge from quite a few different corners.
+                </p>
+                <div className="quicklinks">
+                    {quicklinks.map((t) => (
+                        <Link key={t.slug} to={`/work/${t.slug}`} className="quicklink">
+                            {t.icon}
+                            <span>{t.org}</span>
+                        </Link>
+                    ))}
+                </div>
+            </PageHeader>
 
             {/* Desktop: floating top line for summer jobs, spanning before/after the main sequence */}
             <div className="timeline timeline-desktop">
@@ -209,33 +208,32 @@ export default function WorkIndex() {
                 })}
             </div>
 
-            <br/>
-            <p className="muted">
-                I won't claim it makes me a better developer than anyone else, but I do think it helps.
-                Coming from other fields, I often end up approaching a problem from a slightly odd angle,
-                and I'm comfortable talking to people who don't write code — bridging the gap between the
-                technical team and everyone else. Having learned a completely new discipline from scratch a
-                couple of times also makes it less daunting to pick up a new language or framework; you get
-                used to being a beginner. Mostly I think it just gives me a broader sense of who's actually
-                on the other end of the software.
-            </p>
+            <div className="page-section">
+                <p>
+                    I won't claim it makes me a better developer than anyone else, but I do think it helps.
+                    Coming from other fields, I often end up approaching a problem from a slightly odd angle,
+                    and I'm comfortable talking to people who don't write code — bridging the gap between the
+                    technical team and everyone else. Having learned a completely new discipline from scratch a
+                    couple of times also makes it less daunting to pick up a new language or framework; you get
+                    used to being a beginner. Mostly I think it just gives me a broader sense of who's actually
+                    on the other end of the software.
+                </p>
+            </div>
 
-            <br/>
-            <p className="muted">Click a workplace to open details.</p>
-
-            <div className="grid grid-sm">
-                {workExperience.map((w) => (
-                    <Link key={w.slug} to={`/work/${w.slug}`} className="card">
-                        <div className="row-between">
-                            <div>
+            <div className="page-section">
+                <div className="section-label">Workplaces — click for details</div>
+                <div className="entries">
+                    {workExperience.map((w) => (
+                        <Link key={w.slug} to={`/work/${w.slug}`} className="card">
+                            <div className="row-between" style={{ alignItems: "baseline" }}>
                                 <div className="title">{w.company}</div>
-                                <div className="muted">{w.rolePublic}{w.roleOfficial ? ` · ${w.roleOfficial}` : ""}</div>
+                                <div className="entry-meta">{w.location} · {w.dateRange}</div>
                             </div>
-                            <div className="muted">{w.location} · {w.dateRange}</div>
-                        </div>
-                        <p className="muted mb-0">{w.summary}</p>
-                    </Link>
-                ))}
+                            <div className="entry-meta">{w.rolePublic}{w.roleOfficial ? ` · ${w.roleOfficial}` : ""}</div>
+                            <p className="entry-body">{w.summary}</p>
+                        </Link>
+                    ))}
+                </div>
             </div>
         </div>
     );

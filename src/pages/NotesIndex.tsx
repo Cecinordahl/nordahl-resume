@@ -3,6 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { getAllNotes } from "../lib/notes";
 import { useDocumentTitle } from "../lib/useDocumentTitle";
 import { InfoIcon, ChevronDownIcon } from "../components/icons";
+import PageHeader from "../components/PageHeader";
 
 export default function NotesIndex() {
     useDocumentTitle("Notes");
@@ -33,27 +34,26 @@ export default function NotesIndex() {
     }
 
     return (
-        <div className="grid grid-sm">
-            <div className="row-between" style={{ alignItems: "flex-start" }}>
-                <div>
-                    <div className="h2">Notes</div>
-                    <p className="muted mb-0">
-                        Short technical reflections written as static markdown.
-                    </p>
-                </div>
-
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                    <a className="btn" href="/rss.xml" target="_blank" rel="noreferrer">RSS</a>
-                    <span className="tooltip-wrap" tabIndex={0} aria-label="What is RSS?">
-                        <InfoIcon />
-                        <span className="tooltip-bubble">
-                            RSS lets you follow new notes without checking back here — add this
-                            feed to a reader app (e.g. Feedly) and get notified whenever I publish
-                            something new.
+        <div className="page">
+            <PageHeader
+                label="03 — Notes"
+                title="Notes"
+                actions={
+                    <>
+                        <a className="btn" href="/rss.xml" target="_blank" rel="noreferrer">RSS</a>
+                        <span className="tooltip-wrap" tabIndex={0} aria-label="What is RSS?">
+                            <InfoIcon />
+                            <span className="tooltip-bubble">
+                                RSS lets you follow new notes without checking back here — add this
+                                feed to a reader app (e.g. Feedly) and get notified whenever I publish
+                                something new.
+                            </span>
                         </span>
-                    </span>
-                </div>
-            </div>
+                    </>
+                }
+            >
+                <p>Short technical reflections written as static markdown.</p>
+            </PageHeader>
 
             {allTags.length > 0 && (
                 <div>
@@ -95,13 +95,13 @@ export default function NotesIndex() {
                 </div>
             )}
 
-            <div className="grid grid-sm">
+            <div className="entries">
                 {visibleNotes.map((n) => (
-                    <Link key={n.slug} to={`/notes/${n.slug}`} className="card">
-                        <div className="title">{n.title}</div>
-                        <div className="muted">{n.date}</div>
+                    <Link key={n.slug} to={`/notes/${n.slug}`} className="card note-row">
+                        <div className="entry-meta note-row-date">{n.date}</div>
                         <div>
-                            {n.tags.map((t) => <span key={t} className="pill">{t}</span>)}
+                            <div className="title">{n.title}</div>
+                            <div className="entry-meta">{n.tags.join(" · ")}</div>
                         </div>
                     </Link>
                 ))}

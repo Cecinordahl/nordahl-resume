@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { getWorkBySlug } from "../content/experience";
 import { useDocumentTitle } from "../lib/useDocumentTitle";
 import { ExternalLinkIcon } from "../components/icons";
+import PageHeader from "../components/PageHeader";
 
 const MARKDOWN_LINK = /\[([^\]]+)\]\(([^)]+)\)/g;
 
@@ -51,74 +52,75 @@ export default function WorkDetail() {
 
     if (!work) {
         return (
-            <div>
-                <h2>Not found</h2>
-                <p>This workplace page doesn’t exist.</p>
-                <Link to="/work">Back to work</Link>
+            <div className="page">
+                <PageHeader label="Work" title="Not found">
+                    <p>This workplace page doesn’t exist.</p>
+                </PageHeader>
+                <div>
+                    <Link className="btn" to="/work">Back to work</Link>
+                </div>
             </div>
         );
     }
 
     return (
-        <div>
-            <Link to="/work">← Back</Link>
+        <div className="page">
+            <Link className="back-link" to="/work">← All work</Link>
 
-            <h2 style={{ marginBottom: 4 }}>{work.company}</h2>
-            <div style={{ marginBottom: 12 }}>
-                <div>
+            <PageHeader label={`${work.location} · ${work.dateRange}`} title={work.company}>
+                <p>
                     {work.rolePublic}
                     {work.roleOfficial ? ` · ${work.roleOfficial}` : ""}
-                </div>
-                <div>
-                    {work.location} · {work.dateRange}
-                </div>
+                </p>
+            </PageHeader>
+
+            <div className="prose">
+                <p>{work.summary}</p>
+
+                <h3>Project: {work.project.name}</h3>
+                <p>{work.project.description}</p>
+
+                <h4>Impact</h4>
+                <ul>
+                    {work.impactBullets.map((b, i) => (
+                        <li key={i}>{renderBulletText(b)}</li>
+                    ))}
+                </ul>
+
+                {work.project.phases
+                    ? work.project.phases.map((phase) => (
+                          <div key={phase.name}>
+                              <h4>
+                                  {phase.name} · {phase.dateRange}
+                              </h4>
+                              <p>{phase.description}</p>
+                              {phase.bullets && phase.bullets.length > 0 && (
+                                  <ul>
+                                      {phase.bullets.map((b, i) => (
+                                          <li key={i}>{renderBulletText(b)}</li>
+                                      ))}
+                                  </ul>
+                              )}
+                              {phase.sourceUrl && <SourceLink url={phase.sourceUrl} label={phase.sourceLabel} />}
+                          </div>
+                      ))
+                    : work.project.bullets && (
+                          <ul>
+                              {work.project.bullets.map((b, i) => (
+                                  <li key={i}>{renderBulletText(b)}</li>
+                              ))}
+                          </ul>
+                      )}
+
+                <h4>{work.project.techLabel ?? "Tech"}</h4>
+                <ul>
+                    {work.project.tech.map((t) => (
+                        <li key={t}>{t}</li>
+                    ))}
+                </ul>
+
+                {work.project.sourceUrl && <SourceLink url={work.project.sourceUrl} label={work.project.sourceLabel} />}
             </div>
-
-            <p>{work.summary}</p>
-
-            <h3>Project: {work.project.name}</h3>
-            <p>{work.project.description}</p>
-
-            <h4>Impact</h4>
-            <ul>
-                {work.impactBullets.map((b, i) => (
-                    <li key={i}>{renderBulletText(b)}</li>
-                ))}
-            </ul>
-
-            {work.project.phases
-                ? work.project.phases.map((phase) => (
-                      <div key={phase.name}>
-                          <h4>
-                              {phase.name} · {phase.dateRange}
-                          </h4>
-                          <p>{phase.description}</p>
-                          {phase.bullets && phase.bullets.length > 0 && (
-                              <ul>
-                                  {phase.bullets.map((b, i) => (
-                                      <li key={i}>{renderBulletText(b)}</li>
-                                  ))}
-                              </ul>
-                          )}
-                          {phase.sourceUrl && <SourceLink url={phase.sourceUrl} label={phase.sourceLabel} />}
-                      </div>
-                  ))
-                : work.project.bullets && (
-                      <ul>
-                          {work.project.bullets.map((b, i) => (
-                              <li key={i}>{renderBulletText(b)}</li>
-                          ))}
-                      </ul>
-                  )}
-
-            <h4>{work.project.techLabel ?? "Tech"}</h4>
-            <ul>
-                {work.project.tech.map((t) => (
-                    <li key={t}>{t}</li>
-                ))}
-            </ul>
-
-            {work.project.sourceUrl && <SourceLink url={work.project.sourceUrl} label={work.project.sourceLabel} />}
         </div>
     );
 }
