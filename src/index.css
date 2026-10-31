@@ -800,6 +800,9 @@ textarea:focus {
 /* ---------- Inner pages ---------- */
 .page {
     display: grid;
+    /* minmax(0, …) stops wide children (code blocks, tables) from stretching
+       the column past the viewport on mobile; they scroll inside instead. */
+    grid-template-columns: minmax(0, 1fr);
     gap: 56px;
     padding: 32px 0 80px;
 }
