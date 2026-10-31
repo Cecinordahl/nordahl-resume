@@ -117,21 +117,6 @@ const rawHobbyProjects = [
         },
     },
     {
-        name: "Automated AI News Digest",
-        tagline: "Two scheduled Claude tasks — a daily pulse and a weekly deep dive — that search the web and send me a written AI news summary without me having to go looking for it.",
-        status: "Live",
-        tags: ["Automation", "Claude", "AI"],
-        details: {
-            summary: "Two recurring, cron-scheduled Claude tasks tied to my Claude account, each defined by a schedule plus a standing natural-language prompt describing what to look for, how to judge whether something's worth including, and how to format the output. Every run starts a fresh Claude session with no memory of past runs, so there's no database or persistent state — the instructions are the \"program,\" and Claude re-derives what's new each time by searching live.",
-            highlights: [
-                "Daily AI News Watch runs every morning at 8:00 AM Oslo time, scanning roughly the last 24 hours for notable model/product releases, real research findings, funding or policy news, and creative AI integrations worth trying — and says so in one line on a quiet day instead of padding the summary with minor items.",
-                "Weekly AI Deep Dive runs every Sunday at 8:00 AM Oslo time, splitting the past week into the 3–5 most significant developments (each written up with context and a source link) plus a scannable one-line-each list of everything else.",
-                "Web search spans major tech news outlets, AI lab blogs and announcements (OpenAI, Anthropic, Google DeepMind, Meta AI), arXiv, and communities like Hacker News and AI/ML subreddits.",
-                "Both tasks deliver their output as a Claude message with a push notification, so the summary shows up wherever I'm already checking Claude — no separate feed or dashboard to log into.",
-            ],
-        },
-    },
-    {
         name: "Trivia Arena",
         tagline:
             "I was usually the one building the Kahoot quiz for game night, and Kahoot has no way to generate a quiz automatically by category — I had to write every question and answer myself, which meant I already knew them all and couldn't actually play. Trivia Arena is my own answer to that: a real-time, Jeopardy-style board across 12 categories where teams buzz in, wrong or missed answers open a steal for the other team, and everything syncs live over WebSocket. Today's board runs on a curated 60-question bank; automatic per-category question generation — the actual fix for not being able to play my own game — is next.",
