@@ -9,7 +9,13 @@ const rawEducation = [
         dateRange: "2011 – 2015",
         startDate: "2011-01",
         details: [
-            "Specialized in Applied Technology, the program focuses on practical skills and management in tech fields. It emphasized technical expertise, problem-solving, project management, and leadership.",
+            "A hands-on technology degree that pairs technical coursework with project management and leadership, preparing graduates for careers in information technology, cybersecurity, and national defense.",
+            "Emphasis on real-world application: technical expertise, problem-solving, and managing technology projects, with close support from faculty.",
+            "Completed on a golf scholarship while competing at the collegiate level.",
+        ],
+        links: [
+            { label: "About the program", url: "https://www.rsu.edu/degree-programs/applied-technology/" },
+            { label: "Degree requirements", url: "https://catalog.rsu.edu/preview_program.php?catoid=4&poid=552&hl=%22Applied+Technology%22&returnto=search" },
         ],
     },
     {
@@ -20,6 +26,11 @@ const rawEducation = [
         details: [
             "Intensive program in Java and object-oriented programming.",
             "Hands-on work with database modeling, Spring Boot, basic frontend development, version control, and Agile methodology.",
+            "Featured on AW Academy's alumni page.",
+        ],
+        links: [
+            { label: "Watch my alumni video", url: "https://www.youtube.com/watch?v=xUBPxUqrQdE" },
+            { label: "About the Java program", url: "https://www.academicwork.no/academy/programmer/javautvikler" },
         ],
     },
     {

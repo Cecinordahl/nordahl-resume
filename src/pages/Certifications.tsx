@@ -11,7 +11,7 @@ export default function Certifications() {
                 <p>Selected certifications and courses.</p>
             </PageHeader>
 
-            <div className="entries">
+            <div className="entries entries-flush">
                 {certifications.map((c) => (
                     <div key={c.name} className="card" style={{ display: "flex", alignItems: "center", gap: 20 }}>
                         <div style={{ flex: 1, minWidth: 0 }}>

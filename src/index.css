@@ -845,6 +845,10 @@ textarea:focus {
 }
 .page-intro p { margin: 0 0 14px; }
 .page-intro p:last-child { margin-bottom: 0; }
+/* A short single-sentence intro that should stay on one line where there's room */
+@media (min-width: 720px) {
+    .page-intro .intro-one-line { white-space: nowrap; }
+}
 
 /* A labelled block inside a page */
 .page-section { display: grid; gap: 20px; }
@@ -859,6 +863,9 @@ textarea:focus {
 /* Stack of .card rows: rows are separated by their own top rule, so no extra gap */
 .entries { display: grid; }
 .entries > .card:last-child { border-bottom: 1px solid var(--border); }
+/* For lists that sit right under the page header's black rule: drop the first row's grey rule
+   so the two don't read as a double line. */
+.entries-flush > .card:first-child { border-top: 0; }
 .entry-list { padding-left: 18px; }
 .entry-list li { margin-bottom: 4px; }
 .text-link {
@@ -883,6 +890,8 @@ textarea:focus {
 @media (max-width: 380px) {
     .entry-meta .role { font-size: 9px; letter-spacing: 0; }
 }
+
+.entry-links { display: flex; flex-wrap: wrap; gap: 0 24px; }
 
 /* Contact: label column + large value */
 .card.contact-row {

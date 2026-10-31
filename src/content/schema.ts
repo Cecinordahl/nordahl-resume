@@ -55,6 +55,8 @@ export const EducationItemSchema = z.object({
     details: z.array(nonEmpty).optional(),
     courses: z.array(EducationCourseSchema).optional(),
     note: nonEmpty.optional(),
+    // External pages about the program (e.g. program overview, degree requirements).
+    links: z.array(z.object({ label: nonEmpty, url: z.string().url() })).optional(),
 });
 export type EducationItem = z.infer<typeof EducationItemSchema>;
 

@@ -95,7 +95,7 @@ export default function NotesIndex() {
                 </div>
             )}
 
-            <div className="entries">
+            <div className="entries entries-flush">
                 {visibleNotes.map((n) => (
                     <Link key={n.slug} to={`/notes/${n.slug}`} className="card note-row">
                         <div className="entry-meta note-row-date">{n.date}</div>

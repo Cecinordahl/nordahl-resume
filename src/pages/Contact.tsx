@@ -13,10 +13,10 @@ export default function Contact() {
     return (
         <div className="page">
             <PageHeader label="07 — Contact" title="Contact">
-                <p>Always open to sharing ideas, learning from others, and improving how we build things.</p>
+                <p className="intro-one-line">Always open to sharing ideas, learning from others, and improving how we build things.</p>
             </PageHeader>
 
-            <div className="entries">
+            <div className="entries entries-flush">
                 {links.map((l) => (
                     <a
                         key={l.label}

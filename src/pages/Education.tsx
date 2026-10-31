@@ -11,7 +11,7 @@ export default function Education() {
                 <p>Degrees, programs, and selected coursework.</p>
             </PageHeader>
 
-            <div className="entries">
+            <div className="entries entries-flush">
                 {education.map((e) => (
                     <div key={e.institution + e.program} className="card">
                         <div className="title">{e.institution}</div>
@@ -43,6 +43,16 @@ export default function Education() {
                         ) : null}
 
                         {e.note && <p className="entry-body" style={{ fontSize: 13 }}>{e.note}</p>}
+
+                        {e.links?.length ? (
+                            <div className="entry-links">
+                                {e.links.map((l) => (
+                                    <a key={l.url} className="text-link" href={l.url} target="_blank" rel="noreferrer">
+                                        {l.label}
+                                    </a>
+                                ))}
+                            </div>
+                        ) : null}
                     </div>
                 ))}
             </div>
