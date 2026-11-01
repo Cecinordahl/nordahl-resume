@@ -116,6 +116,125 @@ const rawHobbyProjects = [
         },
     },
     {
+        name: "Racket Sport Games",
+        tagline: "The web version of Americano. Getting an iOS app through Apple's App Store review process was more " +
+            "than I had time for, so I rebuilt it as a mobile-first web app anyone can open from a link. It keeps the " +
+            "same idea — Americano for any group size, including 3 players, and short formats that fit the time you " +
+            "actually have left on the court — and adds King of the Court, plus live tournaments where everyone " +
+            "follows the scores on their own phone.",
+        status: "In progress",
+        tags: ["React", "TypeScript", "Vite", "Firebase", "IndexedDB", "Vitest"],
+        githubUrl: "https://github.com/Cecinordahl/racketsportgames",
+        details: {
+            summary: "Pick a game mode, add players and courts, and the app generates the schedule, takes scores " +
+                "courtside, and keeps a live leaderboard. Tournaments are stored locally in the browser by default; " +
+                "inviting players publishes one to Firestore with a join code, QR code and link, so every phone sees " +
+                "scores as they're entered.",
+            highlights: [
+                "Domain rules and services (scheduling, scoring, leaderboard, progress, time estimates) are pure " +
+                "TypeScript with no React or storage imports, so they're straightforward to unit-test and could be " +
+                "mirrored in a Java backend later — the UI only talks to a repository interface.",
+                "Americano scheduling keeps byes exactly fair (counts never differ by more than one) and picks partners " +
+                "and opponents round by round to minimise repeats; it also shows who serves first in each match, " +
+                "spreading the first serve evenly across players.",
+                "King of the Court generates rounds one at a time from the previous results, with deterministic match " +
+                "ids so two phones generating the same round write identical data instead of conflicting copies.",
+                "Live tournaments need no accounts: each device signs in anonymously, scores are written per match so " +
+                "people scoring different courts never overwrite each other, and Firestore's offline cache keeps " +
+                "scoring working on bad signal. Join codes expire after 7 days, and tournaments can be read by id but " +
+                "never listed.",
+                "Organizers can edit a tournament that's already started — rename it, add or remove players, change " +
+                "rounds or courts — and only the unplayed rounds are redrawn.",
+                "Derived data like the leaderboard, progress and completion is never stored, only computed from the " +
+                "matches, so it can't drift out of sync with the scores.",
+            ],
+        },
+    },
+    {
+        name: "Kampklar EVM",
+        tagline: "An unofficial fan site following the men's national football team's road through the UEFA Nations " +
+            "League 2026/27 and on toward EM 2028 and VM 2030 — group tables, fixtures, squads and the latest news, " +
+            "in Norwegian, with Norway at the centre.",
+        status: "Live",
+        tags: ["Java", "Spring Boot", "React", "TypeScript", "Firebase", "Anthropic API"],
+        githubUrl: "https://github.com/Cecinordahl/kampklar-evm",
+        liveUrl: "https://kampklar-evm.vercel.app",
+        details: {
+            summary: "Public pages for the Nations League groups, teams and the EM and VM qualification paths read " +
+                "straight from Firestore. A Spring Boot backend handles everything that writes — match results, " +
+                "standings and team data — and only accepts requests from a single admin account.",
+            highlights: [
+                "Group tables use UEFA's head-to-head-first tiebreak order rather than FIFA's overall-goal-difference-first " +
+                "order, including reapplying the head-to-head criteria to any subset of teams that's still tied — kept as " +
+                "one isolated, unit-tested calculator because the two orders can disagree.",
+                "Saving a match result recomputes the group standings in the same Firestore transaction, so a table can " +
+                "never show a result without its updated standings.",
+                "Firestore rules make the data public read-only with no client writes at all; every change goes through " +
+                "the backend, which verifies the admin's Firebase ID token and UID on each request.",
+                "An admin mode on the regular pages can look up missing results and refresh squads, coaches and team " +
+                "history using Claude with web search and structured outputs — targeted to one match, one team or just " +
+                "the missing results, with a warning before re-running a costly refresh within 7 days.",
+                "The Norway page shows the latest headlines from NRK's RSS feeds, fetched directly in the browser " +
+                "(NRK allows cross-origin requests and caches the feeds on its CDN), so visitors never wait on a " +
+                "sleeping backend. Only headline, date and a short teaser are shown, linking back to NRK.",
+            ],
+            challenges: [
+                "The free Render backend sleeps after inactivity, so the admin view checks a /health endpoint and shows " +
+                "a wake-up progress banner, staying hidden until the backend is ready.",
+                "AI research cost was dominated by web search results — cut by limiting result lookups to allowed " +
+                "domains, lowering search caps, setting an explicit effort level and using prompt caching.",
+                "NRK moved the national team to a new tag in October 2026 that has no feed of its own, so the news box " +
+                "now reads NRK's general sport feeds and filters on either the old or the new tag.",
+            ],
+        },
+    },
+    {
+        name: "Roy Games",
+        tagline: "A mobile-first scorekeeper for family tournaments: Bondebridge (\"Bondis\") card games, bowling and " +
+            "boccia. Note takers enter rounds on their phones while everyone else follows the standings live on their " +
+            "own.",
+        status: "In progress",
+        tags: ["React", "TypeScript", "Vite", "Firebase", "Tailwind CSS", "Vitest"],
+        githubUrl: "https://github.com/Cecinordahl/roy-games",
+        details: {
+            summary: "An organizer creates a tournament, splits players into tables or lanes, and shares a join code. " +
+                "Bondebridge runs as a group stage followed by a winners' table with configurable tie-break rules; " +
+                "bowling either re-seeds lanes by rank every round or runs a group stage into a final lane; boccia is " +
+                "first to a target score.",
+            highlights: [
+                "Deliberately frontend-only: the real requirement is realtime sync between several note takers and " +
+                "watchers, which Firestore handles directly from the browser — and a free-tier backend that takes up " +
+                "to a minute to wake would fail at exactly the moment someone's recording a round.",
+                "All game logic (scoring, standings, tie-breaks, advancement) lives in a pure, Firebase-free domain " +
+                "layer, fully unit-tested against worked examples like the Bondebridge scoring table and how 16 players " +
+                "split into groups and advance.",
+                "The tournament, table and player model is game-agnostic, which let bowling and boccia be added " +
+                "without changing the data model's shape or the Firestore rules; boccia teams are modelled as synthetic " +
+                "participants, so the standings code needed no changes at all.",
+                "Firestore security rules are the only enforcement layer, so they're covered by emulator-backed tests, " +
+                "and a written GDPR/privacy review shaped the design — no accounts, anonymous sign-in, and a real " +
+                "player delete that's safe because tournaments snapshot player names when they're created.",
+                "Running totals are never stored, only summed from each table's rounds, so editing a past round " +
+                "updates every later total by construction.",
+            ],
+        },
+    },
+    {
+        name: "Automated AI News Digest",
+        tagline: "Two scheduled Claude tasks — a daily pulse and a weekly deep dive — that search the web and send me a written AI news summary without me having to go looking for it.",
+        status: "Live",
+        tags: ["Automation", "Claude", "AI"],
+        details: {
+            summary: "Two recurring, cron-scheduled Claude tasks tied to my Claude account, each defined by a schedule plus a standing natural-language prompt describing what to look for, how to judge whether something's worth including, and how to format the output. Every run starts a fresh Claude session with no memory of past runs, so there's no database or persistent state — the instructions are the \"program,\" and Claude re-derives what's new each time by searching live.",
+            highlights: [
+                "Daily AI News Watch runs every morning at 8:00 AM Oslo time, scanning roughly the last 24 hours for notable model/product releases, real research findings, funding or policy news, and creative AI integrations worth trying — and says so in one line on a quiet day instead of padding the summary with minor items.",
+                "Weekly AI Deep Dive runs every Sunday at 8:00 AM Oslo time, splitting the past week into the 3–5 most significant developments (each written up with context and a source link) plus a scannable one-line-each list of everything else.",
+                "Web search spans major tech news outlets, AI lab blogs and announcements (OpenAI, Anthropic, Google DeepMind, Meta AI), arXiv, and communities like Hacker News and AI/ML subreddits.",
+                "Both tasks deliver their output as a Claude message with a push notification, so the summary shows up wherever I'm already checking Claude — no separate feed or dashboard to log into.",
+            ],
+        },
+    },
+    {
         name: "Trivia Arena",
         tagline:
             "I was usually the one building the Kahoot quiz for game night, and Kahoot has no way to generate a quiz automatically by category — I had to write every question and answer myself, which meant I already knew them all and couldn't actually play. Trivia Arena is my own answer to that: a real-time, Jeopardy-style board across 12 categories where teams buzz in, wrong or missed answers open a steal for the other team, and everything syncs live over WebSocket. Today's board runs on a curated 60-question bank; automatic per-category question generation — the actual fix for not being able to play my own game — is next.",
