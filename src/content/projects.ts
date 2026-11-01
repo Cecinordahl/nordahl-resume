@@ -256,12 +256,12 @@ const rawHobbyProjects = [
         },
     },
     {
-        name: "Casa 360",
-        tagline: "My family rents out our vacation home in Spain through Airbnb and a rental agency, and my mom kept fielding the same questions over and over — Airbnb's messaging isn't built for organizing a house manual, transportation tips, restaurant and golf/activity booking info, and we wanted guests to have genuinely good information, not just the bare minimum. Casa 360 is a bilingual (English/Norwegian) guest guide built for the phone: practical info like restaurants and activities is publicly browsable, house-specific details like WiFi and appliances sit behind a simple guest code, and an admin panel lets my parents add and edit all of it themselves without touching code. Eventually we'd like to use it to move bookings off Airbnb and the agency entirely and cut out the cut they both take.",
+        name: "Casa Hoyo 8",
+        tagline: "My family rents out our vacation home in Spain through Airbnb and a rental agency, and my mom kept fielding the same questions over and over — Airbnb's messaging isn't built for organizing a house manual, transportation tips, restaurant and golf/activity booking info, and we wanted guests to have genuinely good information, not just the bare minimum. Casa Hoyo 8 is a bilingual (English/Norwegian) guest guide built for the phone: practical info like restaurants and activities is publicly browsable, house-specific details like WiFi and appliances sit behind a simple guest code, and an admin panel lets my parents add and edit all of it themselves without touching code. Eventually we'd like to use it to move bookings off Airbnb and the agency entirely and cut out the cut they both take.",
         status: "Live",
         tags: ["React", "TypeScript", "Firebase", "Cloudinary", "Vercel", "i18next"],
         githubUrl: "https://github.com/Cecinordahl/casa360",
-        liveUrl: "https://casa-360.vercel.app/",
+        liveUrl: "https://www.casahoyo8.com",
         details: {
             summary: "Three surfaces in one app: a public guide (restaurants, groceries, activities, practical info) anyone can browse, a guest-code-gated house manual (WiFi, appliances, house rules, emergency info), and a Firebase-authenticated admin panel for managing all of it, including image uploads and guest-code rotation.",
             highlights: [
