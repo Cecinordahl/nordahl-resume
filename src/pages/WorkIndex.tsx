@@ -59,7 +59,8 @@ const mainTimeline: Stop[] = [
 ];
 
 // Seasonal jobs (2009–2018) ran alongside the main sequence, so they get a thin side line of
-// their own: it starts partway down the SAS row (2018) and continues past RSU to 2009.
+// their own. It starts just below the 2016 dot, so it doesn't run into the SAS row, and
+// continues past RSU to 2009.
 const seasonalJobs = {
     role: "Seasonal jobs",
     org: "Bergen Golf Club · Iversen & Co",
@@ -73,7 +74,7 @@ const seasonalJobs = {
     ),
 };
 // Which side-line piece each main row draws: none, starting mid-row, or the full row.
-const sideLine: Record<string, "start" | "full" | undefined> = { sas: "start", "Golf Scholar & Student": "full" };
+const sideLine: Record<string, "start" | undefined> = { "Golf Scholar & Student": "start" };
 
 function StopContent({ icon, role, org, dateRange }: { icon: ReactNode; role: string; org: string; dateRange: string }) {
     return (
