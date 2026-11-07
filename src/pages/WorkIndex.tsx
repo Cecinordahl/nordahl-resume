@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { workExperience } from "../content/experience";
 import { useDocumentTitle } from "../lib/useDocumentTitle";
@@ -7,10 +7,60 @@ import RoleList from "../components/RoleList";
 
 const logos = "/images/logos";
 
-// Summer & seasonal jobs (2009–2018) runs alongside and beyond the other stops, so it's kept
-// separate from the main sequence: on desktop and in the mobile steps strip it floats above
-// "Golf Scholar & Student" to show it starts earlier and ends later.
-const summerJobs = {
+// Approximate brand colors, eyeballed from each employer's logo.
+const brandColor = {
+    rsu: "#b3352a",
+    sas: "#4169e1",
+    vinmonopolet: "#7eb3a3",
+    accenture: "#a100ff",
+};
+
+type Stop = { role: string; org: string; dateRange: string; startYear: string; color: string; icon: ReactNode; slug?: string };
+
+// Newest first. Each stop's colored line runs from the stop above it down to its own start
+// year (the dot). slug links to the writeup on /work/:slug; Golf Scholar & Student is
+// education, not a workExperience entry, so it has none.
+const mainTimeline: Stop[] = [
+    {
+        role: "Fullstack Developer",
+        org: "Accenture",
+        dateRange: "Nov 2021 – Present",
+        startYear: "2021",
+        color: brandColor.accenture,
+        icon: <img src={`${logos}/accenture.png`} alt="Accenture logo" className="timeline-logo" />,
+        slug: "accenture",
+    },
+    {
+        role: "Wine Advisor",
+        org: "Vinmonopolet",
+        dateRange: "Aug 2020 – Dec 2021",
+        startYear: "2020",
+        color: brandColor.vinmonopolet,
+        icon: <img src={`${logos}/vinmonopolet.png`} alt="Vinmonopolet logo" className="timeline-logo" />,
+        slug: "vinmonopolet",
+    },
+    {
+        role: "Cabin Crew",
+        org: "Scandinavian Airlines",
+        dateRange: "May 2016 – Jul 2020",
+        startYear: "2016",
+        color: brandColor.sas,
+        icon: <img src={`${logos}/sas.png`} alt="SAS logo" className="timeline-logo" />,
+        slug: "sas",
+    },
+    {
+        role: "Golf Scholar & Student",
+        org: "Rogers State University",
+        dateRange: "2011 – 2015",
+        startYear: "2011",
+        color: brandColor.rsu,
+        icon: <img src={`${logos}/rsu-hillcats.png`} alt="Rogers State University Hillcats logo" className="timeline-logo" />,
+    },
+];
+
+// Seasonal jobs (2009–2018) ran alongside the main sequence, so they get a thin side line of
+// their own: it starts partway down the SAS row (2018) and continues past RSU to 2009.
+const seasonalJobs = {
     role: "Seasonal jobs",
     org: "Bergen Golf Club · Iversen & Co",
     dateRange: "2009 – 2018",
@@ -22,75 +72,23 @@ const summerJobs = {
         </>
     ),
 };
+// Which side-line piece each main row draws: none, starting mid-row, or the full row.
+const sideLine: Record<string, "start" | "full" | undefined> = { sas: "start", "Golf Scholar & Student": "full" };
 
-// Approximate brand colors, eyeballed from each employer's logo.
-const brandColor = {
-    rsu: "#b3352a",
-    sas: "#4169e1",
-    vinmonopolet: "#7eb3a3",
-    accenture: "#a100ff",
-};
-
-// slug links each stop to its detailed writeup on /work/:slug — Golf Scholar & Student has
-// none (it's education, not a workExperience entry), so it stays plain, unlinked text.
-const mainTimeline: { role: string; org: string; dateRange: string; startYear: string; icon: ReactNode; slug?: string }[] = [
-    {
-        role: "Golf Scholar & Student",
-        org: "Rogers State University",
-        dateRange: "2011 – 2015",
-        startYear: "2011",
-        icon: <img src={`${logos}/rsu-hillcats.png`} alt="Rogers State University Hillcats logo" className="timeline-logo" />,
-    },
-    {
-        role: "Cabin Crew",
-        org: "Scandinavian Airlines",
-        dateRange: "May 2016 – Jul 2020",
-        startYear: "2016",
-        icon: <img src={`${logos}/sas.png`} alt="SAS logo" className="timeline-logo" />,
-        slug: "sas",
-    },
-    {
-        role: "Wine Advisor",
-        org: "Vinmonopolet",
-        dateRange: "Aug 2020 – Dec 2021",
-        startYear: "2020",
-        icon: <img src={`${logos}/vinmonopolet.png`} alt="Vinmonopolet logo" className="timeline-logo" />,
-        slug: "vinmonopolet",
-    },
-    {
-        role: "Fullstack Developer",
-        org: "Accenture",
-        dateRange: "Nov 2021 – Present",
-        startYear: "2021",
-        icon: <img src={`${logos}/accenture.png`} alt="Accenture logo" className="timeline-logo" />,
-        slug: "accenture",
-    },
-];
-
-// Each segment is colored by whichever employer was active during that span — e.g. the RSU-red
-// segment runs 2011–2016 because that's when "Golf Scholar & Student" was ongoing.
-const desktopSegments = [
-    { left: 12.5, right: 62.5, color: brandColor.rsu }, // 2011–2016
-    { left: 37.5, right: 37.5, color: brandColor.sas }, // 2016–2020
-    { left: 62.5, right: 12.5, color: brandColor.vinmonopolet }, // 2020–2021
-    { left: 87.5, right: 0, color: brandColor.accenture }, // 2021–present
-];
-
-// The mobile spine is a 5-column grid, giving 6 evenly-spaced grid lines: 2009, 2011, 2016,
-// 2018, 2020, 2021. Summer jobs spans line 1 to line 4 (2009–2018); each mainTimeline item
-// below is right-aligned (+ shifted back 50% of its own width) to sit exactly on its own line.
-const spineLowerColumns = [1, 2, 4, 5]; // → lines 2 (2011), 3 (2016), 5 (2020), 6 (2021)
-
-// Same idea as desktopSegments, mapped onto the spine's 6-point (0/20/40/60/80/100%) scale.
-// Cabin Crew (2016–2020) covers two spine ticks (2016 and 2018), so its blue spans both.
-const spineSegments = [
-    { left: 20, right: 60, color: brandColor.rsu }, // 2011–2016
-    { left: 40, right: 20, color: brandColor.sas }, // 2016–2020 (via the 2018 tick)
-    { left: 80, right: 0, color: brandColor.vinmonopolet }, // 2020–2021
-];
+function StopContent({ icon, role, org, dateRange }: { icon: ReactNode; role: string; org: string; dateRange: string }) {
+    return (
+        <>
+            <div className="timeline-logo-row">{icon}</div>
+            <div className="timeline-role">{role}</div>
+            <div className="muted">{org}</div>
+            <div className="muted timeline-date">{dateRange}</div>
+        </>
+    );
+}
 
 export default function WorkIndex() {
     useDocumentTitle("Work");
+    const currentYear = new Date().getFullYear();
 
     return (
         <div className="page">
@@ -102,101 +100,36 @@ export default function WorkIndex() {
                 </p>
             </PageHeader>
 
-            {/* Desktop: floating top line for summer jobs, spanning before/after the main sequence */}
-            <div className="timeline timeline-desktop">
-                <div className="timeline-overlap-bar">
-                    <div className="timeline-content">
-                        <div className="timeline-logo-row">{summerJobs.icon}</div>
-                        <div className="timeline-role">{summerJobs.role}</div>
-                        <div className="muted timeline-org">{summerJobs.org}</div>
-                        <div className="muted timeline-date">{summerJobs.dateRange}</div>
-                    </div>
-                    <div className="timeline-overlap-track" />
-                </div>
+            <ol className="vtimeline" aria-label="Timeline">
+                <li className="vt-row vt-now" style={{ "--c": brandColor.accenture } as CSSProperties}>
+                    <span className="vt-year"><strong>Now</strong> {currentYear}</span>
+                    <span className="vt-main" />
+                </li>
 
-                <div className="timeline-employer-line">
-                    {desktopSegments.map((s) => (
-                        <span
-                            key={s.color}
-                            className="timeline-line-segment"
-                            style={{ left: `${s.left}%`, right: `${s.right}%`, background: s.color }}
-                        />
-                    ))}
-                </div>
-
-                {mainTimeline.map((t, i) => {
-                    const content = (
-                        <>
-                            <div className="timeline-logo-row">{t.icon}</div>
-                            <div className="timeline-role">{t.role}</div>
-                            <div className="muted">{t.org}</div>
-                            <div className="muted timeline-date">{t.dateRange}</div>
-                        </>
-                    );
+                {mainTimeline.map((t) => {
+                    const side = sideLine[t.slug ?? t.role];
+                    const content = <StopContent {...t} />;
                     return (
-                        <div className="timeline-item" style={{ gridColumn: i + 1 }} key={t.role}>
-                            <div className="timeline-marker" />
+                        <li className="vt-row" style={{ "--c": t.color } as CSSProperties} key={t.role}>
+                            <span className="vt-year">{t.startYear}</span>
+                            <span className="vt-main" />
+                            <span className={side ? `vt-side vt-side--${side}` : "vt-side"} />
                             {t.slug ? (
-                                <Link className="timeline-content" to={`/work/${t.slug}`}>{content}</Link>
+                                <Link className="vt-content" to={`/work/${t.slug}`}>{content}</Link>
                             ) : (
-                                <div className="timeline-content">{content}</div>
+                                <div className="vt-content">{content}</div>
                             )}
-                        </div>
+                        </li>
                     );
                 })}
-            </div>
 
-            {/* Mobile: a shared middle "spine" line is the reference axis for years. The
-                Summer & seasonal jobs bar sits above it, connected to the spine by two stems
-                at its start/end years; the main sequence sits below, each connected up to the
-                spine by a stem at its start year. All positions share one 6-point year scale:
-                2009 · 2011 · 2016 · 2018 · 2020 · 2021 (evenly spaced, at grid lines 0–5). */}
-            <div className="timeline-spine">
-                <div className="timeline-spine-bar">
-                    <div className="timeline-gantt-logos">{summerJobs.icon}</div>
-                    <div className="timeline-gantt-label">{summerJobs.role}</div>
-                    <div className="timeline-gantt-track">
-                        <span className="timeline-gantt-diamond timeline-gantt-diamond--start" />
-                        <span className="timeline-gantt-diamond timeline-gantt-diamond--end" />
-                        <span className="timeline-gantt-stem timeline-gantt-stem--start" />
-                        <span className="timeline-gantt-stem timeline-gantt-stem--end" />
-                    </div>
-                </div>
-
-                <div className="timeline-spine-line">
-                    {spineSegments.map((s) => (
-                        <span
-                            key={s.color}
-                            className="timeline-line-segment"
-                            style={{ left: `${s.left}%`, right: `${s.right}%`, background: s.color }}
-                        />
-                    ))}
-                </div>
-
-                {mainTimeline.map((t, i) => {
-                    const content = (
-                        <>
-                            <div className="timeline-steps-icon">{t.icon}</div>
-                            <div className="timeline-step-year">{t.startYear}</div>
-                            <div className="timeline-step-title">{t.role}</div>
-                        </>
-                    );
-                    return t.slug ? (
-                        <Link
-                            className="timeline-spine-item"
-                            style={{ gridColumn: spineLowerColumns[i] }}
-                            to={`/work/${t.slug}`}
-                            key={t.role}
-                        >
-                            {content}
-                        </Link>
-                    ) : (
-                        <div className="timeline-spine-item" style={{ gridColumn: spineLowerColumns[i] }} key={t.role}>
-                            {content}
-                        </div>
-                    );
-                })}
-            </div>
+                <li className="vt-row vt-row--side-only">
+                    <span className="vt-year">{seasonalJobs.startYear}</span>
+                    <span className="vt-main" />
+                    <span className="vt-side vt-side--end" />
+                    <div className="vt-content"><StopContent {...seasonalJobs} /></div>
+                </li>
+            </ol>
 
             <div className="page-section">
                 <p>
