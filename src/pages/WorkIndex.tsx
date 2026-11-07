@@ -100,62 +100,67 @@ export default function WorkIndex() {
                 </p>
             </PageHeader>
 
-            <ol className="vtimeline" aria-label="Timeline">
-                <li className="vt-row vt-now" style={{ "--c": brandColor.accenture } as CSSProperties}>
-                    <span className="vt-year"><strong>Now</strong> {currentYear}</span>
-                    <span className="vt-main" />
-                </li>
+            {/* Phones: timeline above the text. Desktop: timeline on the left (sticky), text on the right. */}
+            <div className="work-layout">
+                <ol className="vtimeline" aria-label="Timeline">
+                    <li className="vt-row vt-now" style={{ "--c": brandColor.accenture } as CSSProperties}>
+                        <span className="vt-year"><strong>Now</strong> {currentYear}</span>
+                        <span className="vt-main" />
+                    </li>
 
-                {mainTimeline.map((t) => {
-                    const side = sideLine[t.slug ?? t.role];
-                    const content = <StopContent {...t} />;
-                    return (
-                        <li className="vt-row" style={{ "--c": t.color } as CSSProperties} key={t.role}>
-                            <span className="vt-year">{t.startYear}</span>
-                            <span className="vt-main" />
-                            <span className={side ? `vt-side vt-side--${side}` : "vt-side"} />
-                            {t.slug ? (
-                                <Link className="vt-content" to={`/work/${t.slug}`}>{content}</Link>
-                            ) : (
-                                <div className="vt-content">{content}</div>
-                            )}
-                        </li>
-                    );
-                })}
+                    {mainTimeline.map((t) => {
+                        const side = sideLine[t.slug ?? t.role];
+                        const content = <StopContent {...t} />;
+                        return (
+                            <li className="vt-row" style={{ "--c": t.color } as CSSProperties} key={t.role}>
+                                <span className="vt-year">{t.startYear}</span>
+                                <span className="vt-main" />
+                                <span className={side ? `vt-side vt-side--${side}` : "vt-side"} />
+                                {t.slug ? (
+                                    <Link className="vt-content" to={`/work/${t.slug}`}>{content}</Link>
+                                ) : (
+                                    <div className="vt-content">{content}</div>
+                                )}
+                            </li>
+                        );
+                    })}
 
-                <li className="vt-row vt-row--side-only">
-                    <span className="vt-year">{seasonalJobs.startYear}</span>
-                    <span className="vt-main" />
-                    <span className="vt-side vt-side--end" />
-                    <div className="vt-content"><StopContent {...seasonalJobs} /></div>
-                </li>
-            </ol>
+                    <li className="vt-row vt-row--side-only">
+                        <span className="vt-year">{seasonalJobs.startYear}</span>
+                        <span className="vt-main" />
+                        <span className="vt-side vt-side--end" />
+                        <div className="vt-content"><StopContent {...seasonalJobs} /></div>
+                    </li>
+                </ol>
 
-            <div className="page-section">
-                <p>
-                    I won't claim it makes me a better developer than anyone else, but I do think it helps.
-                    Coming from other fields, I often end up approaching a problem from a slightly odd angle,
-                    and I'm comfortable talking to people who don't write code — bridging the gap between the
-                    technical team and everyone else. Having learned a completely new discipline from scratch a
-                    couple of times also makes it less daunting to pick up a new language or framework; you get
-                    used to being a beginner. Mostly I think it just gives me a broader sense of who's actually
-                    on the other end of the software.
-                </p>
-            </div>
+                <div className="work-text">
+                    <div className="page-section">
+                        <p>
+                            I won't claim it makes me a better developer than anyone else, but I do think it helps.
+                            Coming from other fields, I often end up approaching a problem from a slightly odd angle,
+                            and I'm comfortable talking to people who don't write code — bridging the gap between the
+                            technical team and everyone else. Having learned a completely new discipline from scratch a
+                            couple of times also makes it less daunting to pick up a new language or framework; you get
+                            used to being a beginner. Mostly I think it just gives me a broader sense of who's actually
+                            on the other end of the software.
+                        </p>
+                    </div>
 
-            <div className="page-section">
-                <div className="section-label">Workplaces — click for details</div>
-                <div className="entries">
-                    {workExperience.map((w) => (
-                        <Link key={w.slug} to={`/work/${w.slug}`} className="card">
-                            <div className="row-between" style={{ alignItems: "baseline" }}>
-                                <div className="title">{w.company}</div>
-                                <div className="entry-meta">{w.location} · {w.dateRange}</div>
-                            </div>
-                            <div className="entry-meta"><RoleList roles={w.roles} /></div>
-                            <p className="entry-body">{w.summary}</p>
-                        </Link>
-                    ))}
+                    <div className="page-section">
+                        <div className="section-label">Workplaces — click for details</div>
+                        <div className="entries">
+                            {workExperience.map((w) => (
+                                <Link key={w.slug} to={`/work/${w.slug}`} className="card">
+                                    <div className="row-between" style={{ alignItems: "baseline" }}>
+                                        <div className="title">{w.company}</div>
+                                        <div className="entry-meta">{w.location} · {w.dateRange}</div>
+                                    </div>
+                                    <div className="entry-meta"><RoleList roles={w.roles} /></div>
+                                    <p className="entry-body">{w.summary}</p>
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

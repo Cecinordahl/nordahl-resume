@@ -646,6 +646,15 @@ a.vt-content:hover .timeline-role { text-decoration: underline; text-underline-o
 /* The seasonal-jobs row has no main line: the main sequence ends at 2011. */
 .vt-row--side-only .vt-main { visibility: hidden; }
 
+/* Work page layout: timeline above the text on phones; side by side on desktop, with the
+   timeline sticking below the nav while the text scrolls. */
+.work-layout, .work-text { display: grid; gap: 56px; }
+.work-layout > .vtimeline { margin: 0; }
+@media (min-width: 900px) {
+    .work-layout { grid-template-columns: 300px minmax(0, 1fr); align-items: start; }
+    .work-layout > .vtimeline { position: sticky; top: 110px; }
+}
+
 .timeline-role { font-weight: 700; }
 .timeline-date { font-size: 12px; margin-top: 2px; }
 
