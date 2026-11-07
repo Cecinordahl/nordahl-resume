@@ -152,7 +152,7 @@ export default function WorkIndex() {
                         <div className="entries">
                             {workExperience.map((w) => (
                                 <Link key={w.slug} to={`/work/${w.slug}`} className="card">
-                                    <div className="row-between" style={{ alignItems: "baseline" }}>
+                                    <div className="row-between card-head" style={{ alignItems: "baseline" }}>
                                         <div className="title">{w.company}</div>
                                         <div className="entry-meta">{w.location} · {w.dateRange}</div>
                                     </div>

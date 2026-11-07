@@ -654,6 +654,13 @@ a.vt-content:hover .timeline-role { text-decoration: underline; text-underline-o
     .work-layout > .vtimeline { position: sticky; top: 110px; }
 }
 
+/* Workplace cards on phones: city and dates always on their own line under the name,
+   tucked close to it (the default wrap gap is 12px + the meta's own 6px margin). */
+@media (max-width: 719px) {
+    .card-head { flex-direction: column; gap: 0; }
+    .card-head > .entry-meta { margin-top: 2px; }
+}
+
 .timeline-role { font-weight: 700; }
 .timeline-date { font-size: 12px; margin-top: 2px; }
 
