@@ -59,7 +59,7 @@ const mainTimeline: Stop[] = [
 ];
 
 // Seasonal jobs (2009–2018) ran alongside the main sequence, so they get a thin side line of
-// their own. It starts just below the 2016 dot, so it doesn't run into the SAS row, and
+// their own. It starts level with the 2016 dot, so it doesn't run into the SAS row, and
 // continues past RSU to 2009.
 const seasonalJobs = {
     role: "Seasonal jobs",

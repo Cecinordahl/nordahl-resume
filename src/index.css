@@ -625,7 +625,7 @@ a.vt-content:hover .timeline-role { text-decoration: underline; text-underline-o
     border-left: 2px dashed var(--muted);
     transform: translateX(-50%);
 }
-.vt-side--start::before { content: ""; top: 14px; bottom: 0; }
+.vt-side--start::before { content: ""; top: 0; bottom: 0; }
 .vt-side--end::before { content: ""; top: 0; bottom: 0; }
 .vt-side--start::after, .vt-side--end::after {
     content: "";
@@ -639,7 +639,7 @@ a.vt-content:hover .timeline-role { text-decoration: underline; text-underline-o
     background: var(--bg);
     transform: translate(-50%, -50%);
 }
-.vt-side--start::after { top: 14px; }
+.vt-side--start::after { top: 0; } /* level with the 2016 dot */
 .vt-side--end::after { top: 100%; }
 
 /* The seasonal-jobs row has no main line: the main sequence ends at 2011. */
