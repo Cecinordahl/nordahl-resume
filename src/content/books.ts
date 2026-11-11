@@ -4,7 +4,7 @@ export type { Book };
 
 // Shelf order = array order. To add your own thoughts on a book, add a `notes` field (Markdown).
 // `face: "cover"` stands a book face-out; everything else is shelved spine-out.
-// Optional extras: `podcastEpisodes` (Spotify episode links) and `deepstashUrl`.
+// Optional extras: `podcastEpisodes` (Spotify episode links), `deepstashUrl` and `deichmanUrl`.
 const rawBooks = [
     {
         slug: "the-pragmatic-programmer",
@@ -64,6 +64,7 @@ const rawBooks = [
         blurb: "Journalistic and story-driven. It's about attention rather than computer science, but it sits next to it.",
         categories: ["Beyond the code"],
         relatedNote: "attention-is-a-team-resource-not-a-personal-virtue",
+        deichmanUrl: "https://deichman.no/utgivelse/58980cae-39fd-4f04-b1f4-e33ad0dd38bb",
     },
     {
         slug: "deep-work",
