@@ -1,8 +1,11 @@
 ---
-title: "Explaining My Job to Non-Coders (and Why Code Is Just Strict Instructions)"
+title: "Explaining My Job to Non-Coders"
 date: 2026-11-20
 tags: ["AI", "Developer Workflow", "Communication"]
 ---
+
+![Impressionist painting of a woman writing at a garden table by a lake, gesturing toward floating pages and three ethereal helper figures with a quill, a globe and a blueprint](/images/notes/explaining-my-job-to-non-coders/hero.jpg)
+
 I recently tried to explain my coding setup to someone outside tech. I use one editor with a "bank" of AI models I can switch between, so I'm not tied to a single provider. It went badly. Every sentence I said needed three more sentences of explanation.
 
 The problem was the framing, not the audience. I was describing tools before I'd explained the job. Here's what I've found works instead.
