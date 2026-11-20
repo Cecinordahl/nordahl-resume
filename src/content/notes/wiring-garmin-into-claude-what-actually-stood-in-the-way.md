@@ -3,6 +3,9 @@ title: "Wiring Garmin Into Claude: What Actually Stood in the Way"
 date: 2026-10-31
 tags: ["Garmin API","Claude","MCP Connectors","Dashboards"]
 ---
+
+![Impressionist painting of a woman with a smartwatch walking her bicycle along a river, with floating dashboard panels for HRV, sleep, resting heart rate and training status](/images/notes/garmin/hero.jpg)
+
 I wanted something simple: my Garmin data (training, sleep, HRV, resting heart rate) in a dashboard inside Claude, so I could look at trends and talk to my "AI coach" with real numbers instead of vibes. It took one conversation to get there, but not along the path I expected. The hard part wasn't technical difficulty. It was knowing which pieces existed and where each one is allowed to talk to the internet.
 
 These are my notes on what I learned, mostly so I remember the mental model and don't repeat the dead ends.
