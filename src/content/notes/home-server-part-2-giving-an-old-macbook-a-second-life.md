@@ -4,6 +4,8 @@ date: 2026-11-03
 tags: ["Self-Hosting", "Ubuntu", "Coolify", "Cloudflare", "Docker"]
 ---
 
+![Impressionist painting of a woman kneeling to cable an old MacBook and router on a workbench, with glowing ribbons for Coolify, Cloudflare and cnordahl.com rising toward a city in the clouds](/images/notes/home-server-part-2-giving-an-old-macbook-a-second-life/hero.jpg)
+
 In [part one](/notes/home-server-part-1-choosing-a-stack-and-prepping-an-old-macbook) I picked a stack and got a verified Ubuntu USB stick ready. This part covers turning the laptop into an actual server: installing Ubuntu Server on a 2016 MacBook Pro, making it behave like a server, installing Coolify, and connecting it to the internet with Cloudflare Tunnel. Moving my first real project off Render gets [its own note](/notes/home-server-part-3-moving-my-projects-off-render).
 
 All of it, including that first move, fit into two short evenings after dinner.

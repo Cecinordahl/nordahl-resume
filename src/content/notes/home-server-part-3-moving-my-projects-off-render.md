@@ -4,6 +4,8 @@ date: 2026-11-04
 tags: ["Self-Hosting", "Coolify", "Cloudflare", "Render", "Vercel"]
 ---
 
+![Impressionist painting of a woman with a coffee on a porch at dusk, watching a glowing Cloudflare Tunnel stream carry her projects from a Render cloud into a closed MacBook running Coolify](/images/notes/home-server-part-3-moving-my-projects-off-render/hero.jpg)
+
 In [part two](/notes/home-server-part-2-giving-an-old-macbook-a-second-life) the old MacBook became a server: Ubuntu, Coolify, and a Cloudflare Tunnel that routes `*.cnordahl.com` to it. This part moves the first real project onto it, plus the checklist I now use for the rest.
 
 The result: my Wherewear app's backend runs on a laptop on my shelf, starts in under four seconds, and no longer falls asleep.

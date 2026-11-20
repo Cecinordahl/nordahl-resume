@@ -4,6 +4,8 @@ date: 2026-11-02
 tags: ["Self-Hosting", "Ubuntu", "Coolify", "Cloudflare"]
 ---
 
+![Impressionist painting of a woman working on an old MacBook by an open garden window, with a glowing home-server castle linked to Ubuntu 24.04, Coolify and Cloudflare Tunnel](/images/notes/home-server-part-1-choosing-a-stack-and-prepping-an-old-macbook/hero.jpg)
+
 Some of my side projects live on Render's free tier, and I've finally had enough of one thing: they go to sleep. After about 15 minutes without traffic, Render spins the service down, and the next visitor waits a couple of minutes while it wakes back up. For a hobby project that's tolerable. For something you actually want to show people, it's painful.
 
 I don't want to pay for hosting for small hobby projects, but I do have a 2016 MacBook Pro in a drawer that I'm never going to use again. So the plan is to wipe it, install Linux, and turn it into an always-on server for my sites. This note covers the first part: picking an approach and getting the install media ready. The machine itself gets wiped next.
