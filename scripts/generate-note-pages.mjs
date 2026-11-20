@@ -1,10 +1,11 @@
 // Runs after `vite build`. Link-preview bots (iMessage, Slack, LinkedIn…) don't run
 // JavaScript, so they only see the <meta> tags in the HTML file. This writes
 // dist/notes/<slug>/index.html for each note: a copy of the built index.html with the
-// note's own title and description. Vercel serves these static files before the SPA
+// note's own title, description and preview image. Vercel serves these static files before the SPA
 // rewrite, and the React app takes over as usual once loaded.
 import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
+import { SITE_URL } from "./site.mjs";
 
 const ROOT = join(import.meta.dirname, "..");
 const NOTES_DIR = join(ROOT, "src", "content", "notes");
@@ -50,6 +51,17 @@ export function excerpt(body, max = 160) {
     return cut.slice(0, cut.lastIndexOf(" ")).replace(/[,.;:]$/, "") + "…";
 }
 
+// First markdown image in the note (not videos), as an absolute URL: preview bots
+// often ignore relative og:image paths. Falls back to the portrait.
+const IMAGE_EXT = /\.(jpe?g|png|webp|gif)$/i;
+export function previewImage(body) {
+    const src = [...body.matchAll(/!\[[^\]]*\]\(([^)\s]+)[^)]*\)/g)]
+        .map((m) => m[1])
+        .find((url) => IMAGE_EXT.test(url));
+    if (!src) return { url: `${SITE_URL}/images/portrait.jpg`, fromArticle: false };
+    return { url: /^https?:\/\//.test(src) ? src : `${SITE_URL}${src.startsWith("/") ? "" : "/"}${src}`, fromArticle: true };
+}
+
 function escapeAttr(s) {
     return s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
@@ -71,6 +83,7 @@ const notes = readdirSync(NOTES_DIR)
             title: fm.title ?? file,
             draft: fm.draft === "true",
             description: excerpt(body),
+            image: previewImage(body),
         };
     })
     .filter((n) => !n.draft);
@@ -80,6 +93,9 @@ for (const note of notes) {
     html = setMeta(html, "property", "og:type", "article");
     html = setMeta(html, "property", "og:title", note.title);
     html = setMeta(html, "name", "twitter:title", note.title);
+    html = setMeta(html, "property", "og:image", note.image.url);
+    html = setMeta(html, "name", "twitter:image", note.image.url);
+    if (note.image.fromArticle) html = setMeta(html, "name", "twitter:card", "summary_large_image");
     if (note.description) {
         html = setMeta(html, "name", "description", note.description);
         html = setMeta(html, "property", "og:description", note.description);
