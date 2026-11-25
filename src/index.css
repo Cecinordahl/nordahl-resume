@@ -870,6 +870,7 @@ a.vt-content:hover .timeline-role { text-decoration: underline; text-underline-o
     .article h2,
     .article h3,
     .article pre,
+    .article .code-block,
     .article table,
     .article hr,
     .article > p:has(> video),
